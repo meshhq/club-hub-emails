@@ -1,0 +1,26 @@
+.container.footer {
+    background: #F6F7FB;
+  
+    i {
+      color: #AEBDC4;
+      font-size: 22px;
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+  
+    p,
+    a {
+      color: #AEBDC4;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  
+    a {
+      text-decoration: underline;
+    }
+  
+    .feather {
+      text-decoration: none !important;
+    }
+  }
+  

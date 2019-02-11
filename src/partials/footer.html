@@ -1,0 +1,31 @@
+<container class="footer">
+  <row>
+    <columns small="12">
+      <spacer size="36"></spacer>
+
+      <menu>
+        <center>
+            <a href="{{event.facebookURL}}">
+              <i class="feather icon-facebook"></i>
+            </a>
+            <a href="{{event.twitterURL}}">
+              <i class="feather icon-twitter"></i>
+            </a>
+            <a href="{{event.instagramURL}}">
+              <i class="feather icon-instagram"></i>
+            </a>  
+        </center>
+      </menu>
+      
+      <spacer size="12"></spacer>
+      <p class="text-center">{{ event.club.name }}</p>
+      <p class="text-center">{{ event.club.address.street}}</p>
+      <p class="text-center">{{ event.club.address.city}} {{ event.club.address.state }} {{ event.club.address.zip }}</p>
+
+      <p class="text-center">We send Club news and special offers to members who have opted into our mailing list.</p>
+      <center>
+        <a class="text-center" href="{{event.unsubscribeURL}}">Unsubscribe</a>
+      </center>
+    </columns>
+  </row>
+</container>

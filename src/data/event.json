@@ -1,0 +1,24 @@
+{
+    "club": {
+        "address": {
+            "street": "811 Cherry Avenue",
+            "city": "Bainbridge Island",
+            "state": "Washington",
+            "zip": "98110"
+        },
+        "clubName": "http://wingpointgolf.clubhub.com",
+        "name": "Wing Point Golf & Country Club",
+        "logoURL": "https://i.imgur.com/09Nyyqa.png",
+        "twitterURL": "www.twitter.com",
+        "facebookURL": "www.facebook.com",
+        "instagramURL": "www.instagram.com"
+    },
+    "event": {
+        "title": "Valentines Day Dinner",
+        "imageURL": "https://source.unsplash.com/pXEsx3kRuNc/800x300",
+        "content": "<p class='text-center'>Join us for Valentine’s Day Dinner at the club.</p></br><p class='text-center'>Champagne Reception begins at 6:30 PM.</p><p class='text-center'>Course is served at 7:00PM</p></br><p class='text-center'>Respond to this email or to ashleyk@wingpoint.com</p>",
+        "url": "www.tryclubhub.com"
+    },
+    "unsubscribeURL": "www.tryclubhub.com"
+}
+
