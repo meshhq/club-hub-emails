@@ -51,16 +51,16 @@ function clean(done) {
 // Compile layouts, pages, and partials into flat HTML files
 // Then parse using Inky templates
 function pages() {
-  return gulp.src(['src/pages/**/*.html', '!src/pages/archive/**/*.html'])
+  return gulp.src(['src/templates/pages/**/*.html', '!src/templates/pages/archive/**/*.html'])
     .pipe(panini({
-      root: 'src/pages',
-      layouts: 'src/layouts',
-      partials: 'src/partials',
-      helpers: 'src/helpers',
-      data: 'src/data'
+      root: 'src/templates/pages',
+      layouts: 'src/templates/layouts',
+      partials: 'src/templates/partials',
+      helpers: 'src/templates/helpers',
+      data: 'src/templates/data'
     }))
     .pipe(inky())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/templates/'));
 }
 
 // Reset Panini's cache of layouts and partials
@@ -71,7 +71,7 @@ function resetPages(done) {
 
 // Compile Sass into CSS
 function sass() {
-  return gulp.src('src/assets/scss/app.scss')
+  return gulp.src('src/templates/assets/scss/app.scss')
     .pipe($.if(!PRODUCTION, $.sourcemaps.init()))
     .pipe($.sass({
       includePaths: ['node_modules/foundation-emails/scss']
@@ -81,37 +81,37 @@ function sass() {
         html: ['dist/**/*.html']
       })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist/templates/css'));
 }
 
 // Copy and compress images
 function images() {
-  return gulp.src(['src/assets/img/**/*', '!src/assets/img/archive/**/*'])
+  return gulp.src(['src/templates/assets/img/**/*', '!src/templates/assets/img/archive/**/*'])
     .pipe($.imagemin())
-    .pipe(gulp.dest('./dist/assets/img'));
+    .pipe(gulp.dest('./dist/templates/assets/img'));
 }
 
 // Inline CSS and minify HTML
 function inline() {
-  return gulp.src('dist/**/*.html')
-    .pipe($.if(PRODUCTION, inliner('dist/css/app.css')))
-    .pipe(gulp.dest('dist'));
+  return gulp.src('dist/templates/**/*.html')
+    .pipe($.if(PRODUCTION, inliner('dist/templates/css/app.css')))
+    .pipe(gulp.dest('dist/templates/'));
 }
 
 // Start a server with LiveReload to preview the site in
 function server(done) {
   browser.init({
-    server: 'dist'
+    server: 'dist/templates/'
   });
   done();
 }
 
 // Watch for file changes
 function watch() {
-  gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, inline, browser.reload));
-  gulp.watch(['src/layouts/**/*', 'src/partials/**/*']).on('all', gulp.series(resetPages, pages, inline, browser.reload));
-  gulp.watch(['../scss/**/*.scss', 'src/assets/scss/**/*.scss']).on('all', gulp.series(resetPages, sass, pages, inline, browser.reload));
-  gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
+  gulp.watch('src/templates/pages/**/*.html').on('all', gulp.series(pages, inline, browser.reload));
+  gulp.watch(['src/templates/layouts/**/*', 'src/templates/partials/**/*']).on('all', gulp.series(resetPages, pages, inline, browser.reload));
+  gulp.watch(['../scss/**/*.scss', 'src/templates/assets/scss/**/*.scss']).on('all', gulp.series(resetPages, sass, pages, inline, browser.reload));
+  gulp.watch('src/templates/assets/img/**/*').on('all', gulp.series(images, browser.reload));
 }
 
 // Inlines CSS into HTML, adds media query CSS into the <style> tag of the email, and compresses the HTML

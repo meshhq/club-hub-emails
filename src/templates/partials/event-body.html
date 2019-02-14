@@ -2,26 +2,26 @@
   <row>
     <columns small="12">
       <spacer size="36"></spacer>
-      <h1 class="text-center">{{ event.event.title }}</h1>
+      <h1 class="text-center">{{ event.name }}</h1>
     </columns>
   </row>
   <row>
     <columns small="12">
-      <a href="{{event.event.url}}">
-        <img class="text-center" src="{{event.event.imageURL}}" alt="">
+      <a href="{{event.url}}">
+        <img class="text-center" src="{{event.imageURL}}" alt="">
       </a>
     </columns>
   </row>
   <row>
     <columns class="content-column" small="12">
       <spacer size="12"></spacer>
-      {{{event.event.content}}}
+      {{{event.content}}}
     </columns>
   </row>
   <row>
     <columns class="button-column" small="12">  
       <spacer size="12"></spacer>
-      <button class="expanded small" href="{{event.event.url}}">View Event</button>
+      <button class="expanded small" href="{{event.url}}">View Event</button>
     </columns>
   </row>
 </container>
