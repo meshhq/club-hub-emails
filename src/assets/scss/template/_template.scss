@@ -8,4 +8,49 @@ html,
   background: #F6F7FB !important;
 }
 
+//-----------------------------------
+// TYPOGRAPHY
+//-----------------------------------
 
+h1 {
+  font-weight: 600;
+}
+
+.light-text{
+  font-weight: 300;
+}
+
+.heavy-text{
+  font-weight: 700;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+//-----------------------------------
+// IMAGES
+//-----------------------------------
+
+img {
+  border-radius: 4px;
+}
+
+//-----------------------------------
+// LAYOUT
+//-----------------------------------
+
+.container.body {
+  background: white !important;
+  border-radius: 4px;
+
+  .columns {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .button-column {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

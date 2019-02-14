@@ -1,0 +1,19 @@
+.container.body.confirmation-body {
+    
+    .confirmation-icon-container {
+        height: 62px;
+        width: 62px;
+        border-radius: 31px;
+        background-color: $primary-color-light;
+    
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    
+        .feather {
+            color: $primary-color;
+            font-size: 24px;
+        }
+    }
+}

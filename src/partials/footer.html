@@ -17,14 +17,15 @@
         </center>
       </menu>
       
-      <spacer size="12"></spacer>
+      <spacer size="24"></spacer>
       <p class="text-center">{{ event.club.name }}</p>
       <p class="text-center">{{ event.club.address.street}}</p>
       <p class="text-center">{{ event.club.address.city}} {{ event.club.address.state }} {{ event.club.address.zip }}</p>
 
+      <spacer size="24"></spacer>
       <p class="text-center">We send Club news and special offers to members who have opted into our mailing list.</p>
       <center>
-        <a class="text-center" href="{{event.unsubscribeURL}}">Unsubscribe</a>
+        <a class="text-center underline" href="{{event.unsubscribeURL}}">Unsubscribe</a>
       </center>
     </columns>
   </row>

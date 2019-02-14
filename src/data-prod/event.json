@@ -1,0 +1,23 @@
+{
+    "club": {
+        "address": {
+            "street": "{{club.address.street}}",
+            "city": "{{club.address.city}}",
+            "state": "{{club.address.state}}",
+            "zip": "{{club.address.zip}}"
+        },
+        "name": "{{club.name}}",
+        "logoURL": "{{club.logoURL}}",
+        "twitterURL": "{{club.twitterURL}}",
+        "facebookURL": "{{club.facebookURL}}",
+        "instagramURL": "{{club.instagramURL}}"
+    },
+    "event": {
+        "title": "{{event.title}}",
+        "imageURL": "{{event.imageURL}}",
+        "content": "{{event.content}}",
+        "url": "{{event.url}}"
+    },
+    "unsubscribeURL": "{{unsubscribeURL}}"
+}
+
