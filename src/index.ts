@@ -19,7 +19,7 @@ export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model
     const eventInfo: EventInfo = transform.BuildEventInfo(event, club)
 
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/../templates/event.html`
+    const path: string = `${__dirname}/templates/event.html`
     return CompileEmail(path, eventInfo)
 }
 
@@ -33,7 +33,7 @@ export const CompileConfirmationEmail = (event: core.Event.Model, club: core.Clu
     const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationInfo(event, club)
 
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/../templates/confirmation.html`
+    const path: string = `${__dirname}/templates/confirmation.html`
     return CompileEmail(path, confirmationInfo)
 }
 
