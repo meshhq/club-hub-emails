@@ -2,8 +2,15 @@
   "name": "club-hub-emails",
   "version": "1.0.0",
   "description": "Emails for the Club Hub platform..",
-  "repository": "meshhq/club-hub-emails",
-  "main": "gulpfile.babel.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meshhq/club-hub-emails.git"
+  },
+  "files": [
+    "dist/",
+    "index.js"
+  ],
+  "main": "index.js",
   "scripts": {
     "start": "gulp",
     "build": "gulp --production",
