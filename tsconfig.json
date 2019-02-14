@@ -11,22 +11,28 @@
 		"sourceMap": false,
 		"target": "es6",
 		"outDir": "./dist",
+		"declaration": true,
 		"lib": [
 			"dom",
 			"es6",
 			"esnext.asynciterable",
 			"es2015"
 		],
+		"baseUrl": "./",
+		"paths": {
+			"@clubhub/*": ["./"]
+		}
 	},
 	"exclude": [
 		"node_modules",
 		".vscode",
 		".git",
 		"**/*.spec.ts",
-		"dist"
+        "dist",
+        "tests"
 	],
 	"include": [
-		"./src/",
-		"tests/"
+		"./",
+		// "tests/"
 	]
 }
