@@ -2,15 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const Handlebars = require("handlebars");
-const transform = require("./transform");
+const transform = require("./transform/transform");
 exports.CompileEventEmail = (event, club) => {
     const eventInfo = transform.BuildEventInfo(event, club);
-    const path = `${__dirname}/../templates/event.html`;
+    const path = `${__dirname}/templates/event.html`;
     return CompileEmail(path, eventInfo);
 };
 exports.CompileConfirmationEmail = (event, club) => {
     const confirmationInfo = transform.BuildConfirmationInfo(event, club);
-    const path = `${__dirname}/../templates/confirmation.html`;
+    const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, confirmationInfo);
 };
 const CompileEmail = (path, data) => {

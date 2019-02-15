@@ -1,9 +1,9 @@
 import * as core from 'club-hub-core'
 
-import { EventInfo } from './models/event'
-import { ConfirmationInfo } from './models/confirmation'
-import { AddressInfo } from './models/club'
-import { ClubInfo } from './models/club'
+import { EventInfo } from '../models/event'
+import { ConfirmationInfo } from '../models/confirmation'
+import { AddressInfo } from '../models/club'
+import { ClubInfo } from '../models/club'
 
 /**
  * Builds an EventInfo object that can be used to build an email.

@@ -2,15 +2,8 @@
   "name": "club-hub-emails",
   "version": "1.0.0",
   "description": "Emails for the Club Hub platform..",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/meshhq/club-hub-emails.git"
-  },
-  "files": [
-    "dist/",
-    "index.js"
-  ],
   "main": "index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "start": "gulp",
     "build": "gulp --production",
@@ -18,8 +11,16 @@
     "litmus": "gulp litmus --production",
     "mail": "gulp mail --production"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meshhq/club-hub-emails.git"
+  },
   "author": "Kevin Coleman <kevin@meshstudio.io",
   "license": "MIT",
+  "files": [
+    "dist/",
+    "index.js"
+  ],
   "dependencies": {
     "club-hub-core": "git+ssh://git@github.com:meshhq/club-hub-core.git",
     "handlebars": "^4.1.0"

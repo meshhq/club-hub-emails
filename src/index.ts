@@ -3,7 +3,7 @@ import * as Handlebars from 'handlebars'
 import * as core from 'club-hub-core'
 
 // Transform 
-import * as transform from './transform'
+import * as transform from './transform/transform'
 
 // Models
 import { EventInfo } from './models/event'
