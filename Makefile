@@ -10,7 +10,7 @@ export NODE_ENV = test
 src_files = $(shell find . -name '*.ts' ! -path '*/node_modules/*')
 
 build: $(src_files)
-	gulp build
+	gulp build --production
 	@echo "Re-Transpiling Project..."
 	@eval $(TSC)
 
