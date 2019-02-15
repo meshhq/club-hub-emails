@@ -9,6 +9,13 @@ export NODE_ENV = test
 # Shell command to find all .ts files.
 src_files = $(shell find . -name '*.ts' ! -path '*/node_modules/*')
 
+deps: 
+	npm install --global foundation-cli
+	npm install 
+
+start: 
+	gulp
+
 build: $(src_files)
 	gulp build --production
 	@echo "Re-Transpiling Project..."
