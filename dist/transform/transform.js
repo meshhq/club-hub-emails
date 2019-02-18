@@ -1,17 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BuildEventInfo = (event, club) => {
-    const eventInfo = {
+exports.BuildGenericContent = (content, club) => {
+    const richContent = {
+        content: content,
+        unsubscribeURL: "www.tryclubhub.com",
+        clubInfo: exports.BuildClubInfo(club)
+    };
+    return richContent;
+};
+exports.BuildEventContent = (event, club) => {
+    const richContent = {
         name: event.name,
         imageURL: event.photoURL,
         content: event.description,
         url: 'www.tryclubhub.com',
+        cta: 'View Event',
         unsubscribeURL: "www.tryclubhub.com",
         clubInfo: exports.BuildClubInfo(club)
     };
-    return eventInfo;
+    return richContent;
 };
-exports.BuildConfirmationInfo = (event, club) => {
+exports.BuildPostContent = (post, club) => {
+    const postInfo = {
+        name: post.title,
+        imageURL: post.imageURL,
+        content: post.html,
+        url: 'www.tryclubhub.com',
+        cta: 'View Post',
+        unsubscribeURL: "www.tryclubhub.com",
+        clubInfo: exports.BuildClubInfo(club),
+    };
+    return postInfo;
+};
+exports.BuildConfirmationContent = (event, club) => {
     const confirmationInfo = {
         title: event.name,
         subtitle: "",

@@ -6,8 +6,23 @@ import * as core from 'club-hub-core'
 import * as transform from './transform/transform'
 
 // Models
-import { EventInfo } from './models/event'
+import { RichContent } from './models/rich'
 import { ConfirmationInfo } from './models/confirmation'
+
+
+/**
+ * Compiles a new event email.
+ * @param event The ClubHub event for the email. 
+ * @param club The ClubHub club to which the email is associated.
+ */
+export const CompileGenericEmail = (content: string, club: core.Club.Model): Promise<string> => {
+    // Transform our event Info
+    const eventInfo: RichContent = transform.BuildGenericContent(content, club)
+
+    // Compile the template and return the promise.
+    const path: string = `${__dirname}/templates/generic.html`
+    return CompileEmail(path, eventInfo)
+}
 
 /**
  * Compiles a new event email.
@@ -16,11 +31,25 @@ import { ConfirmationInfo } from './models/confirmation'
  */
 export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model): Promise<string> => {
     // Transform our event Info
-    const eventInfo: EventInfo = transform.BuildEventInfo(event, club)
+    const eventInfo: RichContent = transform.BuildEventContent(event, club)
 
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/templates/event.html`
+    const path: string = `${__dirname}/templates/rich.html`
     return CompileEmail(path, eventInfo)
+}
+
+/**
+ * Compiles a new event email.
+ * @param event The ClubHub post for the email. 
+ * @param club The ClubHub club to which the email is associated.
+ */
+export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model): Promise<string> => {
+    // Transform our post Info
+    const postInfo: RichContent = transform.BuildPostContent(post, club)
+
+    // Compile the template and return the promise.
+    const path: string = `${__dirname}/templates/rich.html`
+    return CompileEmail(path, postInfo)
 }
 
 /**
@@ -30,7 +59,7 @@ export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model
  */
 export const CompileConfirmationEmail = (event: core.Event.Model, club: core.Club.Model): Promise<string> => {
     // Transform our event Info
-    const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationInfo(event, club)
+    const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationContent(event, club)
 
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/confirmation.html`
