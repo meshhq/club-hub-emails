@@ -12,12 +12,11 @@
         "facebookURL": "{{club.facebookURL}}",
         "instagramURL": "{{club.instagramURL}}"
     },
-    "event": {
-        "title": "{{event.title}}",
-        "imageURL": "{{event.imageURL}}",
-        "content": "{{event.content}}",
-        "url": "{{event.url}}"
-    },
+    "name": "{{name}",
+    "imageURL": "{{imageURL}}",
+    "content": "{{content}}",
+    "url": "{{url}}",
+    "cta": "{{cta}}",
     "unsubscribeURL": "{{unsubscribeURL}}"
 }
 

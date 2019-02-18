@@ -1,25 +1,59 @@
 import * as core from 'club-hub-core'
 
-import { EventInfo } from '../models/event'
+import { RichContent } from '../models/rich'
 import { ConfirmationInfo } from '../models/confirmation'
 import { AddressInfo } from '../models/club'
 import { ClubInfo } from '../models/club'
 
 /**
- * Builds an EventInfo object that can be used to build an email.
+ * Builds a RichContent object for an email.
+ * @param content The HTML content for the email.
+ * @param club The club for the email.
+ */
+export const BuildGenericContent= (content: string, club: core.Club.Model): RichContent => {
+    const richContent: RichContent = {
+        content: content, 
+        unsubscribeURL: "www.tryclubhub.com",
+        clubInfo: BuildClubInfo(club)
+    }
+    return richContent
+}
+
+/**
+ * Builds a RichContent object for an email.
  * @param event The event for the email.
  * @param club The club for the email.
  */
-export const BuildEventInfo = (event: core.Event.Model, club: core.Club.Model) => {
-    const eventInfo: EventInfo = {
+export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model): RichContent => {
+    const richContent: RichContent = {
         name: event.name,
         imageURL: event.photoURL,
         content: event.description, 
         url: 'www.tryclubhub.com',
+        cta: 'View Event',
         unsubscribeURL: "www.tryclubhub.com",
         clubInfo: BuildClubInfo(club)
     }
-    return eventInfo
+    return richContent
+}
+
+/**
+ * Builds a RichContent object for a post.
+ * @param event The post for the email.
+ * @param club The club for the email.
+ */
+export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model): RichContent => {
+    const postInfo: RichContent = {
+        name: post.title,
+        imageURL: post.imageURL,
+        content: post.html,
+        url: 'www.tryclubhub.com',
+        cta: 'View Post',
+        unsubscribeURL: "www.tryclubhub.com",
+        clubInfo: BuildClubInfo(club),
+
+    }
+    return postInfo
 }
 
 /**
@@ -27,7 +61,7 @@ export const BuildEventInfo = (event: core.Event.Model, club: core.Club.Model) =
  * @param event The event for the email.
  * @param club The club for the email.
  */
-export const BuildConfirmationInfo = (event: core.Event.Model, club: core.Club.Model) => {
+export const BuildConfirmationContent = (event: core.Event.Model, club: core.Club.Model) => {
     const confirmationInfo: ConfirmationInfo = {
         title: event.name,
         subtitle: "",
