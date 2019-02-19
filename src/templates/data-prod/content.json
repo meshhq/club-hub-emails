@@ -12,7 +12,7 @@
         "facebookURL": "{{club.facebookURL}}",
         "instagramURL": "{{club.instagramURL}}"
     },
-    "name": "{{name}",
+    "name": "{{name}}",
     "imageURL": "{{imageURL}}",
     "content": "{{content}}",
     "url": "{{url}}",
