@@ -57,7 +57,7 @@ function pages() {
       layouts: 'src/templates/layouts',
       partials: 'src/templates/partials',
       helpers: 'src/templates/helpers',
-      data: 'src/templates/data'
+      data: 'src/templates/data-prod'
     }))
     .pipe(inky())
     .pipe(gulp.dest('dist/templates/'));

@@ -28,7 +28,7 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
     const richContent: RichContent = {
         name: event.name,
         imageURL: event.photoURL,
-        content: event.description, 
+        content: event.richContent.html, 
         url: 'www.tryclubhub.com',
         cta: 'View Event',
         unsubscribeURL: "www.tryclubhub.com",
@@ -46,7 +46,7 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model): 
     const postInfo: RichContent = {
         name: post.title,
         imageURL: post.imageURL,
-        content: post.html,
+        content: post.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Post',
         unsubscribeURL: "www.tryclubhub.com",

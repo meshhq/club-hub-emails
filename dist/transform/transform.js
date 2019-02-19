@@ -12,7 +12,7 @@ exports.BuildEventContent = (event, club) => {
     const richContent = {
         name: event.name,
         imageURL: event.photoURL,
-        content: event.description,
+        content: event.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Event',
         unsubscribeURL: "www.tryclubhub.com",
@@ -24,7 +24,7 @@ exports.BuildPostContent = (post, club) => {
     const postInfo = {
         name: post.title,
         imageURL: post.imageURL,
-        content: post.html,
+        content: post.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Post',
         unsubscribeURL: "www.tryclubhub.com",
