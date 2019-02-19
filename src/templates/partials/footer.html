@@ -5,23 +5,27 @@
 
       <menu>
         <center>
-            <a href="{{content.club.facebookURL}}">
-              <i class="feather icon-facebook"></i>
+            <a class="footer-icon-link" href="{{content.club.facebookURL}}">
+              {{> icon-facebook }}
             </a>
-            <a href="{{content.club.twitterURL}}">
-              <i class="feather icon-twitter"></i>
+            <a class="footer-icon-link center" href="{{content.club.twitterURL}}">
+              {{> icon-twitter }}
             </a>
-            <a href="{{content.club.instagramURL}}">
-              <i class="feather icon-instagram"></i>
+            <a class="footer-icon-link" href="{{content.club.instagramURL}}">
+              {{> icon-instagram }}
             </a>  
         </center>
       </menu>
       
       <spacer size="24"></spacer>
-      <p class="text-center">{{ content.club.name }}</p>
-      <p class="text-center">{{ content.club.address.street}}</p>
-      <p class="text-center">{{ content.club.address.city}} {{ content.club.address.state }} {{ content.club.address.zip }}</p>
-
+      <center>
+      <ul>
+          <li><a class="underline" href="{{content.club.domain}}">{{ content.club.name }}</a></li>
+          <li><a class="underline" href="{{content.club.domain}}">{{ content.club.address.street}}</a></li>
+          <li><a class="underline" href="{{content.club.domain}}">{{ content.club.address.city}} {{ content.club.address.state }} {{ content.club.address.zip }}</a></li>
+      </ul>  
+      </center>
+     
       <spacer size="24"></spacer>
       <p class="text-center">We send Club news and special offers to members who have opted into our mailing list.</p>
       <center>

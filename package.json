@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "club-hub-core": "git+ssh://git@github.com:meshhq/club-hub-core.git",
+    "feather-icons": "^4.17.0",
     "handlebars": "^4.1.0"
   },
   "devDependencies": {

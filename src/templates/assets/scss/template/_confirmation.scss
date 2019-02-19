@@ -12,8 +12,9 @@
         text-align: center;
     
         .feather {
-            color: $primary-color;
+            stroke: $primary-color;
             font-size: 24px;
+            width: 62px;
         }
     }
 }
