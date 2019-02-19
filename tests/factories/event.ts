@@ -18,14 +18,13 @@ const EventFactory = Factory.makeFactory<core.Event.Model>({
 	name: Factory.each((i) => Faker.lorem.word()),
 	photoURL: Factory.each((i) => Faker.internet.url()),
 	remoteID: Factory.each((i) => Faker.random.uuid()),
-	type: core.Club.defaultEventTypes[0],
 	price: Factory.each((i) => Faker.random.number({
 		min: 50.00,
 		max: 150.00
 	})),
 	shortLink: undefined,
-    reservations: [reservation],
-    status: core.IShared.PublicationStatus.Draft
+	richContent: {html: '<p>Howdy</p>'},
+    reservations: [reservation]
 })
 
 const newEventObj = (): core.Event.Model => {

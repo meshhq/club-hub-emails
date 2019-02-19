@@ -10,6 +10,7 @@ exports.CompileGenericEmail = (content, club) => {
 };
 exports.CompileEventEmail = (event, club) => {
     const eventInfo = transform.BuildEventContent(event, club);
+    console.log("Event Info", eventInfo);
     const path = `${__dirname}/templates/rich.html`;
     return CompileEmail(path, eventInfo);
 };
@@ -23,7 +24,7 @@ exports.CompileConfirmationEmail = (event, club) => {
     const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, confirmationInfo);
 };
-const CompileEmail = (path, data) => {
+const CompileEmail = (path, info) => {
     return new Promise((resolve, reject) => {
         fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
             if (err) {
@@ -31,7 +32,7 @@ const CompileEmail = (path, data) => {
             }
             try {
                 const template = Handlebars.compile(data);
-                resolve(template(data));
+                resolve(template(info));
             }
             catch (e) {
                 reject(e);

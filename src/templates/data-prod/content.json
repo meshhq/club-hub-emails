@@ -14,7 +14,7 @@
     },
     "name": "{{name}}",
     "imageURL": "{{imageURL}}",
-    "content": "{{content}}",
+    "content": "{{{content}}}",
     "url": "{{url}}",
     "cta": "{{cta}}",
     "unsubscribeURL": "{{unsubscribeURL}}"

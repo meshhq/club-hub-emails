@@ -31,7 +31,7 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
         content: event.richContent.html, 
         url: 'www.tryclubhub.com',
         cta: 'View Event',
-        unsubscribeURL: "www.tryclubhub.com",
+        unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club)
     }
     return richContent
@@ -49,7 +49,7 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model): 
         content: post.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Post',
-        unsubscribeURL: "www.tryclubhub.com",
+        unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club),
 
     }
@@ -67,7 +67,7 @@ export const BuildConfirmationContent = (event: core.Event.Model, club: core.Clu
         subtitle: "",
         info: "",
         url: 'www.tryclubhub.com',
-        unsubscribeURL: "www.tryclubhub.com",
+        unsubscribeURL: 'www.tryclubhub.com',
         clubInfo: BuildClubInfo(club)
     }
     return confirmationInfo
