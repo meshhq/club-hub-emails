@@ -14,6 +14,7 @@ describe('Emails', function() {
 			  const event: core.Event.Model = NewEventObj()
 			  const club: core.Club.Model = NewClubObj()
 			  const email: string = await emails.CompileEventEmail(event, club)
+			  console.log("Email", email)
 			  assert(email)
     	});
   	});

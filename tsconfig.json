@@ -29,7 +29,6 @@
 		".git",
 		"**/*.spec.ts",
         "dist",
-        "tests"
 	],
 	"include": [
 		"./",

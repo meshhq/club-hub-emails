@@ -32,9 +32,9 @@ export const CompileGenericEmail = (content: string, club: core.Club.Model): Pro
 export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model): Promise<string> => {
     // Transform our event Info
     const eventInfo: RichContent = transform.BuildEventContent(event, club)
-
+    console.log("Event Info", eventInfo)
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/templates/rich.html`
+    const path: string = `${__dirname}/../templates/rich.html`
     return CompileEmail(path, eventInfo)
 }
 
@@ -71,7 +71,7 @@ export const CompileConfirmationEmail = (event: core.Event.Model, club: core.Clu
  * @param path The path of the email template. 
  * @param data The data to compile.
  */
-const CompileEmail = (path: string, data: any): Promise<string> => {
+const CompileEmail = (path: string, info: any): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         fs.readFile(path, {encoding: 'utf8'}, (err: NodeJS.ErrnoException, data: string) => {
             if (err) {
@@ -79,7 +79,7 @@ const CompileEmail = (path: string, data: any): Promise<string> => {
 			}
 			try {
 				const template = Handlebars.compile(data);
-				resolve(template(data))
+				resolve(template(info))
 			} catch (e) {
 				reject(e)
 			}

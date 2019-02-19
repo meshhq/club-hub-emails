@@ -15,7 +15,7 @@ exports.BuildEventContent = (event, club) => {
         content: event.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Event',
-        unsubscribeURL: "www.tryclubhub.com",
+        unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
     };
     return richContent;
@@ -27,7 +27,7 @@ exports.BuildPostContent = (post, club) => {
         content: post.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Post',
-        unsubscribeURL: "www.tryclubhub.com",
+        unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club),
     };
     return postInfo;
@@ -38,7 +38,7 @@ exports.BuildConfirmationContent = (event, club) => {
         subtitle: "",
         info: "",
         url: 'www.tryclubhub.com',
-        unsubscribeURL: "www.tryclubhub.com",
+        unsubscribeURL: 'www.tryclubhub.com',
         clubInfo: exports.BuildClubInfo(club)
     };
     return confirmationInfo;

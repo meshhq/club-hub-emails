@@ -8,9 +8,6 @@ const clubFactory = Factory.makeFactory<core.Club.Model>({
 	name: Factory.each((i) => Faker.name.title()),
 	photoURL: 'https://s3-us-west-2.amazonaws.com/clubhubs3/assets/clubhub_logo.png',
 	locations: [NewLocationObj()],
-	eventTypes: core.Club.defaultEventTypes,
-	membershipTypes: core.Club.defaultMembershipTypes,
-	postCategories: [],
 	userGroups: [],
 	type: core.Club.Type.Golf
 })

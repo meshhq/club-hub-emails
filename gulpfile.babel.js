@@ -51,13 +51,14 @@ function clean(done) {
 // Compile layouts, pages, and partials into flat HTML files
 // Then parse using Inky templates
 function pages() {
+  const dataDir = PRODUCTION ? 'data-prod' : 'data'
   return gulp.src(['src/templates/pages/**/*.html', '!src/templates/pages/archive/**/*.html'])
     .pipe(panini({
       root: 'src/templates/pages',
       layouts: 'src/templates/layouts',
       partials: 'src/templates/partials',
       helpers: 'src/templates/helpers',
-      data: 'src/templates/data-prod'
+      data: `src/templates/${dataDir}`
     }))
     .pipe(inky())
     .pipe(gulp.dest('dist/templates/'));
