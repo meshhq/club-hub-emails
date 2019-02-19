@@ -6,19 +6,17 @@
             "state": "Washington",
             "zip": "98110"
         },
-        "clubName": "http://wingpointgolf.clubhub.com",
+        "name": "http://wingpointgolf.clubhub.com",
         "name": "Wing Point Golf & Country Club",
         "logoURL": "https://i.imgur.com/09Nyyqa.png",
         "twitterURL": "www.twitter.com",
         "facebookURL": "www.facebook.com",
         "instagramURL": "www.instagram.com"
     },
-    "confirmation": {
-        "title": "Tee Time Confirmation",
-        "subtitle": "Your Tee Time at Wing Point Country Club has been confirmed.",
-        "info": "4 Golfers on Saturday, March 21st 2019 at 10:00AM",
-        "url": "www.tryclubhub.com"
-    },
+	"title": "Tee Time Confirmation",
+	"subtitle": "Your Tee Time at Wing Point Country Club has been confirmed.",
+	"info": "4 Golfers on Saturday, March 21st 2019 at 10:00AM",
+	"url": "www.tryclubhub.com",
     "unsubscribeURL": "www.tryclubhub.com"
 }
 

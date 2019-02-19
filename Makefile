@@ -3,6 +3,8 @@ TSC := node_modules/.bin/tsc
 MOCHA := node_modules/.bin/mocha
 TSLINT := node_modules/.bin/tslint
 
+GULP = node ./node_modules/gulp/bin/gulp.js
+
 # Env variables.
 export NODE_ENV = test
 
@@ -14,10 +16,10 @@ deps:
 	npm install 
 
 start: 
-	gulp
+	@eval $(GULP)
 
 build: $(src_files)
-	gulp build --production
+	@eval $(GULP) build --production
 	@echo "Re-Transpiling Project..."
 	@eval $(TSC)
 

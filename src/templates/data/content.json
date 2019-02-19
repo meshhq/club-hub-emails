@@ -1,12 +1,12 @@
 {
-    "clubInfo": {
+    "club": {
         "address": {
             "street": "811 Cherry Avenue",
             "city": "Bainbridge Island",
             "state": "Washington",
             "zip": "98110"
         },
-        "clubName": "http://wingpointgolf.clubhub.com",
+        "name": "http://wingpointgolf.clubhub.com",
         "name": "Wing Point Golf & Country Club",
         "logoURL": "https://i.imgur.com/09Nyyqa.png",
         "twitterURL": "www.twitter.com",
