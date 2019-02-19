@@ -17,4 +17,4 @@ describe('Emails', function() {
 			  assert(email)
     	});
   	});
-});
+})

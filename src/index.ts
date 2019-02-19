@@ -76,9 +76,13 @@ const CompileEmail = (path: string, data: any): Promise<string> => {
         fs.readFile(path, {encoding: 'utf8'}, (err: NodeJS.ErrnoException, data: string) => {
             if (err) {
                 return reject(err)
-            }
-            const template = Handlebars.compile(data);
-            resolve(template(data))
+			}
+			try {
+				const template = Handlebars.compile(data);
+				resolve(template(data))
+			} catch (e) {
+				reject(e)
+			}
         })    
     });
 }

@@ -29,8 +29,13 @@ const CompileEmail = (path, data) => {
             if (err) {
                 return reject(err);
             }
-            const template = Handlebars.compile(data);
-            resolve(template(data));
+            try {
+                const template = Handlebars.compile(data);
+                resolve(template(data));
+            }
+            catch (e) {
+                reject(e);
+            }
         });
     });
 };

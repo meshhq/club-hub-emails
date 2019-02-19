@@ -4,7 +4,7 @@ exports.BuildGenericContent = (content, club) => {
     const richContent = {
         content: content,
         unsubscribeURL: "www.tryclubhub.com",
-        clubInfo: exports.BuildClubInfo(club)
+        club: exports.BuildClubInfo(club)
     };
     return richContent;
 };
@@ -16,7 +16,7 @@ exports.BuildEventContent = (event, club) => {
         url: 'www.tryclubhub.com',
         cta: 'View Event',
         unsubscribeURL: "www.tryclubhub.com",
-        clubInfo: exports.BuildClubInfo(club)
+        club: exports.BuildClubInfo(club)
     };
     return richContent;
 };
@@ -28,7 +28,7 @@ exports.BuildPostContent = (post, club) => {
         url: 'www.tryclubhub.com',
         cta: 'View Post',
         unsubscribeURL: "www.tryclubhub.com",
-        clubInfo: exports.BuildClubInfo(club),
+        club: exports.BuildClubInfo(club),
     };
     return postInfo;
 };
