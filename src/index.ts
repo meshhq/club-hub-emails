@@ -34,7 +34,7 @@ export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model
     const eventInfo: RichContent = transform.BuildEventContent(event, club)
     console.log("Event Info", eventInfo)
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/../templates/rich.html`
+    const path: string = `${__dirname}/templates/rich.html`
     return CompileEmail(path, eventInfo)
 }
 

@@ -11,7 +11,7 @@ exports.CompileGenericEmail = (content, club) => {
 exports.CompileEventEmail = (event, club) => {
     const eventInfo = transform.BuildEventContent(event, club);
     console.log("Event Info", eventInfo);
-    const path = `${__dirname}/../templates/rich.html`;
+    const path = `${__dirname}/templates/rich.html`;
     return CompileEmail(path, eventInfo);
 };
 exports.CompilePostEmail = (post, club) => {
