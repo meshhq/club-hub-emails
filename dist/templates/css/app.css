@@ -334,9 +334,11 @@ img {
 
 .container.email-header {
   background: #F6F7FB; }
-  .container.email-header img {
+  .container.email-header .header-image-container {
     height: 80px;
-    width: 200px; }
+    object-fit: fill; }
+    .container.email-header .header-image-container img {
+      max-height: 80px; }
 
 .container.footer {
   background: #F6F7FB; }
