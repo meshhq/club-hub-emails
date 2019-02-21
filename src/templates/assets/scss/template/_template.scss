@@ -12,8 +12,25 @@ html,
 // TYPOGRAPHY
 //-----------------------------------
 
+h1 
+h2
+h3
+h4
+h5
+h6
+p
+a
+br {
+  margin-bottom: 0px;
+}
+
 h1 {
   font-weight: 600;
+}
+
+p {
+  line-height: 22px;
+  word-break: normal;
 }
 
 .light-text{
@@ -34,7 +51,7 @@ h1 {
 
 img {
   border-radius: 4px;
-  max-height: 200px;
+  vertical-align: middle;
 }
 
 //-----------------------------------
