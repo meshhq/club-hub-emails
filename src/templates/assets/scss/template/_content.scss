@@ -12,3 +12,9 @@
     padding-left: 48px !important;
     padding-right: 48px !important;
 }
+
+.image-container {
+    max-height: 200px;
+    overflow: hidden;
+    vertical-align: middle;
+}

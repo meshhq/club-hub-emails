@@ -16,6 +16,11 @@ h1 {
   font-weight: 600;
 }
 
+p {
+  line-height: 22px;
+  word-break: normal;
+}
+
 .light-text{
   font-weight: 300;
 }
@@ -34,7 +39,7 @@ h1 {
 
 img {
   border-radius: 4px;
-  max-height: 200px;
+  vertical-align: middle;
 }
 
 //-----------------------------------
