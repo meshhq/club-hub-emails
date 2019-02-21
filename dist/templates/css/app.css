@@ -335,7 +335,7 @@ img {
 .container.email-header {
   background: #F6F7FB; }
   .container.email-header img {
-    height: 40px;
+    height: 80px;
     width: 200px; }
 
 .container.footer {
@@ -369,7 +369,9 @@ img {
 .image-container {
   max-height: 200px;
   overflow: hidden;
-  vertical-align: middle; }
+  vertical-align: middle;
+  border-radius: 4px;
+  box-shadow: 5px 2px 20px #E2E2E2; }
 
 .container.body.confirmation-body .confirmation-icon-container {
   height: 62px;
