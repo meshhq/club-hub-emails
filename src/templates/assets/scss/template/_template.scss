@@ -8,6 +8,10 @@ html,
   background: #F6F7FB !important;
 }
 
+.clubhub-email-body {
+  width: 100vw !important;
+}
+
 //-----------------------------------
 // TYPOGRAPHY
 //-----------------------------------
@@ -22,10 +26,12 @@ p
 a
 br {
   margin-bottom: 0px;
+  color: #495057;
 }
 
 h1 {
   font-weight: 600;
+  font-size: 32px;
 }
 
 p {
@@ -50,7 +56,6 @@ p {
 //-----------------------------------
 
 img {
-  border-radius: 4px;
   vertical-align: middle;
 }
 
@@ -65,10 +70,11 @@ img {
   .columns {
     padding-left: 24px;
     padding-right: 24px;
+    padding-bottom: 0px;
   }
 
   .button-column {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 }

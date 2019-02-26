@@ -1,0 +1,56 @@
+.logo-container {
+    img {
+        max-height: 60px;
+    }
+}
+
+.image-container {
+    padding-bottom: 24px;
+}
+
+.image-container {
+    margin-bottom: 24px;
+}
+
+.title-container {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid $light-gray;
+}
+
+.details-container {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid $light-gray;
+
+    .detail-header {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        color: $medium-gray;
+    }
+
+    .detail-content {
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 8px;
+    }
+
+    .detail-link {
+        font-size: 16px;
+        font-weight: 500;
+        color: $primary-color;
+    }
+}
+
+.button-container {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid $light-gray;
+
+    .button {
+        margin-bottom: 0px;
+    }
+}
+
+
