@@ -23,26 +23,26 @@ export const buildRSVPEmail = (member: core.User.Model, event: core.Event.Model)
 // SERVICE EMAILS
 //--------------------------------------------------
 
-/**
- * Notifies admin and provider that a new service request has been created.
- * @param mailOptions SendMailOptions.
- */
-export const buildServiceRequestEmail = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): string => {
-	return templates.ServiceRequestTemplate(member, provider, reservation)
-}
+// /**
+//  * Notifies admin and provider that a new service request has been created.
+//  * @param mailOptions SendMailOptions.
+//  */
+// export const buildServiceRequestEmail = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): string => {
+// 	return templates.ServiceRequestTemplate(member, provider, reservation)
+// }
 
-//--------------------------------------------------
-// RSVP EMAIL
-//--------------------------------------------------
+// //--------------------------------------------------
+// // RSVP EMAIL
+// //--------------------------------------------------
 
-/**
- * Sends an email to specified member's.
- * @param mailOptions SendMailOptions.
- */
-export const sendMemberUnRSVPEmail = (member: core.User.Model, event: core.Event.Model): string => {
-	const methodName = '[sendMemberUnRSVPEmail] -'
-	return templates.UnRsvpTemplate(member, event)
-}
+// /**
+//  * Sends an email to specified member's.
+//  * @param mailOptions SendMailOptions.
+//  */
+// export const sendMemberUnRSVPEmail = (member: core.User.Model, event: core.Event.Model): string => {
+// 	const methodName = '[sendMemberUnRSVPEmail] -'
+// 	return templates.UnRsvpTemplate(member, event)
+// }
 
 /**
  * Sends an email to an admin with contact information 

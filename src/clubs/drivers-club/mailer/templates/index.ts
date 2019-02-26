@@ -8,20 +8,20 @@ import { Model } from 'mongoose';
 
 const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, password: string) => {
     const message = `
-<p>Hi ${member.firstName} and welcome to Drivers Club!
+		<p>Hi ${member.firstName} and welcome to Drivers Club!
 
-<p>Your new Drivers Club account has been created. This gives you access to the Drivers Club web and mobile apps!</p>
+		<p>Your new Drivers Club account has been created. This gives you access to the Drivers Club web and mobile apps!</p>
 
-<p>Please follow the url: ${club.domain} to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
-    
-<p>To change your password, please use the "Forgot Password" link on the login screen. An email will then be sent to you with instructions on resetting the password.</p>
+		<p>Please follow the url: ${club.domain} to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
+			
+		<p>To change your password, please use the "Forgot Password" link on the login screen. An email will then be sent to you with instructions on resetting the password.</p>
 
-<p>Please send an email to info@drivers.club if you have any questions!</p>
+		<p>Please send an email to info@drivers.club if you have any questions!</p>
 
-<p>Best,</p> 
+		<p>Best,</p> 
 
-<p>The Drivers Club team.</p>
-`
+		<p>The Drivers Club team.</p>
+	`
     return message
 }
 
@@ -32,37 +32,37 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, pa
 const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
     const fullName = `${member.firstName} ${member.lastName}`
 	const message = `
-<p> Hi there!</p>
+		<p> Hi there!</p>
 
-<p>A Drivers Club member has RSVP'd to an event. Details below:</p>
+		<p>A Drivers Club member has RSVP'd to an event. Details below:</p>
 
-<p style='font-weight:bold; display:inline;'>Member Info</p>
-<ul>
-    <li>
-        ${bulletLine('Name:', fullName)}
-    </li>
-    <li>
-        ${bulletLine('Email:', member.email)}
-    </li>
-    <li>
-        ${bulletLine('Phone:', member.phone)}
-    </li>
-</ul>
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', fullName)}
+			</li>
+			<li>
+				${bulletLine('Email:', member.email)}
+			</li>
+			<li>
+				${bulletLine('Phone:', member.phone)}
+			</li>
+		</ul>
 
-<p style='font-weight:bold; display:inline;'>Event Info</p>
-<ul>
-    <li>
-        ${bulletLine('Event:', event.name)}
-    </li>
-    <li>
-        ${bulletLine('ID', event._id)}
-    </li>
-</ul>
-	
-<p>Thanks,</p>
+		<p style='font-weight:bold; display:inline;'>Event Info</p>
+		<ul>
+			<li>
+				${bulletLine('Event:', event.name)}
+			</li>
+			<li>
+				${bulletLine('ID', event._id.toString())}
+			</li>
+		</ul>
+			
+		<p>Thanks,</p>
 
-<p>Your friends at Drivers Club</p>
-`
+		<p>Your friends at Drivers Club</p>
+	`
     return message
 }
 
@@ -110,55 +110,55 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
     const fullName = `${member.firstName} ${member.lastName}`
     // const vehicle = member.meta.car.vehicles.find((c) => c._id === reservation.meta.vehicleID)
     // const date: DateInterface = dateFromTimestamp(serviceData.service.date)
-    const message = `
-<p> Hi there!</p>
+//     const message = `
+// <p> Hi there!</p>
 
-<p>A Drivers Club member has submitted a new service request. Details below:</p>
+// <p>A Drivers Club member has submitted a new service request. Details below:</p>
 
-<p style='font-weight:bold; display:inline;'>Provider Info</p>
-<ul>
-    <li>
-        ${bulletLine('Name:', provider.name)}
-    </li>
-    <li>
-        ${bulletLine('Email', provider.location.email)}
-    </li>
-    <li>
-        ${bulletLine('Phone', provider.location.phone)}
-    </li>
-</ul>
+// <p style='font-weight:bold; display:inline;'>Provider Info</p>
+// <ul>
+//     <li>
+//         ${bulletLine('Name:', provider.name)}
+//     </li>
+//     <li>
+//         ${bulletLine('Email', provider.location.email)}
+//     </li>
+//     <li>
+//         ${bulletLine('Phone', provider.location.phone)}
+//     </li>
+// </ul>
 
-<p style='font-weight:bold; display:inline;'>Member Info</p>
-<ul>
-    <li>
-        ${bulletLine('Name:', fullName)}
-    </li>
-    <li>
-        ${bulletLine('Email', member.email)}
-    </li>
-    <li>
-        ${bulletLine('Phone', member.phone)}
-    </li>
-</ul>
+// <p style='font-weight:bold; display:inline;'>Member Info</p>
+// <ul>
+//     <li>
+//         ${bulletLine('Name:', fullName)}
+//     </li>
+//     <li>
+//         ${bulletLine('Email', member.email)}
+//     </li>
+//     <li>
+//         ${bulletLine('Phone', member.phone)}
+//     </li>
+// </ul>
 
-<p style='font-weight:bold; display:inline;'>Service Info</p>
-<ul>
-    <li>
-        ${bulletLine('Vehicle:', vehicle.model)}
-    </li>
-    <li>
-        ${bulletLine('Date', date.fullDate)}
-    </li>
-    <li>
-        ${bulletLine('Notes',  reservation.meta.notes)}
-    </li>
-</ul>
+// <p style='font-weight:bold; display:inline;'>Service Info</p>
+// <ul>
+//     <li>
+//         ${bulletLine('Vehicle:', vehicle.model)}
+//     </li>
+//     <li>
+//         ${bulletLine('Date', date.fullDate)}
+//     </li>
+//     <li>
+//         ${bulletLine('Notes',  reservation.meta.notes)}
+//     </li>
+// </ul>
     
-<p>Thanks,</p>
+// <p>Thanks,</p>
 
-<p>Your friends at Drivers Club</p>
-`
-    return message
+// <p>Your friends at Drivers Club</p>
+// `
+    // return message
 }
 
 // const membershipApplicationTemplate = (memberInfo: ApplicationInformation) => {
@@ -356,9 +356,9 @@ const regularText = (text: string): string => {
 
 export {rsvpTemplate as RsvpTemplate}
 export {publicRsvpTemplate as PublicRsvpTemplate}
-export {unRsvpTemplate as UnRsvpTemplate}
+// export {unRsvpTemplate as UnRsvpTemplate}
 export {serviceRequestTemplate as ServiceRequestTemplate}
-export {membershipApplicationTemplate as MembershipApplicationTemplate}
+// export {membershipApplicationTemplate as MembershipApplicationTemplate}
 export {newProviderTemplate as NewProviderTemplate}
 export {welcomeEmailTemplate as WelcomeEmailTemplate}
 // export {membershipInquiryTemplate as MembershipInquiryTemplate}

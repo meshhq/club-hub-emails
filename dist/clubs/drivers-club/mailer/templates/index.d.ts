@@ -1,0 +1,11 @@
+import * as core from 'club-hub-core';
+declare const welcomeEmailTemplate: (member: core.User.Model, club: core.Club.Model, password: string) => string;
+declare const rsvpTemplate: (member: core.User.Model, event: core.Event.Model) => string;
+declare const serviceRequestTemplate: (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => void;
+declare const newProviderTemplate: (provider: core.Calendar.Model) => string;
+declare const publicRsvpTemplate: (memberName: string, memberEmail: string, plusOne: boolean, event: any) => string;
+export { rsvpTemplate as RsvpTemplate };
+export { publicRsvpTemplate as PublicRsvpTemplate };
+export { serviceRequestTemplate as ServiceRequestTemplate };
+export { newProviderTemplate as NewProviderTemplate };
+export { welcomeEmailTemplate as WelcomeEmailTemplate };

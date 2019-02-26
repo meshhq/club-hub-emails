@@ -2,6 +2,8 @@ import * as fs from 'fs'
 import * as Handlebars from 'handlebars'
 import * as core from 'club-hub-core'
 
+import * as DCEmails from './clubs/drivers-club/mailer/index'
+
 // Transform 
 import * as transform from './transform/transform'
 
@@ -9,6 +11,12 @@ import * as transform from './transform/transform'
 import { RichContent } from './models/rich'
 import { ConfirmationInfo } from './models/confirmation'
 
+export { DCEmails }
+
+// export const CompileWelcomeEmail = async (member: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
+// 	console.log("CALLING COMPILE WELCOME EMAIL")
+// 	return DC.buildWelcomeEmail(member, club, password)
+// }
 
 /**
  * Compiles a new event email.
