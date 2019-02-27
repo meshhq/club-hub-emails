@@ -1,22 +1,43 @@
+// External Dependencies
 import * as core from 'club-hub-core'
 
+// Internal Dependencies
 import * as templates from './templates'
 
 
+//--------------------------------------------------
+// ONBOARDING EMAILS
+//--------------------------------------------------
+
 /**
- * Sends a welcome email to a new member with temp password and signin details.
- * @param mailOptions SendMailOptions.
+ * Sends a welcome email to a new member with temp password and login details.
  */
-export const buildWelcomeEmail = (member: core.User.Model, club: core.Club.Model, password: string): string => {
+export const buildWelcomeEmail = async (member: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
 	return templates.WelcomeEmailTemplate(member, club, password)
 }
 
 /**
- * Sends an email to specified member's.
- * @param mailOptions SendMailOptions.
+ * Sends an email to the drivers club admin with the new member application info.
+ * @param memberInfo Form information.
  */
-export const buildRSVPEmail = (member: core.User.Model, event: core.Event.Model): string => {
-	return templates.RsvpTemplate(member, event)
+export const sendMembershipApplicationEmail = async (memberInfo: any): Promise<string> => {
+	return templates.MembershipApplicationTemplate(memberInfo)
+}
+
+/**
+ * Sends an email to the Drivers Club admin with membership inquiry information.
+ * @param memberInfo Form information.
+ */
+export const sendMembershipInquiryEmail = async (memberInfo: any): Promise<string> => {
+	return templates.MembershipInquiryTemplate(memberInfo)
+}
+
+/**
+ * Sends a response email to perspective member letting them know their application is being reviewed.
+ * @param memberInfo Form information.
+ */
+export const sendMembershipInquiryResponseEmail = async (memberInfo: any): Promise<string> => {
+	return templates.MembershipInquiryResponseTemplate(memberInfo)
 }
 
 //--------------------------------------------------
@@ -25,10 +46,21 @@ export const buildRSVPEmail = (member: core.User.Model, event: core.Event.Model)
 
 /**
  * Notifies admin and provider that a new service request has been created.
- * @param mailOptions SendMailOptions.
+ * @param member User model.
+ * @param provider Calendar model.
+ * @param reservation Reservation model (sub document of the event model).
+ * 
  */
-export const buildServiceRequestEmail = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): string => {
+export const buildServiceRequestEmail = async (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): Promise<string> => {
 	return templates.ServiceRequestTemplate(member, provider, reservation)
+}
+
+/**
+ * Sends an email to an admin letting them know a member wants a service provider added.
+ * @param provider Calendar model.
+ */
+export const sendProviderRequestEmail = async (provider: core.Calendar.Model): Promise<string> => {
+	return templates.NewProviderTemplate(provider)
 }
 
 //--------------------------------------------------
@@ -36,10 +68,20 @@ export const buildServiceRequestEmail = (member: core.User.Model, provider: core
 //--------------------------------------------------
 
 /**
- * Sends an email to specified member's.
- * @param mailOptions SendMailOptions.
+ * Sends an email to admin letting them know a member has RSVP'd.
+ * @param member User model.
+ * @param event Event model.
  */
-export const sendMemberUnRSVPEmail = (member: core.User.Model, event: core.Event.Model): string => {
+export const buildRSVPEmail = async (member: core.User.Model, event: core.Event.Model): Promise<string> => {
+	return templates.RsvpTemplate(member, event)
+}
+
+/**
+ * Sends an email to DC admin letting them know a member has UnRsvp'd
+ * @param member User model.
+ * @param event Event model.
+ */
+export const sendMemberUnRSVPEmail = async (member: core.User.Model, event: core.Event.Model): Promise<string> => {
 	const methodName = '[sendMemberUnRSVPEmail] -'
 	return templates.UnRsvpTemplate(member, event)
 }
@@ -47,36 +89,11 @@ export const sendMemberUnRSVPEmail = (member: core.User.Model, event: core.Event
 /**
  * Sends an email to an admin with contact information 
  * for a public member that wants to RSVP for an event.
- * @param mailOptions SendMailOptions.
+ * @param memberName string
+ * @param memberEmail string
+ * @param plusOne Boolean.
+ * @param event Event model.
  */
-export const sendPublicRSVPEmail = (memberName: string, memberEmail: string, plusOne: boolean, event: any): string => {
+export const sendPublicRSVPEmail = async (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model): Promise<string> => {
 	return templates.PublicRsvpTemplate(memberName, memberEmail, plusOne, event)
 }
-
-/**
- * Sends an email to specified member's.
- * @param mailOptions SendMailOptions.
- */
-export const sendProviderRequestEmail = (provider: core.Calendar.Model): string => {
-	return templates.NewProviderTemplate(provider)
-}
-
-// /**
-//  * Sends an email to the drivers club admin with the new member info.
-//  * @param mailOptions SendMailOptions.
-//  */
-// export const sendMembershipApplicationEmail = (memberInfo: ApplicationInformation): Promise<void> => {
-// 	return templates.MembershipApplicationTemplate(memberInfo)
-// }
-
-// /**
-//  * Sends an email to the Drivers Club admin with membership inquiry information.
-//  * @param mailOptions SendMailOptions.
-//  */
-// export const sendMembershipInquiryEmail = (memberInfo: MemberInquiryForm): Promise<void> => {
-// 	return templates.MembershipInquiryTemplate(memberInfo)
-// }
-
-// export const sendMembershipInquiryResponseEmail = (memberInfo: MemberInquiryForm) => {
-// 	return templates.MembershipInquiryResponseTemplate(memberInfo)
-// }

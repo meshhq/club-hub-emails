@@ -1,12 +1,6 @@
-import * as core from 'club-hub-core'
-import { Model } from 'mongoose';
-
-
-//------------------------------------------------------
-// ONBOARDING TEMPLATES
-//------------------------------------------------------
-
-const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, password: string) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const welcomeEmailTemplate = (member, club, password) => {
     const message = `
 		<p>Hi ${member.firstName} and welcome to Drivers Club!
 
@@ -21,11 +15,11 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, pa
 		<p>Best,</p> 
 
 		<p>The Drivers Club team.</p>
-	`
-    return message
-}
-
-const membershipApplicationTemplate = (memberInfo: any) => {
+	`;
+    return message;
+};
+exports.WelcomeEmailTemplate = welcomeEmailTemplate;
+const membershipApplicationTemplate = (memberInfo) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -40,7 +34,7 @@ const membershipApplicationTemplate = (memberInfo: any) => {
 				${bulletLine('Company', memberInfo.company)}
 			</li>
 			<li>
-				${bulletLine('Address',memberInfo.address)}
+				${bulletLine('Address', memberInfo.address)}
 			</li>
 			<li>
 				${bulletLine('Address', memberInfo.addressTwo)}
@@ -77,11 +71,11 @@ const membershipApplicationTemplate = (memberInfo: any) => {
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-const membershipInquiryTemplate = (memberInfo: any) => {
+	`;
+    return message;
+};
+exports.MembershipApplicationTemplate = membershipApplicationTemplate;
+const membershipInquiryTemplate = (memberInfo) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -103,11 +97,11 @@ const membershipInquiryTemplate = (memberInfo: any) => {
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-const membershipInquiryResponseTemplate = (memberFormInfo: any) => {
+	`;
+    return message;
+};
+exports.MembershipInquiryTemplate = membershipInquiryTemplate;
+const membershipInquiryResponseTemplate = (memberFormInfo) => {
     const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
@@ -121,17 +115,13 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any) => {
 
 		<p>Amanda Friedman</p>
 		<p>General Manager</p>
-	`
-    return message
-}
-
-//------------------------------------------------------
-// RSVP TEMPLATES
-//------------------------------------------------------
-
-const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
-    const fullName = `${member.firstName} ${member.lastName}`
-	const message = `
+	`;
+    return message;
+};
+exports.MembershipInquiryResponseTemplate = membershipInquiryResponseTemplate;
+const rsvpTemplate = (member, event) => {
+    const fullName = `${member.firstName} ${member.lastName}`;
+    const message = `
 		<p> Hi there!</p>
 
 		<p>A Drivers Club member has RSVP'd to an event. Details below:</p>
@@ -162,15 +152,13 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
-	// Format the members name.
-	const fullName = `${member.firstName} ${member.lastName}`
-	
-	const message = `
+	`;
+    return message;
+};
+exports.RsvpTemplate = rsvpTemplate;
+const unRsvpTemplate = (member, event) => {
+    const fullName = `${member.firstName} ${member.lastName}`;
+    const message = `
 		<p> Hi there!</p>
 
 		<p>A Drivers Club member has cancelled their RSVP to an event. Details below:</p>
@@ -204,13 +192,13 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model) => {
-    const plusOneText = plusOne ? 'Yes' : 'No'
-	const message = `
+	`;
+    return message;
+};
+exports.UnRsvpTemplate = unRsvpTemplate;
+const publicRsvpTemplate = (memberName, memberEmail, plusOne, event) => {
+    const plusOneText = plusOne ? 'Yes' : 'No';
+    const message = `
 		<p> Hi there!</p>
 
 		<p>A public person has RSVP'd to an event. Details below:</p>
@@ -244,25 +232,15 @@ const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: bo
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-//------------------------------------------------------
-// SERVICE TEMPLATES
-//------------------------------------------------------
-
-const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => {
-	// Format the members name.
-	const fullName = `${member.firstName} ${member.lastName}`
-
-	// Grab the vehicle information.
-	const reservationMeta = reservation.meta as core.Event.CarReservationMeta
-	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id === reservationMeta.vehicleID)
-	
-	// Format the date.
-	const date = new Date() // TODO: Add in date logic.
-
+	`;
+    return message;
+};
+exports.PublicRsvpTemplate = publicRsvpTemplate;
+const serviceRequestTemplate = (member, provider, reservation) => {
+    const fullName = `${member.firstName} ${member.lastName}`;
+    const reservationMeta = reservation.meta;
+    const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id === reservationMeta.vehicleID);
+    const date = new Date();
     const message = `
 		<p> Hi there!</p>
 
@@ -303,18 +281,18 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 				${bulletLine('Date', date.toString())}
 			</li>
 			<li>
-				${bulletLine('Notes',  reservation.meta.notes)}
+				${bulletLine('Notes', reservation.meta.notes)}
 			</li>
 		</ul>
 			
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-const newProviderTemplate = (provider: core.Calendar.Model) => {
+	`;
+    return message;
+};
+exports.ServiceRequestTemplate = serviceRequestTemplate;
+const newProviderTemplate = (provider) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -329,7 +307,7 @@ const newProviderTemplate = (provider: core.Calendar.Model) => {
 				${bulletLine('Contact', provider.location.contactName)}
 			</li>
 			<li>
-				${bulletLine('Email',provider.location.email)}
+				${bulletLine('Email', provider.location.email)}
 			</li>
 			<li>
 				${bulletLine('Phone', provider.location.phone)}
@@ -351,32 +329,16 @@ const newProviderTemplate = (provider: core.Calendar.Model) => {
 		<p>Thanks,</p>
 
 		<p>Your friends at Drivers Club</p>
-	`
-    return message
-}
-
-//------------------------------------------------------
-// TEMPLATE HELPERS
-//------------------------------------------------------
-
-const bulletLine = (boldText: string, text: string): string => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`
-}
-
-const linkLine = (boldText: string, id: string): string => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${id}" style='display:inline;'>Event Link</a>`
-}
-
-const regularText = (text: string): string => {
-    return `<p>${text}</p>`
-}
-
-export {rsvpTemplate as RsvpTemplate}
-export {publicRsvpTemplate as PublicRsvpTemplate}
-export {unRsvpTemplate as UnRsvpTemplate}
-export {serviceRequestTemplate as ServiceRequestTemplate}
-export {membershipApplicationTemplate as MembershipApplicationTemplate}
-export {newProviderTemplate as NewProviderTemplate}
-export {welcomeEmailTemplate as WelcomeEmailTemplate}
-export {membershipInquiryTemplate as MembershipInquiryTemplate}
-export {membershipInquiryResponseTemplate as MembershipInquiryResponseTemplate}
+	`;
+    return message;
+};
+exports.NewProviderTemplate = newProviderTemplate;
+const bulletLine = (boldText, text) => {
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`;
+};
+const linkLine = (boldText, id) => {
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${id}" style='display:inline;'>Event Link</a>`;
+};
+const regularText = (text) => {
+    return `<p>${text}</p>`;
+};

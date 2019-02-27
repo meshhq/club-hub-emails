@@ -1,6 +1,11 @@
+// External Dependencies.
 import * as fs from 'fs'
 import * as Handlebars from 'handlebars'
 import * as core from 'club-hub-core'
+
+// Drivers Club Specific Emails.
+import * as DCEmails from './clubs/drivers-club/mailer/index'
+export { DCEmails }
 
 // Transform 
 import * as transform from './transform/transform'
@@ -8,7 +13,6 @@ import * as transform from './transform/transform'
 // Models
 import { RichContent } from './models/rich'
 import { ConfirmationInfo } from './models/confirmation'
-
 
 /**
  * Compiles a new event email.
