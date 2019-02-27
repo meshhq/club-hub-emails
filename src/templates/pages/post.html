@@ -1,0 +1,40 @@
+---
+subject: My Basic Email Template Subject
+---
+
+{{> header}}
+
+<container class="body content-body">
+    <row>
+        <columns small="12">
+            <div class="image-container">
+                <a href="{{content.url}}">
+                    <img class="text-center" src="{{content.imageURL}}" alt="">
+                </a>
+            </div>
+        </columns>
+    </row>
+    <row>
+        <columns class="content-column" small="12">
+            <div class="padded-container bottom-border">
+                <h1>{{ content.name }}</h1>
+            </div>
+        </columns>
+    </row>
+    <row>
+        <columns class="content-column" small="12">
+            <div class="padded-container bottom-border">
+                {{{content.content}}}
+            </div>
+        </columns>
+    </row>
+    <row>
+        <columns class="button-column" small="12">
+            <div class="padded-container bottom-border">
+                <button class="expanded small" href="{{content.url}}">{{content.cta}}</button>
+            </div>
+        </columns>
+    </row>
+</container>
+
+{{> footer}}

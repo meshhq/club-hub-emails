@@ -2,10 +2,10 @@
 subject: New Event
 ---
 
-<container class="body content-body">
-  <row>
-    <columns small="12">
-      <div class="logo-container">
+<container class="body event-body">
+  <row class="logo-row">
+    <columns class="logo-col" small="12">
+      <div class="logo-container padded-container">
         <a href="{{event.club.domain}}">
           <img src="{{event.club.logoURL}}" alt="{{event.club.name}}">
         </a>
@@ -13,59 +13,68 @@ subject: New Event
     </columns>
   </row>
 
-  <row>
+  <row class="image-row">
     <columns small="12">
       <div class="image-container">
         <a href="{{event.url}}">
-          <img class="text-center" src="{{event.imageURL}}" alt="">
+          <img class="text-center" src="{{event.photoURL}}" alt="">
         </a>
       </div>
     </columns>
   </row>
 
-  <row>
+  <row class="event-row title-row">
     <columns small="12">
-      <div class="title-container">
+      <div class="title-container padded-container bottom-border">
         <h1>{{ event.name }}</h1>
-        <p class="detail-content">{{ event.subtitle }}</p>
+        <p>{{ event.subtitle }}</p>
       </div>
     </columns>
   </row>
 
-  <row class="details-row">
+  <row class="event-row details-row">
     <columns small="12">
-      <div class="details-container">
-        <p class="detail-header">LOCATION</p>
-        <p class="detail-content">ClubHub Golf Course</p>
-        <p class="detail-content">3621 Stone Way N</p>
-        <a class="detail-link">View On Map</a>
-      </div>
-    </columns>
-    <columns small="12">
-      <div class="details-container">
-        <p class="detail-header">DATE & TIME</p>
-        <p class="detail-content">Saturday Mar. 21st</p>
-        <p class="detail-content">10:00AM - 7:00PM</p>
-        <a class="detail-link">Add To Calendar</a>
-      </div>
+      <container class="body event-body">
+        <row>
+          <columns small="12" large="6">
+            <div class="details-container padded-container bottom-border">
+              <p class="detail-header">LOCATION</p>
+              <p class="detail-content">{{event.location}}</p>
+              <p class="detail-content">{{event.street}}</p>
+              <a class="detail-link">View On Map</a>
+            </div>
+          </columns>
+          <columns small="12" large="6">
+            <div class="details-container padded-container bottom-border">
+              <p class="detail-header">DATE & TIME</p>
+              <p class="detail-content">{{event.date}}</p>
+              <p class="detail-content">{{event.time}}</p>
+              <a class="detail-link">Add To Calendar</a>
+            </div>
+          </columns>
+        </row>
+      </container>
     </columns>
   </row>
 
-  <row>
+  <row class="event-row button-row">
     <columns small="12">
-      <div class="button-container">
+      <div class="button-container padded-container bottom-border">
         <button class="expanded" href="{{event.url}}">{{event.cta}}</button>
       </div>
     </columns>
   </row>
-  
-  <row>
+
+  <row class="event-row description-row">
     <columns small="12">
-      <div class="description-container">
+      <div class="description-container padded-container bottom-border">
         <div class="details-container">
-        <p class="detail-header">DESCRIPTON</p>
-        <p class="detail-content">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-      </div>
+          <p class="detail-header">DESCRIPTON</p>
+          <p class="detail-content">{{{event.content}}}</p>
+        </div>
     </columns>
   </row>
 </container>
+
+
+{{> footer}}

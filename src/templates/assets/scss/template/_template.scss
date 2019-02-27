@@ -5,7 +5,7 @@
 body,
 html,
 .body {
-  background: #F6F7FB !important;
+  background: white !important;
 }
 
 .clubhub-email-body {
@@ -59,22 +59,49 @@ img {
   vertical-align: middle;
 }
 
+.feather {
+  width: 24px;
+  height: 24px;
+  stroke: #AEBDC4;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.image-container {
+  height: 300px;
+  overflow: hidden;
+  background-color:  $light-gray;
+  width: 100%;
+  vertical-align: middle;
+}
+
+//-----------------------------------
+// BUTTON
+//-----------------------------------
+
+.button {
+  margin-bottom: 0px !important;
+}
+
 //-----------------------------------
 // LAYOUT
 //-----------------------------------
 
+.columns {
+  padding: 0px 24px !important;
+}
+
 .container.body {
   background: white !important;
   border-radius: 4px;
+}
 
-  .columns {
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 0px;
-  }
+.bottom-border {
+  border-bottom: 1px solid $light-gray;
+}
 
-  .button-column {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
+.padded-container {
+  padding: 18px 0px;
 }
