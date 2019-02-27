@@ -4,6 +4,38 @@ subject: My Basic Email Template Subject
 
 {{> header}}
 
-{{> confirmation-body}}
+<container class="body confirmation-body">
+    <row>
+        <columns small="12">
+            <div class="logo-container padded-container">
+                <center>
+                    <div class="confirmation-icon-container" valign="middle">
+                        {{> icon-circle-check }}
+                    </div>
+                </center>
+            </div>
+        </columns>
+    </row>
+    <row>
+        <columns class="content-column" small="12">
+            <div class="padded-container bottom-border">
+                <h1 class="text-center">{{confirmation.title}}</h1>
+
+                <spacer size="22"></spacer>
+                <p class="text-center light-text">{{confirmation.subtitle}}</p>
+
+                <spacer size="22"></spacer>
+                <p class="text-center heavy-text">{{confirmation.info}}</p>
+            </div>
+        </columns>
+    </row>
+    <row>
+        <columns class="button-column" small="12">
+            <div class="padded-container bottom-border">
+                <button class="expanded small" href="{{confirmation.url}}">View Tee Time</button>
+            </div>
+        </columns>
+    </row>
+</container>
 
 {{> footer}}

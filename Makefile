@@ -25,3 +25,8 @@ build: $(src_files)
 
 test: build
 	NODE_ENV=test LOGGER_DISABLED=true ./node_modules/.bin/mocha --exit --bail --recursive --sort --full-trace ./dist/tests
+
+
+
+
+

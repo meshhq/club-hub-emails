@@ -1,5 +1,9 @@
+.header-image-container {
+    border-bottom: 1px solid $light-gray;
+}
+
 .container.body.confirmation-body {
-    
+
     .confirmation-icon-container {
         height: 62px;
         width: 62px;
@@ -16,5 +20,13 @@
             font-size: 24px;
             width: 62px;
         }
+    }
+
+    .button {
+        margin-bottom: 0px;
+    }
+
+    .no-border {
+        border-bottom: none;
     }
 }

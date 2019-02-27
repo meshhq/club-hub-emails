@@ -12,12 +12,12 @@ exports.CompileGenericEmail = (content, club) => {
 };
 exports.CompileEventEmail = (event, club) => {
     const eventInfo = transform.BuildEventContent(event, club);
-    const path = `${__dirname}/templates/rich.html`;
+    const path = `${__dirname}/templates/event.html`;
     return CompileEmail(path, eventInfo);
 };
 exports.CompilePostEmail = (post, club) => {
     const postInfo = transform.BuildPostContent(post, club);
-    const path = `${__dirname}/templates/rich.html`;
+    const path = `${__dirname}/templates/post.html`;
     return CompileEmail(path, postInfo);
 };
 exports.CompileConfirmationEmail = (event, club) => {

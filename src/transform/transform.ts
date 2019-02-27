@@ -1,8 +1,8 @@
 import * as core from 'club-hub-core'
 
+import { EventInfo } from '../models/event'
 import { RichContent } from '../models/rich'
 import { ConfirmationInfo } from '../models/confirmation'
-import { AddressInfo } from '../models/club'
 import { ClubInfo } from '../models/club'
 
 /**
@@ -24,14 +24,22 @@ export const BuildGenericContent= (content: string, club: core.Club.Model): Rich
  * @param event The event for the email.
  * @param club The club for the email.
  */
-export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model): RichContent => {
-    const richContent: RichContent = {
+export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model): EventInfo => {
+    const date = new Date(event.start)
+    var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var timeOptions = { hour: 'numeric', minute: 'numeric' };
+    const richContent: EventInfo = {
         name: event.name,
-        imageURL: event.photoURL,
+        subtitle: "New Club Event!",
+        photoURL: event.photoURL,
         content: event.richContent.html, 
         url: 'www.tryclubhub.com',
         cta: 'View Event',
         unsubscribeURL: 'www.tryclubhub.com',
+        location: event.location.name,
+        street: event.location.address1,   
+        date: date.toLocaleDateString("en-US", dateOptions),
+        time: date.toLocaleDateString("en-US", timeOptions), 
         club: BuildClubInfo(club)
     }
     return richContent
@@ -68,7 +76,7 @@ export const BuildConfirmationContent = (event: core.Event.Model, club: core.Clu
         info: "",
         url: 'www.tryclubhub.com',
         unsubscribeURL: 'www.tryclubhub.com',
-        clubInfo: BuildClubInfo(club)
+        club: BuildClubInfo(club)
     }
     return confirmationInfo
 }
@@ -77,19 +85,15 @@ export const BuildConfirmationContent = (event: core.Event.Model, club: core.Clu
  * Builds a ClubInfo object that can be used to build an email.
  * @param club The club for the email.
  */
-export const BuildClubInfo = (club: core.Club.Model) => {
-    const addressInfo: AddressInfo = {
-        street: club.locations[0].address1,
-        city: club.locations[0].city,
-        state: club.locations[0].state,
-        zip: club.locations[0].zip,
-    }
-
+export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
     const clubInfo: ClubInfo = {
         name: club.name,
         domain: club.domain,
         logoURL: club.photoURL,
-        address: addressInfo
+        street: club.locations[0].address1,
+        city: club.locations[0].city,
+        state: club.locations[0].state,
+        zip: club.locations[0].zip,
     }
     return clubInfo
 }

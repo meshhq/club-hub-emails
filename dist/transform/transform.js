@@ -9,13 +9,21 @@ exports.BuildGenericContent = (content, club) => {
     return richContent;
 };
 exports.BuildEventContent = (event, club) => {
+    const date = new Date(event.start);
+    var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var timeOptions = { hour: 'numeric', minute: 'numeric' };
     const richContent = {
         name: event.name,
-        imageURL: event.photoURL,
+        subtitle: "New Club Event!",
+        photoURL: event.photoURL,
         content: event.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Event',
         unsubscribeURL: 'www.tryclubhub.com',
+        location: event.location.name,
+        street: event.location.address1,
+        date: date.toLocaleDateString("en-US", dateOptions),
+        time: date.toLocaleDateString("en-US", timeOptions),
         club: exports.BuildClubInfo(club)
     };
     return richContent;
@@ -39,22 +47,19 @@ exports.BuildConfirmationContent = (event, club) => {
         info: "",
         url: 'www.tryclubhub.com',
         unsubscribeURL: 'www.tryclubhub.com',
-        clubInfo: exports.BuildClubInfo(club)
+        club: exports.BuildClubInfo(club)
     };
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
-    const addressInfo = {
-        street: club.locations[0].address1,
-        city: club.locations[0].city,
-        state: club.locations[0].state,
-        zip: club.locations[0].zip,
-    };
     const clubInfo = {
         name: club.name,
         domain: club.domain,
         logoURL: club.photoURL,
-        address: addressInfo
+        street: club.locations[0].address1,
+        city: club.locations[0].city,
+        state: club.locations[0].state,
+        zip: club.locations[0].zip,
     };
     return clubInfo;
 };

@@ -5,5 +5,5 @@ export interface ConfirmationInfo {
     info: string;
     url: string;
     unsubscribeURL: string;
-    clubInfo: ClubInfo;
+    club: ClubInfo;
 }

@@ -5,27 +5,37 @@
 body,
 html,
 .body {
-  background: #F6F7FB !important;
+  background: white !important;
+}
+
+.clubhub-email-body {
+  @media screen and (max-width: 800px) {
+     width: 100vw !important;
+  }
 }
 
 //-----------------------------------
 // TYPOGRAPHY
 //-----------------------------------
 
-h1 
-h2
-h3
-h4
-h5
-h6
-p
-a
-br {
-  margin-bottom: 0px;
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+br,
+ul {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  color: #495057;
 }
 
 h1 {
   font-weight: 600;
+  font-size: 32px;
 }
 
 p {
@@ -50,25 +60,58 @@ p {
 //-----------------------------------
 
 img {
-  border-radius: 4px;
   vertical-align: middle;
+  object-fit: cover;
+}
+
+.hero-image {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.feather {
+  width: 24px;
+  height: 24px;
+  stroke: #AEBDC4;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.image-container {
+  height: 300px;
+  overflow: hidden;
+  background-color:  $light-gray;
+  width: 100%;
+  vertical-align: middle;
+}
+
+//-----------------------------------
+// BUTTON
+//-----------------------------------
+
+.button {
+  margin-bottom: 0px !important;
 }
 
 //-----------------------------------
 // LAYOUT
 //-----------------------------------
 
+.columns {
+  padding: 0px 0px !important;
+}
+
 .container.body {
   background: white !important;
   border-radius: 4px;
+}
 
-  .columns {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
+.bottom-border {
+  border-bottom: 1px solid $light-gray;
+}
 
-  .button-column {
-    padding-left: 100px;
-    padding-right: 100px;
-  }
+.padded-container {
+  padding: 18px 0px;
 }

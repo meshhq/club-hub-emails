@@ -1,12 +1,13 @@
 .container.email-header {
-    background: #F6F7FB;
-    
+    // background: #F6F7FB;
+    background: white;
+
     .header-image-container {
-      height: 80px;
+      height: 60px;
       object-fit: fill;
 
       img {
-        max-height: 80px;
+        max-height: 60px;
       }
     }
 }

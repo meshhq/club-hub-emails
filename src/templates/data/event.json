@@ -1,0 +1,27 @@
+{
+    "name": "Valentines Day Dinner",
+    "subtitle": "New ClubHub Event!",
+    "photoURL": "https://source.unsplash.com/pXEsx3kRuNc/800x800",
+    "content": "<p>The Sandals resort is an all inclusive type of place. You pay just once and then keep your money in your wallet.  Just stroll up and start ordering… then order again.  They have options for Italian, Indian, American, Japanese, etc.  You get the idea, you are not going to starve at this place.  Below are my top 5 favorite spots at the resort.</p><p><br></p><p>The Sandals resort is an all inclusive type of place.  You pay just once and then keep your money in your wallet.  Just stroll up and start ordering… then order again.  They have options for Italian, Indian, American, Japanese, etc.  You get the idea, you are not going to starve at this place.  Below are my top 5 favorite spots at the resort.</p>",
+    "url": "www.tryclubhub.com",
+    "cta": "View Event",
+    "unsubscribeURL": "www.tryclubhub.com",
+    "location": "Clubhouse",
+    "street": "811 Cherry Avenue",
+    "city": "Bainbridge Island",
+    "state": "Washington",
+    "zip": "98110",
+    "date": "Saturday Mar. 21st",
+    "time": "10:00AM - 7:00PM",
+    "club": {
+        "street": "811 Cherry Avenue",
+        "city": "Bainbridge Island",
+        "state": "Washington",
+        "zip": "98110",
+        "name": "Wing Point Golf & Country Club",
+        "logoURL": "https://s3-us-west-2.amazonaws.com/clubhubs3/club/logos/aldarra-logo.png",
+        "twitterURL": "www.twitter.com",
+        "facebookURL": "www.facebook.com",
+        "instagramURL": "www.instagram.com"
+    }
+}

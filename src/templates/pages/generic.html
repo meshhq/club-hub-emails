@@ -4,6 +4,14 @@ subject: My Basic Email Template Subject
 
 {{> header}}
 
-{{> generic-body}}
+<container class="body content-body">
+  <row>
+    <columns class="content-column" small="12">
+      <div class="content-container padded-container bottom-border">
+        {{{content.content}}}
+      <div>
+    </columns>
+  </row>
+</container>
 
 {{> footer}}
