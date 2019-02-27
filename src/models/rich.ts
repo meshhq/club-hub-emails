@@ -7,7 +7,7 @@ export interface RichContent {
     url?: string,
     cta?: string,
     unsubscribeURL: string,
-    clubInfo: ClubInfo
+    club: ClubInfo
 }
 
 

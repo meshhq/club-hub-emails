@@ -12,5 +12,5 @@ export interface EventInfo {
     street: string
     date: string
     time: string
-    clubInfo: ClubInfo
+    club: ClubInfo
 }

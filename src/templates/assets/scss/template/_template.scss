@@ -9,23 +9,27 @@ html,
 }
 
 .clubhub-email-body {
-  width: 100vw !important;
+  @media screen and (max-width: 800px) {
+     width: 100vw !important;
+  }
 }
 
 //-----------------------------------
 // TYPOGRAPHY
 //-----------------------------------
 
-h1 
-h2
-h3
-h4
-h5
-h6
-p
-a
-br {
-  margin-bottom: 0px;
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+br,
+ul {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
   color: #495057;
 }
 
@@ -57,6 +61,12 @@ p {
 
 img {
   vertical-align: middle;
+  object-fit: cover;
+}
+
+.hero-image {
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .feather {
@@ -90,7 +100,7 @@ img {
 //-----------------------------------
 
 .columns {
-  padding: 0px 24px !important;
+  padding: 0px 0px !important;
 }
 
 .container.body {

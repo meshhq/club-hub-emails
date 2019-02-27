@@ -2,7 +2,7 @@
     "name": "{{name}}",
     "subtitle": "{{subtitle}}",
     "photoURL": "{{photoURL}}",
-    "content": "{{content}}",
+    "content": "{{{content}}}",
     "url": "{{url}}",
     "cta": "{{cta}}",
     "unsubscribeURL": "{{unsubscribeURL}}",

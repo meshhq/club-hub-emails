@@ -13,6 +13,7 @@ import * as transform from './transform/transform'
 // Models
 import { RichContent } from './models/rich'
 import { ConfirmationInfo } from './models/confirmation'
+import { EventInfo } from './models/event';
 
 /**
  * Compiles a new event email.
@@ -35,10 +36,10 @@ export const CompileGenericEmail = (content: string, club: core.Club.Model): Pro
  */
 export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model): Promise<string> => {
     // Transform our event Info
-    const eventInfo: RichContent = transform.BuildEventContent(event, club)
+    const eventInfo: EventInfo = transform.BuildEventContent(event, club)
     
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/templates/rich.html`
+    const path: string = `${__dirname}/templates/event.html`
     return CompileEmail(path, eventInfo)
 }
 
@@ -52,7 +53,7 @@ export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model): 
     const postInfo: RichContent = transform.BuildPostContent(post, club)
 
     // Compile the template and return the promise.
-    const path: string = `${__dirname}/templates/rich.html`
+    const path: string = `${__dirname}/templates/post.html`
     return CompileEmail(path, postInfo)
 }
 

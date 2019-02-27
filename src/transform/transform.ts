@@ -14,7 +14,7 @@ export const BuildGenericContent= (content: string, club: core.Club.Model): Rich
     const richContent: RichContent = {
         content: content, 
         unsubscribeURL: "www.tryclubhub.com",
-        clubInfo: BuildClubInfo(club)
+        club: BuildClubInfo(club)
     }
     return richContent
 }
@@ -27,7 +27,7 @@ export const BuildGenericContent= (content: string, club: core.Club.Model): Rich
 export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model): EventInfo => {
     const date = new Date(event.start)
     var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    var timeOptions = { hour: 'long', minute: 'numeric' };
+    var timeOptions = { hour: 'numeric', minute: 'numeric' };
     const richContent: EventInfo = {
         name: event.name,
         subtitle: "New Club Event!",
@@ -40,7 +40,7 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
         street: event.location.address1,   
         date: date.toLocaleDateString("en-US", dateOptions),
         time: date.toLocaleDateString("en-US", timeOptions), 
-        clubInfo: BuildClubInfo(club)
+        club: BuildClubInfo(club)
     }
     return richContent
 }
@@ -58,7 +58,7 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model): 
         url: 'www.tryclubhub.com',
         cta: 'View Post',
         unsubscribeURL: 'www.tryclubhub.com',
-        clubInfo: BuildClubInfo(club),
+        club: BuildClubInfo(club),
 
     }
     return postInfo
@@ -76,7 +76,7 @@ export const BuildConfirmationContent = (event: core.Event.Model, club: core.Clu
         info: "",
         url: 'www.tryclubhub.com',
         unsubscribeURL: 'www.tryclubhub.com',
-        clubInfo: BuildClubInfo(club)
+        club: BuildClubInfo(club)
     }
     return confirmationInfo
 }
