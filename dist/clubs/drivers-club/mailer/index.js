@@ -12,28 +12,28 @@ const templates = require("./templates");
 exports.buildWelcomeEmail = (member, club, password) => __awaiter(this, void 0, void 0, function* () {
     return templates.WelcomeEmailTemplate(member, club, password);
 });
-exports.sendMembershipApplicationEmail = (memberInfo) => {
+exports.sendMembershipApplicationEmail = (memberInfo) => __awaiter(this, void 0, void 0, function* () {
     return templates.MembershipApplicationTemplate(memberInfo);
-};
-exports.sendMembershipInquiryEmail = (memberInfo) => {
+});
+exports.sendMembershipInquiryEmail = (memberInfo) => __awaiter(this, void 0, void 0, function* () {
     return templates.MembershipInquiryTemplate(memberInfo);
-};
-exports.sendMembershipInquiryResponseEmail = (memberInfo) => {
+});
+exports.sendMembershipInquiryResponseEmail = (memberInfo) => __awaiter(this, void 0, void 0, function* () {
     return templates.MembershipInquiryResponseTemplate(memberInfo);
-};
-exports.buildServiceRequestEmail = (member, provider, reservation) => {
+});
+exports.buildServiceRequestEmail = (member, provider, reservation) => __awaiter(this, void 0, void 0, function* () {
     return templates.ServiceRequestTemplate(member, provider, reservation);
-};
-exports.sendProviderRequestEmail = (provider) => {
+});
+exports.sendProviderRequestEmail = (provider) => __awaiter(this, void 0, void 0, function* () {
     return templates.NewProviderTemplate(provider);
-};
-exports.buildRSVPEmail = (member, event) => {
+});
+exports.buildRSVPEmail = (member, event) => __awaiter(this, void 0, void 0, function* () {
     return templates.RsvpTemplate(member, event);
-};
-exports.sendMemberUnRSVPEmail = (member, event) => {
+});
+exports.sendMemberUnRSVPEmail = (member, event) => __awaiter(this, void 0, void 0, function* () {
     const methodName = '[sendMemberUnRSVPEmail] -';
     return templates.UnRsvpTemplate(member, event);
-};
-exports.sendPublicRSVPEmail = (memberName, memberEmail, plusOne, event) => {
+});
+exports.sendPublicRSVPEmail = (memberName, memberEmail, plusOne, event) => __awaiter(this, void 0, void 0, function* () {
     return templates.PublicRsvpTemplate(memberName, memberEmail, plusOne, event);
-};
+});
