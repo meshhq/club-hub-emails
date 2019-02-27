@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 
 
 //------------------------------------------------------
-// Welcome Template
+// ONBOARDING TEMPLATES
 //------------------------------------------------------
 
 const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, password: string) => {
@@ -25,8 +25,108 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, pa
     return message
 }
 
+const membershipApplicationTemplate = (memberInfo: any) => {
+    const message = `
+		<p> Hi there!</p>
+
+		<p>A prospective member has completed the new member request form. Details below:</p>
+
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', memberInfo.name)}
+			</li>
+			<li>
+				${bulletLine('Company', memberInfo.company)}
+			</li>
+			<li>
+				${bulletLine('Address',memberInfo.address)}
+			</li>
+			<li>
+				${bulletLine('Address', memberInfo.addressTwo)}
+			</li>
+			<li>
+				${bulletLine('Address', `${memberInfo.city} ${memberInfo.state} ${memberInfo.zip}`)}
+			</li>
+			<li>
+				${bulletLine('Email', memberInfo.email)}
+			</li>
+			<li>
+				${bulletLine('Phone', memberInfo.phoneNumber)}
+			</li>
+			<li>
+				${bulletLine('Social', memberInfo.socialMedia)}
+			</li>
+			<li>
+				${bulletLine('Automotive Passion', memberInfo.automotivePassion)}
+			</li>
+			<li>
+				${bulletLine('Referral', memberInfo.referral)}
+			</li>
+			<li>
+				${bulletLine('Car Showcase', memberInfo.carShowcase)}
+			</li>
+			<li>
+				${bulletLine('Plan', memberInfo.membershipPlan)}
+			</li>
+			<li>
+				${bulletLine('Membership Type', `${memberInfo.membershipType}`)}
+			</li>
+		</ul>
+
+		<p>Thanks,</p>
+
+		<p>Your friends at Drivers Club</p>
+	`
+    return message
+}
+
+const membershipInquiryTemplate = (memberInfo: any) => {
+    const message = `
+		<p> Hi there!</p>
+
+		<p>A prospective member has completed the membership inquiry form. Details below:</p>
+
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', `${memberInfo.firstName} ${memberInfo.lastName}`)}
+			</li>
+			<li>
+				${bulletLine('Email', memberInfo.email)}
+			</li>
+			<li>
+				${bulletLine('Desired Membership', memberInfo.membership)}
+			</li>
+		</ul>
+
+		<p>Thanks,</p>
+
+		<p>Your friends at Drivers Club</p>
+	`
+    return message
+}
+
+const membershipInquiryResponseTemplate = (memberFormInfo: any) => {
+    const message = `
+		<p>Dear ${memberFormInfo.firstName},</p>
+
+		<p>Thank you for contacting Drivers Club regarding ${memberFormInfo.membership} membership!</p>
+
+		<p>We would like to learn more about your automotive passions.</p>
+
+		<p>Please click <a href="https://app.drivers.club/application">this link</a> to begin the formal application process.</p>
+
+		<p>Sincerely,</p>
+
+		<p>Amanda Friedman</p>
+		<p>General Manager</p>
+	`
+    return message
+}
+
 //------------------------------------------------------
-// NEW RSVP TEMPLATE
+// RSVP TEMPLATES
 //------------------------------------------------------
 
 const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
@@ -66,281 +166,198 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
     return message
 }
 
-// const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
-//     const fullName = `${member.firstName} ${member.lastName}`
-// 	const message = `
-// <p> Hi there!</p>
-
-// <p>A Drivers Club member has cancelled their RSVP to an event. Details below:</p>
-
-// <p style='font-weight:bold; display:inline;'>Member Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Name:', fullName)}
-//     </li>
-//     <li>
-//         ${bulletLine('Email:', member.email)}
-//     </li>
-//     <li>
-//         ${bulletLine('Phone:', member.phoneNumber)}
-//     </li>
-// </ul>
-
-// <p style='font-weight:bold; display:inline;'>Event Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Event:', event.name)}
-//     </li>
-//     <li>
-//         ${bulletLine('Price', event.price)}
-//     </li>
-//     <li>
-//         ${bulletLine('ID', event.id)}
-//     </li>
-// </ul>
+const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
+	// Format the members name.
+	const fullName = `${member.firstName} ${member.lastName}`
 	
-// <p>Thanks,</p>
+	const message = `
+		<p> Hi there!</p>
 
-// <p>Your friends at Drivers Club</p>
-// `
-//     return message
-// }
+		<p>A Drivers Club member has cancelled their RSVP to an event. Details below:</p>
 
-const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => {
-    const fullName = `${member.firstName} ${member.lastName}`
-    // const vehicle = member.meta.car.vehicles.find((c) => c._id === reservation.meta.vehicleID)
-    // const date: DateInterface = dateFromTimestamp(serviceData.service.date)
-//     const message = `
-// <p> Hi there!</p>
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', fullName)}
+			</li>
+			<li>
+				${bulletLine('Email:', member.email)}
+			</li>
+			<li>
+				${bulletLine('Phone:', member.phone)}
+			</li>
+		</ul>
 
-// <p>A Drivers Club member has submitted a new service request. Details below:</p>
+		<p style='font-weight:bold; display:inline;'>Event Info</p>
+		<ul>
+			<li>
+				${bulletLine('Event:', event.name)}
+			</li>
+			<li>
+				${bulletLine('Price', event.price.toString())}
+			</li>
+			<li>
+				${bulletLine('ID', event._id.toString())}
+			</li>
+		</ul>
+			
+		<p>Thanks,</p>
 
-// <p style='font-weight:bold; display:inline;'>Provider Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Name:', provider.name)}
-//     </li>
-//     <li>
-//         ${bulletLine('Email', provider.location.email)}
-//     </li>
-//     <li>
-//         ${bulletLine('Phone', provider.location.phone)}
-//     </li>
-// </ul>
-
-// <p style='font-weight:bold; display:inline;'>Member Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Name:', fullName)}
-//     </li>
-//     <li>
-//         ${bulletLine('Email', member.email)}
-//     </li>
-//     <li>
-//         ${bulletLine('Phone', member.phone)}
-//     </li>
-// </ul>
-
-// <p style='font-weight:bold; display:inline;'>Service Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Vehicle:', vehicle.model)}
-//     </li>
-//     <li>
-//         ${bulletLine('Date', date.fullDate)}
-//     </li>
-//     <li>
-//         ${bulletLine('Notes',  reservation.meta.notes)}
-//     </li>
-// </ul>
-    
-// <p>Thanks,</p>
-
-// <p>Your friends at Drivers Club</p>
-// `
-    // return message
+		<p>Your friends at Drivers Club</p>
+	`
+    return message
 }
 
-// const membershipApplicationTemplate = (memberInfo: ApplicationInformation) => {
-//     const message = `
-// <p> Hi there!</p>
+const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model) => {
+    const plusOneText = plusOne ? 'Yes' : 'No'
+	const message = `
+		<p> Hi there!</p>
 
-// <p>A prospective member has completed the new member request form. Details below:</p>
+		<p>A public person has RSVP'd to an event. Details below:</p>
 
-// <p style='font-weight:bold; display:inline;'>Member Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Name:', memberInfo.name)}
-//     </li>
-//     <li>
-//         ${bulletLine('Company', memberInfo.company)}
-//     </li>
-//     <li>
-//         ${bulletLine('Address',memberInfo.address)}
-//     </li>
-//     <li>
-//         ${bulletLine('Address', memberInfo.addressTwo)}
-//     </li>
-//     <li>
-//         ${bulletLine('Address', `${memberInfo.city} ${memberInfo.state} ${memberInfo.zip}`)}
-//     </li>
-//     <li>
-//         ${bulletLine('Email', memberInfo.email)}
-//     </li>
-//     <li>
-//         ${bulletLine('Phone', memberInfo.phoneNumber)}
-//     </li>
-//     <li>
-//         ${bulletLine('Social', memberInfo.socialMedia)}
-//     </li>
-//     <li>
-//         ${bulletLine('Automotive Passion', memberInfo.automotivePassion)}
-//     </li>
-//     <li>
-//         ${bulletLine('Referral', memberInfo.referral)}
-//     </li>
-//     <li>
-//         ${bulletLine('Car Showcase', memberInfo.carShowcase)}
-//     </li>
-//     <li>
-//         ${bulletLine('Plan', memberInfo.membershipPlan)}
-//     </li>
-//     <li>
-//         ${bulletLine('Membership Type', `${memberInfo.membershipType}`)}
-//     </li>
-// </ul>
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', memberName)}
+			</li>
+			<li>
+				${bulletLine('Email:', memberEmail)}
+			</li>
+			<li>
+				${bulletLine('Plus One:', plusOneText)}
+			</li>
+		</ul>
 
-// <p>Thanks,</p>
+		<p style='font-weight:bold; display:inline;'>Event Info</p>
+		<ul>
+			<li>
+				${bulletLine('Event:', event.name)}
+			</li>
+			<li>
+				${bulletLine('Price', event.price.toString())}
+			</li>
+			<li>
+				${linkLine('Event', event._id.toString())}
+			</li>
+		</ul>
+			
+		<p>Thanks,</p>
 
-// <p>Your friends at Drivers Club</p>
-// `
-//     return message
-// }
+		<p>Your friends at Drivers Club</p>
+	`
+    return message
+}
 
-// const membershipInquiryTemplate = (memberInfo: MemberInquiryForm) => {
-//     const message = `
-// <p> Hi there!</p>
+//------------------------------------------------------
+// SERVICE TEMPLATES
+//------------------------------------------------------
 
-// <p>A prospective member has completed the membership inquiry form. Details below:</p>
+const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => {
+	// Format the members name.
+	const fullName = `${member.firstName} ${member.lastName}`
 
-// <p style='font-weight:bold; display:inline;'>Member Info</p>
-// <ul>
-//     <li>
-//         ${bulletLine('Name:', `${memberInfo.firstName} ${memberInfo.lastName}`)}
-//     </li>
-//     <li>
-//         ${bulletLine('Email', memberInfo.email)}
-//     </li>
-//     <li>
-//         ${bulletLine('Desired Membership', memberInfo.membership)}
-// 	</li>
-// </ul>
+	// Grab the vehicle information.
+	const reservationMeta = reservation.meta as core.Event.CarReservationMeta
+	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id === reservationMeta.vehicleID)
+	
+	// Format the date.
+	const date = new Date() // TODO: Add in date logic.
 
-// <p>Thanks,</p>
+    const message = `
+		<p> Hi there!</p>
 
-// <p>Your friends at Drivers Club</p>
-// `
-//     return message
-// }
+		<p>A Drivers Club member has submitted a new service request. Details below:</p>
 
-// const membershipInquiryResponseTemplate = (memberInfo: MemberInquiryForm) => {
-//     const message = `
-// <p>Dear ${memberInfo.firstName},</p>
+		<p style='font-weight:bold; display:inline;'>Provider Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', provider.name)}
+			</li>
+			<li>
+				${bulletLine('Email', provider.location.email)}
+			</li>
+			<li>
+				${bulletLine('Phone', provider.location.phone)}
+			</li>
+		</ul>
 
-// <p>Thank you for contacting Drivers Club regarding ${memberInfo.membership} membership!</p>
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', fullName)}
+			</li>
+			<li>
+				${bulletLine('Email', member.email)}
+			</li>
+			<li>
+				${bulletLine('Phone', member.phone)}
+			</li>
+		</ul>
 
-// <p>We would like to learn more about your automotive passions.</p>
+		<p style='font-weight:bold; display:inline;'>Service Info</p>
+		<ul>
+			<li>
+				${bulletLine('Vehicle:', vehicle.model)}
+			</li>
+			<li>
+				${bulletLine('Date', date.toString())}
+			</li>
+			<li>
+				${bulletLine('Notes',  reservation.meta.notes)}
+			</li>
+		</ul>
+			
+		<p>Thanks,</p>
 
-// <p>Please click <a href="https://app.drivers.club/application">this link</a> to begin the formal application process.</p>
-
-// <p>Sincerely,</p>
-
-// <p>Amanda Friedman</p>
-// <p>General Manager</p>
-// `
-//     return message
-// }
+		<p>Your friends at Drivers Club</p>
+	`
+    return message
+}
 
 const newProviderTemplate = (provider: core.Calendar.Model) => {
     const message = `
-<p> Hi there!</p>
+		<p> Hi there!</p>
 
-<p>A member has submitted a request to add a new Drivers Club provider. Details below:</p>
+		<p>A member has submitted a request to add a new Drivers Club provider. Details below:</p>
 
-<p style='font-weight:bold; display:inline;'>Provider Info</p>
-<ul>
-    <li>
-        ${bulletLine('Name:', provider.name)}
-    </li>
-    <li>
-        ${bulletLine('Contact', provider.location.contactName)}
-    </li>
-    <li>
-        ${bulletLine('Email',provider.location.email)}
-    </li>
-    <li>
-        ${bulletLine('Phone', provider.location.phone)}
-    </li>
-    <li>
-        ${bulletLine('Street', provider.location.address1)}
-    </li>
-    <li>
-        ${bulletLine('City', provider.location.city)}
-    </li>
-    <li>
-        ${bulletLine('State', provider.location.state)}
-    </li>
-    <li>
-        ${bulletLine('Zip', provider.location.zip)}
-    </li>
-</ul>
+		<p style='font-weight:bold; display:inline;'>Provider Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', provider.name)}
+			</li>
+			<li>
+				${bulletLine('Contact', provider.location.contactName)}
+			</li>
+			<li>
+				${bulletLine('Email',provider.location.email)}
+			</li>
+			<li>
+				${bulletLine('Phone', provider.location.phone)}
+			</li>
+			<li>
+				${bulletLine('Street', provider.location.address1)}
+			</li>
+			<li>
+				${bulletLine('City', provider.location.city)}
+			</li>
+			<li>
+				${bulletLine('State', provider.location.state)}
+			</li>
+			<li>
+				${bulletLine('Zip', provider.location.zip)}
+			</li>
+		</ul>
 
-<p>Thanks,</p>
+		<p>Thanks,</p>
 
-<p>Your friends at Drivers Club</p>
-`
+		<p>Your friends at Drivers Club</p>
+	`
     return message
 }
 
-const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: boolean, event: any) => {
-    const plusOneText = plusOne ? 'Yes' : 'No'
-    const message = `
-<p> Hi there!</p>
-
-<p>A public person has RSVP'd to an event. Details below:</p>
-
-<p style='font-weight:bold; display:inline;'>Member Info</p>
-<ul>
-    <li>
-        ${bulletLine('Name:', memberName)}
-    </li>
-    <li>
-        ${bulletLine('Email:', memberEmail)}
-    </li>
-    <li>
-        ${bulletLine('Plus One:', plusOneText)}
-    </li>
-</ul>
-
-<p style='font-weight:bold; display:inline;'>Event Info</p>
-<ul>
-    <li>
-        ${bulletLine('Event:', event.name)}
-    </li>
-    <li>
-        ${bulletLine('Price', event.price)}
-    </li>
-    <li>
-        ${linkLine('Event', event.id)}
-    </li>
-</ul>
-	
-<p>Thanks,</p>
-
-<p>Your friends at Drivers Club</p>
-`
-    return message
-}
+//------------------------------------------------------
+// TEMPLATE HELPERS
+//------------------------------------------------------
 
 const bulletLine = (boldText: string, text: string): string => {
     return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`
@@ -356,10 +373,10 @@ const regularText = (text: string): string => {
 
 export {rsvpTemplate as RsvpTemplate}
 export {publicRsvpTemplate as PublicRsvpTemplate}
-// export {unRsvpTemplate as UnRsvpTemplate}
+export {unRsvpTemplate as UnRsvpTemplate}
 export {serviceRequestTemplate as ServiceRequestTemplate}
-// export {membershipApplicationTemplate as MembershipApplicationTemplate}
+export {membershipApplicationTemplate as MembershipApplicationTemplate}
 export {newProviderTemplate as NewProviderTemplate}
 export {welcomeEmailTemplate as WelcomeEmailTemplate}
-// export {membershipInquiryTemplate as MembershipInquiryTemplate}
-// export {membershipInquiryResponseTemplate as MembershipInquiryResponseTemplate}
+export {membershipInquiryTemplate as MembershipInquiryTemplate}
+export {membershipInquiryResponseTemplate as MembershipInquiryResponseTemplate}

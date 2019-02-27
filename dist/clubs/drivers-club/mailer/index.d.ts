@@ -1,5 +1,10 @@
 import * as core from 'club-hub-core';
-export declare const buildWelcomeEmail: (member: core.User.Model, club: core.Club.Model, password: string) => string;
-export declare const buildRSVPEmail: (member: core.User.Model, event: core.Event.Model) => string;
-export declare const sendPublicRSVPEmail: (memberName: string, memberEmail: string, plusOne: boolean, event: any) => string;
+export declare const buildWelcomeEmail: (member: core.User.Model, club: core.Club.Model, password: string) => Promise<string>;
+export declare const sendMembershipApplicationEmail: (memberInfo: any) => string;
+export declare const sendMembershipInquiryEmail: (memberInfo: any) => string;
+export declare const sendMembershipInquiryResponseEmail: (memberInfo: any) => string;
+export declare const buildServiceRequestEmail: (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => string;
 export declare const sendProviderRequestEmail: (provider: core.Calendar.Model) => string;
+export declare const buildRSVPEmail: (member: core.User.Model, event: core.Event.Model) => string;
+export declare const sendMemberUnRSVPEmail: (member: core.User.Model, event: core.Event.Model) => string;
+export declare const sendPublicRSVPEmail: (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model) => string;
