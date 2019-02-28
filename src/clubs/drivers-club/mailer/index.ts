@@ -9,6 +9,47 @@ import * as templates from './templates'
 // ONBOARDING EMAILS
 //--------------------------------------------------
 
+export const buildEmailTemplate = 
+async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, event: core.Event.Model, provider?: core.Calendar.Model, reservation?: core.Event.Reservation, form?: any, password?: string): Promise<string> => {
+	const methodName = '[buildEmailTemplate] -'
+
+	switch (message.templateID) {
+
+		// RSVP Email.
+		case core.Message.MessageType.createRSVP:
+			return await buildRSVPEmail(user, event)
+			break
+		case core.Message.MessageType.unRSVP:
+			return await sendMemberUnRSVPEmail(user, event)
+			break
+		case core.Message.MessageType.publicRSVP:
+			return await sendPublicRSVPEmail(user, event, false)
+			break
+
+		// Form Emails.
+		case core.Message.MessageType.memberApplication:
+			return await sendMembershipApplicationEmail(user)
+			break
+		case core.Message.MessageType.memberInquiry:
+			return await sendMembershipInquiryEmail(user)
+			break
+		case core.Message.MessageType.memberInquiryRes:
+			return await sendMembershipInquiryResponseEmail(user)
+			break
+		case core.Message.MessageType.welcomeEmail:
+			return await buildWelcomeEmail(user, club, user.password)
+			break
+
+		// Service Emails.
+		case core.Message.MessageType.serviceRequest:
+			return await buildServiceRequestEmail(user, provider, reservation)
+			break
+		
+		default:
+			throw new Error(`${methodName} received invalid email template ID of: ${message.templateID}`)
+	}
+}
+
 /**
  * Sends a welcome email to a new member with temp password and login details.
  */
@@ -94,6 +135,6 @@ export const sendMemberUnRSVPEmail = async (member: core.User.Model, event: core
  * @param plusOne Boolean.
  * @param event Event model.
  */
-export const sendPublicRSVPEmail = async (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model): Promise<string> => {
-	return templates.PublicRsvpTemplate(memberName, memberEmail, plusOne, event)
+export const sendPublicRSVPEmail = async (member: core.User.Model, event: core.Event.Model, plusOne: boolean,): Promise<string> => {
+	return templates.PublicRsvpTemplate(member, event, plusOne)
 }

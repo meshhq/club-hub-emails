@@ -208,8 +208,11 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
     return message
 }
 
-const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model) => {
-    const plusOneText = plusOne ? 'Yes' : 'No'
+const publicRsvpTemplate = (member: core.User.Model, event: core.Event.Model, plusOne: boolean) => {
+	// Format the members name.
+	const fullName = `${member.firstName} ${member.lastName}`
+	const plusOneText = plusOne ? 'Yes' : 'No'
+	
 	const message = `
 		<p> Hi there!</p>
 
@@ -218,10 +221,10 @@ const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: bo
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', memberName)}
+				${bulletLine('Name:', fullName)}
 			</li>
 			<li>
-				${bulletLine('Email:', memberEmail)}
+				${bulletLine('Email:', member.email)}
 			</li>
 			<li>
 				${bulletLine('Plus One:', plusOneText)}
@@ -258,7 +261,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 
 	// Grab the vehicle information.
 	const reservationMeta = reservation.meta as core.Event.CarReservationMeta
-	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id === reservationMeta.vehicleID)
+	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString())
 	
 	// Format the date.
 	const date = new Date() // TODO: Add in date logic.

@@ -196,7 +196,8 @@ const unRsvpTemplate = (member, event) => {
     return message;
 };
 exports.UnRsvpTemplate = unRsvpTemplate;
-const publicRsvpTemplate = (memberName, memberEmail, plusOne, event) => {
+const publicRsvpTemplate = (member, event, plusOne) => {
+    const fullName = `${member.firstName} ${member.lastName}`;
     const plusOneText = plusOne ? 'Yes' : 'No';
     const message = `
 		<p> Hi there!</p>
@@ -206,10 +207,10 @@ const publicRsvpTemplate = (memberName, memberEmail, plusOne, event) => {
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', memberName)}
+				${bulletLine('Name:', fullName)}
 			</li>
 			<li>
-				${bulletLine('Email:', memberEmail)}
+				${bulletLine('Email:', member.email)}
 			</li>
 			<li>
 				${bulletLine('Plus One:', plusOneText)}
@@ -239,7 +240,7 @@ exports.PublicRsvpTemplate = publicRsvpTemplate;
 const serviceRequestTemplate = (member, provider, reservation) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const reservationMeta = reservation.meta;
-    const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id === reservationMeta.vehicleID);
+    const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString());
     const date = new Date();
     const message = `
 		<p> Hi there!</p>
