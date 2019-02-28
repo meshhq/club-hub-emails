@@ -158,6 +158,7 @@ const rsvpTemplate = (member, event) => {
 exports.RsvpTemplate = rsvpTemplate;
 const unRsvpTemplate = (member, event) => {
     const fullName = `${member.firstName} ${member.lastName}`;
+    const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
 		<p> Hi there!</p>
 
@@ -182,7 +183,7 @@ const unRsvpTemplate = (member, event) => {
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${bulletLine('ID', event._id.toString())}
@@ -199,6 +200,7 @@ exports.UnRsvpTemplate = unRsvpTemplate;
 const publicRsvpTemplate = (member, event, plusOne) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const plusOneText = plusOne ? 'Yes' : 'No';
+    const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
 		<p> Hi there!</p>
 
@@ -223,7 +225,7 @@ const publicRsvpTemplate = (member, event, plusOne) => {
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${linkLine('Event', event._id.toString())}

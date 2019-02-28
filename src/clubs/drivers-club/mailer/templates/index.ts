@@ -169,6 +169,7 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 	// Format the members name.
 	const fullName = `${member.firstName} ${member.lastName}`
+	const eventPrice = (event.price) ? event.price.toString() : 'Free'
 	
 	const message = `
 		<p> Hi there!</p>
@@ -194,7 +195,7 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${bulletLine('ID', event._id.toString())}
@@ -212,6 +213,7 @@ const publicRsvpTemplate = (member: core.User.Model, event: core.Event.Model, pl
 	// Format the members name.
 	const fullName = `${member.firstName} ${member.lastName}`
 	const plusOneText = plusOne ? 'Yes' : 'No'
+	const eventPrice = (event.price) ? event.price.toString() : 'Free'
 	
 	const message = `
 		<p> Hi there!</p>
@@ -237,7 +239,7 @@ const publicRsvpTemplate = (member: core.User.Model, event: core.Event.Model, pl
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${linkLine('Event', event._id.toString())}
