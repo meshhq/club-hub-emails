@@ -9,6 +9,12 @@ import * as templates from './templates'
 // ONBOARDING EMAILS
 //--------------------------------------------------
 
+// export const buildEventEmails = async (): Promise<string> => {
+
+// 	switch(message.MessageType.tem)
+
+// }
+
 export const buildEmailTemplate = 
 async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, event: core.Event.Model, provider?: core.Calendar.Model, reservation?: core.Event.Reservation, form?: any, password?: string): Promise<string> => {
 	const methodName = '[buildEmailTemplate] -'
