@@ -73,12 +73,12 @@ export const buildFormEmail = async (message: core.Message.Model, form: any, eve
  * @param provider 
  * @param reservation 
  */
-export const buildServiceEmails = async (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, reservation?: core.Event.Reservation): Promise<string> => {
+export const buildServiceEmails = async (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation?: core.Event.Reservation): Promise<string> => {
 	const methodName = '[buildServiceEmails] -'
 
 	switch (message.content.type) {
 		case core.Message.Type.ServiceRequest:
-			return buildServiceRequestEmail(user, provider, reservation)
+			return buildServiceRequestEmail(user, provider, event, reservation)
 		case core.Message.Type.NewProviderRequest:
 			return sendProviderRequestEmail(provider)
 		default:
@@ -128,8 +128,8 @@ export const sendMembershipInquiryResponseEmail = async (memberInfo: any): Promi
  * @param reservation Reservation model (sub document of the event model).
  * 
  */
-export const buildServiceRequestEmail = async (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): Promise<string> => {
-	return templates.ServiceRequestTemplate(member, provider, reservation)
+export const buildServiceRequestEmail = async (member: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation: core.Event.Reservation): Promise<string> => {
+	return templates.ServiceRequestTemplate(member, provider, event, reservation)
 }
 
 /**

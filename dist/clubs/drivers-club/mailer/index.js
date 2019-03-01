@@ -45,11 +45,11 @@ exports.buildFormEmail = (message, form, event) => __awaiter(this, void 0, void 
             throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`);
     }
 });
-exports.buildServiceEmails = (message, user, provider, reservation) => __awaiter(this, void 0, void 0, function* () {
+exports.buildServiceEmails = (message, user, provider, event, reservation) => __awaiter(this, void 0, void 0, function* () {
     const methodName = '[buildServiceEmails] -';
     switch (message.content.type) {
         case core.Message.Type.ServiceRequest:
-            return exports.buildServiceRequestEmail(user, provider, reservation);
+            return exports.buildServiceRequestEmail(user, provider, event, reservation);
         case core.Message.Type.NewProviderRequest:
             return exports.sendProviderRequestEmail(provider);
         default:
@@ -68,8 +68,8 @@ exports.sendMembershipInquiryEmail = (memberInfo) => __awaiter(this, void 0, voi
 exports.sendMembershipInquiryResponseEmail = (memberInfo) => __awaiter(this, void 0, void 0, function* () {
     return templates.MembershipInquiryResponseTemplate(memberInfo);
 });
-exports.buildServiceRequestEmail = (member, provider, reservation) => __awaiter(this, void 0, void 0, function* () {
-    return templates.ServiceRequestTemplate(member, provider, reservation);
+exports.buildServiceRequestEmail = (member, provider, event, reservation) => __awaiter(this, void 0, void 0, function* () {
+    return templates.ServiceRequestTemplate(member, provider, event, reservation);
 });
 exports.sendProviderRequestEmail = (provider) => __awaiter(this, void 0, void 0, function* () {
     return templates.NewProviderTemplate(provider);

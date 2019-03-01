@@ -256,7 +256,7 @@ const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any) => {
 // SERVICE TEMPLATES
 //------------------------------------------------------
 
-const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => {
+const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation: core.Event.Reservation) => {
 	// Format the members name.
 	const fullName = `${member.firstName} ${member.lastName}`
 
@@ -265,7 +265,8 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString())
 	
 	// Format the date.
-	const date = new Date() // TODO: Add in date logic.
+	const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }
+	const date = event.start.toLocaleDateString('en-US', dateOpts)
 
     const message = `
 		<p> Hi there!</p>

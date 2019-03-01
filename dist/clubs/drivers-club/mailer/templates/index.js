@@ -238,11 +238,12 @@ const publicRsvpTemplate = (event, memberInfo) => {
     return message;
 };
 exports.PublicRsvpTemplate = publicRsvpTemplate;
-const serviceRequestTemplate = (member, provider, reservation) => {
+const serviceRequestTemplate = (member, provider, event, reservation) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const reservationMeta = reservation.meta;
     const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString());
-    const date = new Date();
+    const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const date = event.start.toLocaleDateString('en-US', dateOpts);
     const message = `
 		<p> Hi there!</p>
 
