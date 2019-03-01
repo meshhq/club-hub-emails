@@ -1,18 +1,4 @@
 {
-    "club": {
-        "address": {
-            "street": "811 Cherry Avenue",
-            "city": "Bainbridge Island",
-            "state": "Washington",
-            "zip": "98110"
-        },
-        "name": "http://wingpointgolf.clubhub.com",
-        "name": "Wing Point Golf & Country Club",
-        "logoURL": "https://s3-us-west-2.amazonaws.com/clubhubs3/club/logos/aldarra-logo.png",
-        "twitterURL": "www.twitter.com",
-        "facebookURL": "www.facebook.com",
-        "instagramURL": "www.instagram.com"
-    },
 	"title": "Tee Time Confirmation",
 	"subtitle": "Your Tee Time at Wing Point Country Club has been confirmed.",
 	"info": "4 Golfers on Saturday, March 21st 2019 at 10:00AM",

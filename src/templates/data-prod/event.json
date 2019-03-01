@@ -12,16 +12,5 @@
     "state": "{{state}}",
     "zip": "{{zip}}",
     "date": "{{date}}",
-    "time": "{{time}}",
-    "club": {
-        "street": "{{club.address.street}}",
-        "city": "{{club.address.city}}",
-        "state": "{{club.address.state}}",
-        "zip": "{{club.address.zip}}",
-        "name": "{{club.name}}",
-        "logoURL": "{{club.logoURL}}",
-        "twitterURL": "{{club.twitterURL}}",
-        "facebookURL": "{{club.facebookURL}}",
-        "instagramURL": "{{club.instagramURL}}"
-    }
+    "time": "{{time}}"
 }

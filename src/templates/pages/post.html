@@ -8,8 +8,8 @@ subject: My Basic Email Template Subject
     <row>
         <columns small="12">
             <div class="image-container">
-                <a href="{{content.url}}">
-                    <img class="text-center hero-image" src="{{content.imageURL}}" alt="">
+                <a href="{{post.url}}">
+                    <img class="text-center hero-image" src="{{post.photoURL}}" alt="">
                 </a>
             </div>
         </columns>
@@ -17,21 +17,21 @@ subject: My Basic Email Template Subject
     <row>
         <columns class="content-column" small="12">
             <div class="padded-container bottom-border">
-                <h1>{{ content.name }}</h1>
+                <h1>{{ post.name }}</h1>
             </div>
         </columns>
     </row>
     <row>
         <columns class="content-column" small="12">
             <div class="padded-container bottom-border">
-                {{{content.content}}}
+                {{{post.content}}}
             </div>
         </columns>
     </row>
     <row>
         <columns class="button-column" small="12">
             <div class="padded-container bottom-border">
-                <button class="expanded small" href="{{content.url}}">{{content.cta}}</button>
+                <button class="expanded small" href="{{content.url}}">{{post.cta}}</button>
             </div>
         </columns>
     </row>

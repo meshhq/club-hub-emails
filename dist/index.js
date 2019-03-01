@@ -1,0 +1,43 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const fs = require("fs");
+const Handlebars = require("handlebars");
+const DCEmails = require("./clubs/drivers-club/mailer/index");
+exports.DCEmails = DCEmails;
+const transform = require("./transform/transform");
+exports.CompileGenericEmail = (content, club) => {
+    const eventInfo = transform.BuildGenericContent(content, club);
+    const path = `${__dirname}/templates/generic.html`;
+    return CompileEmail(path, eventInfo);
+};
+exports.CompileEventEmail = (event, club) => {
+    const eventInfo = transform.BuildEventContent(event, club);
+    const path = `${__dirname}/templates/event.html`;
+    return CompileEmail(path, eventInfo);
+};
+exports.CompilePostEmail = (post, club) => {
+    const postInfo = transform.BuildPostContent(post, club);
+    const path = `${__dirname}/templates/post.html`;
+    return CompileEmail(path, postInfo);
+};
+exports.CompileConfirmationEmail = (event, club) => {
+    const confirmationInfo = transform.BuildConfirmationContent(event, club);
+    const path = `${__dirname}/templates/confirmation.html`;
+    return CompileEmail(path, confirmationInfo);
+};
+const CompileEmail = (path, info) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
+            if (err) {
+                return reject(err);
+            }
+            try {
+                const template = Handlebars.compile(data);
+                resolve(template(info));
+            }
+            catch (e) {
+                reject(e);
+            }
+        });
+    });
+};

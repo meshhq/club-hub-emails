@@ -1,0 +1,12 @@
+{
+    "name": "{{club.name}}",
+    "logoURL": "{{club.logoURL}}",
+    "street": "{{club.street}}",
+    "city": "{{club.city}}",
+    "state": "{{club.state}}",
+    "zip": "{{club.zip}}",
+    "twitterURL": "{{club.twitterURL}}",
+    "facebookURL": "{{club.facebookURL}}",
+    "instagramURL": "{{club.instagramURL}}"
+}
+
