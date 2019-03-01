@@ -12,16 +12,5 @@
     "state": "Washington",
     "zip": "98110",
     "date": "Saturday Mar. 21st",
-    "time": "10:00AM - 7:00PM",
-    "club": {
-        "street": "811 Cherry Avenue",
-        "city": "Bainbridge Island",
-        "state": "Washington",
-        "zip": "98110",
-        "name": "Wing Point Golf & Country Club",
-        "logoURL": "https://s3-us-west-2.amazonaws.com/clubhubs3/club/logos/aldarra-logo.png",
-        "twitterURL": "www.twitter.com",
-        "facebookURL": "www.facebook.com",
-        "instagramURL": "www.instagram.com"
-    }
+    "time": "10:00AM - 7:00PM"
 }

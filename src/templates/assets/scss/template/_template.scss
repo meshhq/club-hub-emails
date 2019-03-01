@@ -81,9 +81,9 @@ img {
 
 .image-container {
   height: 300px;
+  min-width: 100%;
   overflow: hidden;
   background-color:  $light-gray;
-  width: 100%;
   vertical-align: middle;
 }
 

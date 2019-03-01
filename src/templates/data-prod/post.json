@@ -1,6 +1,6 @@
 {
     "name": "{{name}}",
-    "imageURL": "{{imageURL}}",
+    "photoURL": "{{photoURL}}",
     "content": "{{{content}}}",
     "url": "{{url}}",
     "cta": "{{cta}}",

@@ -53,7 +53,7 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
 export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model): RichContent => {
     const postInfo: RichContent = {
         name: post.title,
-        imageURL: post.imageURL,
+        photoURL: post.imageURL,
         content: post.richContent.html,
         url: 'www.tryclubhub.com',
         cta: 'View Post',
