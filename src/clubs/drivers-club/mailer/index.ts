@@ -9,51 +9,61 @@ import * as templates from './templates'
 // ONBOARDING EMAILS
 //--------------------------------------------------
 
-// export const buildEventEmails = async (): Promise<string> => {
+/**
+ * Returns email templates for Event type messages.
+ * @param message Message document.
+ * @param user User document.
+ * @param event Event document.
+ */
+export const buildEventEmails = async (message: core.Message.Model, user: core.User.Model, event: core.Event.Model): Promise<string> => {
+	const methodName = '[buildEventEmails] -'
 
-// 	switch(message.MessageType.tem)
-
-// }
-
-export const buildEmailTemplate = 
-async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, event: core.Event.Model, provider?: core.Calendar.Model, reservation?: core.Event.Reservation, form?: any, password?: string): Promise<string> => {
-	const methodName = '[buildEmailTemplate] -'
-
-	switch (message.templateID) {
-
-		// RSVP Email.
-		case core.Message.MessageType.createRSVP:
+	switch(message.messageType.templateID) {
+		case core.Message.MessageTemplateID.Rsvp:
 			return await buildRSVPEmail(user, event)
 			break
-		case core.Message.MessageType.unRSVP:
+		case core.Message.MessageTemplateID.UnRsvp:
 			return await sendMemberUnRSVPEmail(user, event)
 			break
 		case core.Message.MessageType.publicRSVP:
 			return await sendPublicRSVPEmail(user, event, false)
 			break
+		default:
+			throw new Error(`${methodName} received an unsupported message templateID: ${message.messageType.templateID}`)
+	}
+}
 
+/**
+ * Returns an email template for Form type messages.
+ * @param message Message document.
+ * @param user Requesting user.
+ * @param club Club document.
+ * @param form The form submitted by the user.
+ */
+export const buildFormEmail = async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, form: any, password?: string): Promise<string> => {
+	const methodName = '[buildFormEmail] -'
+
+	switch (message.messageType.templateID) {
 		// Form Emails.
-		case core.Message.MessageType.memberApplication:
-			return await sendMembershipApplicationEmail(user)
+		case core.Message.MessageTemplateID.Rsvp:
+			return await sendMembershipApplicationEmail(form)
 			break
-		case core.Message.MessageType.memberInquiry:
-			return await sendMembershipInquiryEmail(user)
+		case core.Message.MessageTemplateID.Rsvp:
+			return await sendMembershipInquiryEmail(form)
 			break
-		case core.Message.MessageType.memberInquiryRes:
-			return await sendMembershipInquiryResponseEmail(user)
+		case core.Message.MessageTemplateID.Rsvp:
+			return await sendMembershipInquiryResponseEmail(form)
 			break
-		case core.Message.MessageType.welcomeEmail:
+		case core.Message.MessageTemplateID.Rsvp:
 			return await buildWelcomeEmail(user, club, user.password)
 			break
-
-		// Service Emails.
-		case core.Message.MessageType.serviceRequest:
-			return await buildServiceRequestEmail(user, provider, reservation)
-			break
-		
 		default:
 			throw new Error(`${methodName} received invalid email template ID of: ${message.templateID}`)
 	}
+}
+
+export const buildServiceEmails = async (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): Promise<string> => {
+	return await buildServiceRequestEmail(user, provider, reservation)
 }
 
 /**
