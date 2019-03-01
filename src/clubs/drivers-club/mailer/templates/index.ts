@@ -169,6 +169,7 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 	// Format the members name.
 	const fullName = `${member.firstName} ${member.lastName}`
+	const eventPrice = (event.price) ? event.price.toString() : 'Free'
 	
 	const message = `
 		<p> Hi there!</p>
@@ -194,7 +195,7 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${bulletLine('ID', event._id.toString())}
@@ -208,8 +209,11 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
     return message
 }
 
-const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model) => {
-    const plusOneText = plusOne ? 'Yes' : 'No'
+const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any) => {
+	// Format the members name.
+	const plusOneText = memberInfo.plusOne ? 'Yes' : 'No'
+	const eventPrice = (event.price) ? event.price.toString() : 'Free'
+	
 	const message = `
 		<p> Hi there!</p>
 
@@ -218,10 +222,10 @@ const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: bo
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', memberName)}
+				${bulletLine('Name:', memberInfo.name)}
 			</li>
 			<li>
-				${bulletLine('Email:', memberEmail)}
+				${bulletLine('Email:', memberInfo.email)}
 			</li>
 			<li>
 				${bulletLine('Plus One:', plusOneText)}
@@ -234,7 +238,7 @@ const publicRsvpTemplate = (memberName: string, memberEmail: string, plusOne: bo
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${linkLine('Event', event._id.toString())}
@@ -258,7 +262,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 
 	// Grab the vehicle information.
 	const reservationMeta = reservation.meta as core.Event.CarReservationMeta
-	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id === reservationMeta.vehicleID)
+	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString())
 	
 	// Format the date.
 	const date = new Date() // TODO: Add in date logic.

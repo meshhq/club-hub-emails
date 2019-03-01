@@ -158,6 +158,7 @@ const rsvpTemplate = (member, event) => {
 exports.RsvpTemplate = rsvpTemplate;
 const unRsvpTemplate = (member, event) => {
     const fullName = `${member.firstName} ${member.lastName}`;
+    const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
 		<p> Hi there!</p>
 
@@ -182,7 +183,7 @@ const unRsvpTemplate = (member, event) => {
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${bulletLine('ID', event._id.toString())}
@@ -196,8 +197,9 @@ const unRsvpTemplate = (member, event) => {
     return message;
 };
 exports.UnRsvpTemplate = unRsvpTemplate;
-const publicRsvpTemplate = (memberName, memberEmail, plusOne, event) => {
-    const plusOneText = plusOne ? 'Yes' : 'No';
+const publicRsvpTemplate = (event, memberInfo) => {
+    const plusOneText = memberInfo.plusOne ? 'Yes' : 'No';
+    const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
 		<p> Hi there!</p>
 
@@ -206,10 +208,10 @@ const publicRsvpTemplate = (memberName, memberEmail, plusOne, event) => {
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', memberName)}
+				${bulletLine('Name:', memberInfo.name)}
 			</li>
 			<li>
-				${bulletLine('Email:', memberEmail)}
+				${bulletLine('Email:', memberInfo.email)}
 			</li>
 			<li>
 				${bulletLine('Plus One:', plusOneText)}
@@ -222,7 +224,7 @@ const publicRsvpTemplate = (memberName, memberEmail, plusOne, event) => {
 				${bulletLine('Event:', event.name)}
 			</li>
 			<li>
-				${bulletLine('Price', event.price.toString())}
+				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
 				${linkLine('Event', event._id.toString())}
@@ -239,7 +241,7 @@ exports.PublicRsvpTemplate = publicRsvpTemplate;
 const serviceRequestTemplate = (member, provider, reservation) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const reservationMeta = reservation.meta;
-    const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id === reservationMeta.vehicleID);
+    const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString());
     const date = new Date();
     const message = `
 		<p> Hi there!</p>

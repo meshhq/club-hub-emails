@@ -5,7 +5,7 @@ declare const membershipInquiryTemplate: (memberInfo: any) => string;
 declare const membershipInquiryResponseTemplate: (memberFormInfo: any) => string;
 declare const rsvpTemplate: (member: core.User.Model, event: core.Event.Model) => string;
 declare const unRsvpTemplate: (member: core.User.Model, event: core.Event.Model) => string;
-declare const publicRsvpTemplate: (memberName: string, memberEmail: string, plusOne: boolean, event: core.Event.Model) => string;
+declare const publicRsvpTemplate: (event: core.Event.Model, memberInfo: any) => string;
 declare const serviceRequestTemplate: (member: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => string;
 declare const newProviderTemplate: (provider: core.Calendar.Model) => string;
 export { rsvpTemplate as RsvpTemplate };
