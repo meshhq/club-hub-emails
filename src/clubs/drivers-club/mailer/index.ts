@@ -4,13 +4,8 @@ import * as core from 'club-hub-core'
 // Internal Dependencies
 import * as templates from './templates'
 
-
-//--------------------------------------------------
-// ONBOARDING EMAILS
-//--------------------------------------------------
-
 /**
- * Returns email templates for Event type messages.
+ * Returns email templates for an Event type message.
  * @param message Message document.
  * @param user User document.
  * @param event Event document.
@@ -18,52 +13,77 @@ import * as templates from './templates'
 export const buildEventEmails = async (message: core.Message.Model, user: core.User.Model, event: core.Event.Model): Promise<string> => {
 	const methodName = '[buildEventEmails] -'
 
-	switch(message.messageType.templateID) {
-		case core.Message.MessageTemplateID.Rsvp:
+	switch(message.content.type) {
+		case core.Message.Type.Rsvp:
 			return await buildRSVPEmail(user, event)
-			break
-		case core.Message.MessageTemplateID.UnRsvp:
+		case core.Message.Type.UnRsvp:
 			return await sendMemberUnRSVPEmail(user, event)
-			break
-		case core.Message.MessageType.publicRSVP:
-			return await sendPublicRSVPEmail(user, event, false)
-			break
 		default:
-			throw new Error(`${methodName} received an unsupported message templateID: ${message.messageType.templateID}`)
+			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
 	}
 }
 
 /**
- * Returns an email template for Form type messages.
+ * Returns an email template for an Onboarding type message.
+ * @param message Message document.
+ * @param user Requesting user.
+ * @param club Club document.
+ * @param password Temporary login password.
+ * 
+ */
+export const buildOnboardingEmail = async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
+	const methodName = '[buildOnboardingEmail] -'
+
+	switch(message.content.type) {
+		case core.Message.Type.Welcome:
+			return await buildWelcomeEmail(user, club, password)
+		default:
+			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
+	}
+}
+
+/**
+ * Returns an email template for a Form type message.
  * @param message Message document.
  * @param user Requesting user.
  * @param club Club document.
  * @param form The form submitted by the user.
  */
-export const buildFormEmail = async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, form: any, password?: string): Promise<string> => {
+export const buildFormEmail = async (message: core.Message.Model, form: any, event: core.Event.Model): Promise<string> => {
 	const methodName = '[buildFormEmail] -'
 
-	switch (message.messageType.templateID) {
-		// Form Emails.
-		case core.Message.MessageTemplateID.Rsvp:
+	switch (message.content.type) {
+		case core.Message.Type.Application:
 			return await sendMembershipApplicationEmail(form)
-			break
-		case core.Message.MessageTemplateID.Rsvp:
+		case core.Message.Type.MembershipInquiry:
 			return await sendMembershipInquiryEmail(form)
-			break
-		case core.Message.MessageTemplateID.Rsvp:
+		case core.Message.Type.MembershipInquiryRes:
 			return await sendMembershipInquiryResponseEmail(form)
-			break
-		case core.Message.MessageTemplateID.Rsvp:
-			return await buildWelcomeEmail(user, club, user.password)
-			break
+		case core.Message.Type.PublicRsvp:
+			return await sendPublicRSVPEmail(event, form)
 		default:
-			throw new Error(`${methodName} received invalid email template ID of: ${message.templateID}`)
+			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
 	}
 }
 
-export const buildServiceEmails = async (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation): Promise<string> => {
-	return await buildServiceRequestEmail(user, provider, reservation)
+/**
+ * Returns an email template for Service a service type message.
+ * @param message Message document.
+ * @param user 
+ * @param provider 
+ * @param reservation 
+ */
+export const buildServiceEmails = async (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, reservation?: core.Event.Reservation): Promise<string> => {
+	const methodName = '[buildServiceEmails] -'
+
+	switch (message.content.type) {
+		case core.Message.Type.ServiceRequest:
+			return buildServiceRequestEmail(user, provider, reservation)
+		case core.Message.Type.NewProviderRequest:
+			return sendProviderRequestEmail(provider)
+		default:
+			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
+	}
 }
 
 /**
@@ -151,6 +171,6 @@ export const sendMemberUnRSVPEmail = async (member: core.User.Model, event: core
  * @param plusOne Boolean.
  * @param event Event model.
  */
-export const sendPublicRSVPEmail = async (member: core.User.Model, event: core.Event.Model, plusOne: boolean,): Promise<string> => {
-	return templates.PublicRsvpTemplate(member, event, plusOne)
+export const sendPublicRSVPEmail = async (event: core.Event.Model, form: any): Promise<string> => {
+	return templates.PublicRsvpTemplate(event, form)
 }

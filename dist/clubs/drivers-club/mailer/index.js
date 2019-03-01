@@ -12,41 +12,49 @@ const core = require("club-hub-core");
 const templates = require("./templates");
 exports.buildEventEmails = (message, user, event) => __awaiter(this, void 0, void 0, function* () {
     const methodName = '[buildEventEmails] -';
-    switch (message.messageType.templateID) {
-        case core.Message.MessageTemplateID.Rsvp:
+    switch (message.content.type) {
+        case core.Message.Type.Rsvp:
             return yield exports.buildRSVPEmail(user, event);
-            break;
-        case core.Message.MessageTemplateID.UnRsvp:
+        case core.Message.Type.UnRsvp:
             return yield exports.sendMemberUnRSVPEmail(user, event);
-            break;
-        case core.Message.MessageType.publicRSVP:
-            return yield exports.sendPublicRSVPEmail(user, event, false);
-            break;
         default:
-            throw new Error(`${methodName} received an unsupported message templateID: ${message.messageType.templateID}`);
+            throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`);
     }
 });
-exports.buildFormEmail = (message, user, club, form, password) => __awaiter(this, void 0, void 0, function* () {
-    const methodName = '[buildFormEmail] -';
-    switch (message.messageType.templateID) {
-        case core.Message.MessageTemplateID.Rsvp:
-            return yield exports.sendMembershipApplicationEmail(form);
-            break;
-        case core.Message.MessageTemplateID.Rsvp:
-            return yield exports.sendMembershipInquiryEmail(form);
-            break;
-        case core.Message.MessageTemplateID.Rsvp:
-            return yield exports.sendMembershipInquiryResponseEmail(form);
-            break;
-        case core.Message.MessageTemplateID.Rsvp:
-            return yield exports.buildWelcomeEmail(user, club, user.password);
-            break;
+exports.buildOnboardingEmail = (message, user, club, password) => __awaiter(this, void 0, void 0, function* () {
+    const methodName = '[buildOnboardingEmail] -';
+    switch (message.content.type) {
+        case core.Message.Type.Welcome:
+            return yield exports.buildWelcomeEmail(user, club, password);
         default:
-            throw new Error(`${methodName} received invalid email template ID of: ${message.templateID}`);
+            throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`);
+    }
+});
+exports.buildFormEmail = (message, form, event) => __awaiter(this, void 0, void 0, function* () {
+    const methodName = '[buildFormEmail] -';
+    switch (message.content.type) {
+        case core.Message.Type.Application:
+            return yield exports.sendMembershipApplicationEmail(form);
+        case core.Message.Type.MembershipInquiry:
+            return yield exports.sendMembershipInquiryEmail(form);
+        case core.Message.Type.MembershipInquiryRes:
+            return yield exports.sendMembershipInquiryResponseEmail(form);
+        case core.Message.Type.PublicRsvp:
+            return yield exports.sendPublicRSVPEmail(event, form);
+        default:
+            throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`);
     }
 });
 exports.buildServiceEmails = (message, user, provider, reservation) => __awaiter(this, void 0, void 0, function* () {
-    return yield exports.buildServiceRequestEmail(user, provider, reservation);
+    const methodName = '[buildServiceEmails] -';
+    switch (message.content.type) {
+        case core.Message.Type.ServiceRequest:
+            return exports.buildServiceRequestEmail(user, provider, reservation);
+        case core.Message.Type.NewProviderRequest:
+            return exports.sendProviderRequestEmail(provider);
+        default:
+            throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`);
+    }
 });
 exports.buildWelcomeEmail = (member, club, password) => __awaiter(this, void 0, void 0, function* () {
     return templates.WelcomeEmailTemplate(member, club, password);
@@ -73,6 +81,6 @@ exports.sendMemberUnRSVPEmail = (member, event) => __awaiter(this, void 0, void 
     const methodName = '[sendMemberUnRSVPEmail] -';
     return templates.UnRsvpTemplate(member, event);
 });
-exports.sendPublicRSVPEmail = (member, event, plusOne) => __awaiter(this, void 0, void 0, function* () {
-    return templates.PublicRsvpTemplate(member, event, plusOne);
+exports.sendPublicRSVPEmail = (event, form) => __awaiter(this, void 0, void 0, function* () {
+    return templates.PublicRsvpTemplate(event, form);
 });

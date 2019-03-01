@@ -209,10 +209,9 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model) => {
     return message
 }
 
-const publicRsvpTemplate = (member: core.User.Model, event: core.Event.Model, plusOne: boolean) => {
+const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any) => {
 	// Format the members name.
-	const fullName = `${member.firstName} ${member.lastName}`
-	const plusOneText = plusOne ? 'Yes' : 'No'
+	const plusOneText = memberInfo.plusOne ? 'Yes' : 'No'
 	const eventPrice = (event.price) ? event.price.toString() : 'Free'
 	
 	const message = `
@@ -223,10 +222,10 @@ const publicRsvpTemplate = (member: core.User.Model, event: core.Event.Model, pl
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', fullName)}
+				${bulletLine('Name:', memberInfo.name)}
 			</li>
 			<li>
-				${bulletLine('Email:', member.email)}
+				${bulletLine('Email:', memberInfo.email)}
 			</li>
 			<li>
 				${bulletLine('Plus One:', plusOneText)}

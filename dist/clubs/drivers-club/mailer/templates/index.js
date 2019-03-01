@@ -197,9 +197,8 @@ const unRsvpTemplate = (member, event) => {
     return message;
 };
 exports.UnRsvpTemplate = unRsvpTemplate;
-const publicRsvpTemplate = (member, event, plusOne) => {
-    const fullName = `${member.firstName} ${member.lastName}`;
-    const plusOneText = plusOne ? 'Yes' : 'No';
+const publicRsvpTemplate = (event, memberInfo) => {
+    const plusOneText = memberInfo.plusOne ? 'Yes' : 'No';
     const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
 		<p> Hi there!</p>
@@ -209,10 +208,10 @@ const publicRsvpTemplate = (member, event, plusOne) => {
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', fullName)}
+				${bulletLine('Name:', memberInfo.name)}
 			</li>
 			<li>
-				${bulletLine('Email:', member.email)}
+				${bulletLine('Email:', memberInfo.email)}
 			</li>
 			<li>
 				${bulletLine('Plus One:', plusOneText)}

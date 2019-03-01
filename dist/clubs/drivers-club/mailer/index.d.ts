@@ -1,7 +1,8 @@
 import * as core from 'club-hub-core';
 export declare const buildEventEmails: (message: core.Message.Model, user: core.User.Model, event: core.Event.Model) => Promise<string>;
-export declare const buildFormEmail: (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, form: any, password?: string) => Promise<string>;
-export declare const buildServiceEmails: (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, reservation: core.Event.Reservation) => Promise<string>;
+export declare const buildOnboardingEmail: (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, password: string) => Promise<string>;
+export declare const buildFormEmail: (message: core.Message.Model, form: any, event: core.Event.Model) => Promise<string>;
+export declare const buildServiceEmails: (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, reservation?: core.Event.Reservation) => Promise<string>;
 export declare const buildWelcomeEmail: (member: core.User.Model, club: core.Club.Model, password: string) => Promise<string>;
 export declare const sendMembershipApplicationEmail: (memberInfo: any) => Promise<string>;
 export declare const sendMembershipInquiryEmail: (memberInfo: any) => Promise<string>;
@@ -10,4 +11,4 @@ export declare const buildServiceRequestEmail: (member: core.User.Model, provide
 export declare const sendProviderRequestEmail: (provider: core.Calendar.Model) => Promise<string>;
 export declare const buildRSVPEmail: (member: core.User.Model, event: core.Event.Model) => Promise<string>;
 export declare const sendMemberUnRSVPEmail: (member: core.User.Model, event: core.Event.Model) => Promise<string>;
-export declare const sendPublicRSVPEmail: (member: core.User.Model, event: core.Event.Model, plusOne: boolean) => Promise<string>;
+export declare const sendPublicRSVPEmail: (event: core.Event.Model, form: any) => Promise<string>;
