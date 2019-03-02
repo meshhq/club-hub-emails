@@ -49,7 +49,7 @@ export const buildOnboardingEmail = async (message: core.Message.Model, user: co
  * @param club Club document.
  * @param form The form submitted by the user.
  */
-export const buildFormEmail = async (message: core.Message.Model, form: any, event: core.Event.Model): Promise<string> => {
+export const buildFormEmail = async (message: core.Message.Model, form: any, event?: core.Event.Model): Promise<string> => {
 	const methodName = '[buildFormEmail] -'
 
 	switch (message.content.type) {
