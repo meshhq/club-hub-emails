@@ -61,6 +61,8 @@ export const buildFormEmail = async (message: core.Message.Model, form: any, eve
 			return await sendMembershipInquiryResponseEmail(form)
 		case core.Message.Type.PublicRsvp:
 			return await sendPublicRSVPEmail(event, form)
+		case core.Message.Type.NewProviderRequest:
+			return await sendProviderRequestEmail(form)
 		default:
 			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
 	}
@@ -136,8 +138,8 @@ export const buildServiceRequestEmail = async (member: core.User.Model, provider
  * Sends an email to an admin letting them know a member wants a service provider added.
  * @param provider Calendar model.
  */
-export const sendProviderRequestEmail = async (provider: core.Calendar.Model): Promise<string> => {
-	return templates.NewProviderTemplate(provider)
+export const sendProviderRequestEmail = async (form: any): Promise<string> => {
+	return templates.NewProviderTemplate(form)
 }
 
 //--------------------------------------------------

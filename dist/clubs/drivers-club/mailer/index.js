@@ -41,6 +41,8 @@ exports.buildFormEmail = (message, form, event) => __awaiter(this, void 0, void 
             return yield exports.sendMembershipInquiryResponseEmail(form);
         case core.Message.Type.PublicRsvp:
             return yield exports.sendPublicRSVPEmail(event, form);
+        case core.Message.Type.NewProviderRequest:
+            return yield exports.sendProviderRequestEmail(form);
         default:
             throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`);
     }
@@ -71,8 +73,8 @@ exports.sendMembershipInquiryResponseEmail = (memberInfo) => __awaiter(this, voi
 exports.buildServiceRequestEmail = (member, provider, event, reservation) => __awaiter(this, void 0, void 0, function* () {
     return templates.ServiceRequestTemplate(member, provider, event, reservation);
 });
-exports.sendProviderRequestEmail = (provider) => __awaiter(this, void 0, void 0, function* () {
-    return templates.NewProviderTemplate(provider);
+exports.sendProviderRequestEmail = (form) => __awaiter(this, void 0, void 0, function* () {
+    return templates.NewProviderTemplate(form);
 });
 exports.buildRSVPEmail = (member, event) => __awaiter(this, void 0, void 0, function* () {
     return templates.RsvpTemplate(member, event);

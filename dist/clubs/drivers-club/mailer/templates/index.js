@@ -40,7 +40,7 @@ const membershipApplicationTemplate = (memberInfo) => {
 				${bulletLine('Address', memberInfo.addressTwo)}
 			</li>
 			<li>
-				${bulletLine('Address', `${memberInfo.city} ${memberInfo.state} ${memberInfo.zip}`)}
+				${bulletLine('Address', `${memberInfo.city} ${memberInfo.state.label} ${memberInfo.zip}`)}
 			</li>
 			<li>
 				${bulletLine('Email', memberInfo.email)}
@@ -64,7 +64,7 @@ const membershipApplicationTemplate = (memberInfo) => {
 				${bulletLine('Plan', memberInfo.membershipPlan)}
 			</li>
 			<li>
-				${bulletLine('Membership Type', `${memberInfo.membershipType}`)}
+				${bulletLine('Membership Type', `${memberInfo.membershipType.label}`)}
 			</li>
 		</ul>
 
@@ -76,7 +76,6 @@ const membershipApplicationTemplate = (memberInfo) => {
 };
 exports.MembershipApplicationTemplate = membershipApplicationTemplate;
 const membershipInquiryTemplate = (memberInfo) => {
-    console.log('hit with member info : ', memberInfo);
     const message = `
 		<p> Hi there!</p>
 
@@ -102,7 +101,7 @@ const membershipInquiryTemplate = (memberInfo) => {
     return message;
 };
 exports.MembershipInquiryTemplate = membershipInquiryTemplate;
-const membershipInquiryResponseTemplate = (memberFormInfo) => {
+const membershipInquiryResponseTemplate = (memberFormInfo, url) => {
     const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
@@ -110,7 +109,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo) => {
 
 		<p>We would like to learn more about your automotive passions.</p>
 
-		<p>Please click <a href="https://app.drivers.club/application">this link</a> to begin the formal application process.</p>
+		<p>Please click <a href="https://app.drivers.club/forms/application">this link</a> to begin the formal application process.</p>
 
 		<p>Sincerely,</p>
 
@@ -228,7 +227,7 @@ const publicRsvpTemplate = (event, memberInfo) => {
 				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
-				${linkLine('Event', event._id.toString())}
+				${linkLine('Event', event.shortLink)}
 			</li>
 		</ul>
 			
@@ -296,7 +295,7 @@ const serviceRequestTemplate = (member, provider, event, reservation) => {
     return message;
 };
 exports.ServiceRequestTemplate = serviceRequestTemplate;
-const newProviderTemplate = (provider) => {
+const newProviderTemplate = (providerInfo) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -305,28 +304,28 @@ const newProviderTemplate = (provider) => {
 		<p style='font-weight:bold; display:inline;'>Provider Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', provider.name)}
+				${bulletLine('Name:', providerInfo.name)}
 			</li>
 			<li>
-				${bulletLine('Contact', provider.location.contactName)}
+				${bulletLine('Contact', providerInfo.contactName)}
 			</li>
 			<li>
-				${bulletLine('Email', provider.location.email)}
+				${bulletLine('Email', providerInfo.email)}
 			</li>
 			<li>
-				${bulletLine('Phone', provider.location.phone)}
+				${bulletLine('Phone', providerInfo.phone)}
 			</li>
 			<li>
-				${bulletLine('Street', provider.location.address1)}
+				${bulletLine('Street', providerInfo.address1)}
 			</li>
 			<li>
-				${bulletLine('City', provider.location.city)}
+				${bulletLine('City', providerInfo.city)}
 			</li>
 			<li>
-				${bulletLine('State', provider.location.state)}
+				${bulletLine('State', providerInfo.state.label)}
 			</li>
 			<li>
-				${bulletLine('Zip', provider.location.zip)}
+				${bulletLine('Zip', providerInfo.zip)}
 			</li>
 		</ul>
 
@@ -340,8 +339,8 @@ exports.NewProviderTemplate = newProviderTemplate;
 const bulletLine = (boldText, text) => {
     return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`;
 };
-const linkLine = (boldText, id) => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${id}" style='display:inline;'>Event Link</a>`;
+const linkLine = (boldText, shortLink) => {
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${shortLink}" style='display:inline;'>Event Link</a>`;
 };
 const regularText = (text) => {
     return `<p>${text}</p>`;

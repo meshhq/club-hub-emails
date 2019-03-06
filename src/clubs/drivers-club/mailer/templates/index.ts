@@ -46,7 +46,7 @@ const membershipApplicationTemplate = (memberInfo: any) => {
 				${bulletLine('Address', memberInfo.addressTwo)}
 			</li>
 			<li>
-				${bulletLine('Address', `${memberInfo.city} ${memberInfo.state} ${memberInfo.zip}`)}
+				${bulletLine('Address', `${memberInfo.city} ${memberInfo.state.label} ${memberInfo.zip}`)}
 			</li>
 			<li>
 				${bulletLine('Email', memberInfo.email)}
@@ -70,7 +70,7 @@ const membershipApplicationTemplate = (memberInfo: any) => {
 				${bulletLine('Plan', memberInfo.membershipPlan)}
 			</li>
 			<li>
-				${bulletLine('Membership Type', `${memberInfo.membershipType}`)}
+				${bulletLine('Membership Type', `${memberInfo.membershipType.label}`)}
 			</li>
 		</ul>
 
@@ -82,7 +82,6 @@ const membershipApplicationTemplate = (memberInfo: any) => {
 }
 
 const membershipInquiryTemplate = (memberInfo: any) => {
-	console.log('hit with member info : ', memberInfo)
     const message = `
 		<p> Hi there!</p>
 
@@ -108,7 +107,7 @@ const membershipInquiryTemplate = (memberInfo: any) => {
     return message
 }
 
-const membershipInquiryResponseTemplate = (memberFormInfo: any) => {
+const membershipInquiryResponseTemplate = (memberFormInfo: any, url?: any) => {
     const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
@@ -116,7 +115,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any) => {
 
 		<p>We would like to learn more about your automotive passions.</p>
 
-		<p>Please click <a href="https://app.drivers.club/application">this link</a> to begin the formal application process.</p>
+		<p>Please click <a href="https://app.drivers.club/forms/application">this link</a> to begin the formal application process.</p>
 
 		<p>Sincerely,</p>
 
@@ -242,7 +241,7 @@ const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any) => {
 				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
-				${linkLine('Event', event._id.toString())}
+				${linkLine('Event', event.shortLink)}
 			</li>
 		</ul>
 			
@@ -320,7 +319,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
     return message
 }
 
-const newProviderTemplate = (provider: core.Calendar.Model) => {
+const newProviderTemplate = (providerInfo: any) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -329,28 +328,28 @@ const newProviderTemplate = (provider: core.Calendar.Model) => {
 		<p style='font-weight:bold; display:inline;'>Provider Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', provider.name)}
+				${bulletLine('Name:', providerInfo.name)}
 			</li>
 			<li>
-				${bulletLine('Contact', provider.location.contactName)}
+				${bulletLine('Contact', providerInfo.contactName)}
 			</li>
 			<li>
-				${bulletLine('Email',provider.location.email)}
+				${bulletLine('Email', providerInfo.email)}
 			</li>
 			<li>
-				${bulletLine('Phone', provider.location.phone)}
+				${bulletLine('Phone', providerInfo.phone)}
 			</li>
 			<li>
-				${bulletLine('Street', provider.location.address1)}
+				${bulletLine('Street', providerInfo.address1)}
 			</li>
 			<li>
-				${bulletLine('City', provider.location.city)}
+				${bulletLine('City', providerInfo.city)}
 			</li>
 			<li>
-				${bulletLine('State', provider.location.state)}
+				${bulletLine('State', providerInfo.state.label)}
 			</li>
 			<li>
-				${bulletLine('Zip', provider.location.zip)}
+				${bulletLine('Zip', providerInfo.zip)}
 			</li>
 		</ul>
 
@@ -369,8 +368,8 @@ const bulletLine = (boldText: string, text: string): string => {
     return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`
 }
 
-const linkLine = (boldText: string, id: string): string => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${id}" style='display:inline;'>Event Link</a>`
+const linkLine = (boldText: string, shortLink: string): string => {
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${shortLink}" style='display:inline;'>Event Link</a>`
 }
 
 const regularText = (text: string): string => {
