@@ -111,7 +111,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any, url?: any) => {
     const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
-		<p>Thank you for contacting Drivers Club regarding ${memberFormInfo.membership} membership!</p>
+		<p>Thank you for contacting Drivers Club regarding ${memberFormInfo.membership.label} membership!</p>
 
 		<p>We would like to learn more about your automotive passions.</p>
 
