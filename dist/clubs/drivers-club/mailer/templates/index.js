@@ -76,6 +76,7 @@ const membershipApplicationTemplate = (memberInfo) => {
 };
 exports.MembershipApplicationTemplate = membershipApplicationTemplate;
 const membershipInquiryTemplate = (memberInfo) => {
+    console.log('hit with member info : ', memberInfo);
     const message = `
 		<p> Hi there!</p>
 
@@ -90,7 +91,7 @@ const membershipInquiryTemplate = (memberInfo) => {
 				${bulletLine('Email', memberInfo.email)}
 			</li>
 			<li>
-				${bulletLine('Desired Membership', memberInfo.membership)}
+				${bulletLine('Desired Membership', memberInfo.membership.label)}
 			</li>
 		</ul>
 
