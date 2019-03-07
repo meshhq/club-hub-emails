@@ -198,6 +198,7 @@ const unRsvpTemplate = (member, event) => {
 };
 exports.UnRsvpTemplate = unRsvpTemplate;
 const publicRsvpTemplate = (event, memberInfo) => {
+    const fullName = `${memberInfo.firstName} ${memberInfo.lastName}`;
     const plusOneText = memberInfo.plusOne ? 'Yes' : 'No';
     const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
@@ -208,7 +209,7 @@ const publicRsvpTemplate = (event, memberInfo) => {
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', memberInfo.name)}
+				${bulletLine('Name:', fullName)}
 			</li>
 			<li>
 				${bulletLine('Email:', memberInfo.email)}
