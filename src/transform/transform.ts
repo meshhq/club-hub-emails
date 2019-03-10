@@ -110,6 +110,7 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
     return confirmationInfo
 }
 
+
 /**
  * Builds a ClubInfo object that can be used to build an email.
  * @param club The club for the email.
