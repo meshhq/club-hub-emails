@@ -2,9 +2,17 @@
 subject: My Basic Email Template Subject
 ---
 
-{{> header}}
-
 <container class="body content-body">
+    <row class="logo-row">
+        <columns class="logo-col" small="12">
+            <div class="logo-container padded-container">
+                <a href="{{club.domain}}">
+                    <img src="{{club.logoURL}}" alt="{{club.name}}">
+                </a>
+            </div>
+        </columns>
+    </row>
+
     <row>
         <columns small="12">
             <div class="image-container">

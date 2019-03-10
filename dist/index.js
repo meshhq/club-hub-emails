@@ -20,8 +20,8 @@ exports.CompilePostEmail = (post, club) => {
     const path = `${__dirname}/templates/post.html`;
     return CompileEmail(path, postInfo);
 };
-exports.CompileConfirmationEmail = (event, club) => {
-    const confirmationInfo = transform.BuildConfirmationContent(event, club);
+exports.CompileConfirmationEmail = (reservation, event, group, club) => {
+    const confirmationInfo = transform.BuildConfirmationContent(reservation, event, group, club);
     const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, confirmationInfo);
 };

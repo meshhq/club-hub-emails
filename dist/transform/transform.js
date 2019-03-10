@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const core = require("club-hub-core");
 exports.BuildGenericContent = (content, club) => {
     const richContent = {
         content: content,
@@ -40,11 +41,38 @@ exports.BuildPostContent = (post, club) => {
     };
     return postInfo;
 };
-exports.BuildConfirmationContent = (event, club) => {
+exports.BuildConfirmationContent = (reservation, event, group, club) => {
+    let title;
+    let subtitle;
+    let info;
+    let icon;
+    var timeOptions = { hour: 'numeric', minute: 'numeric' };
+    const time = event.start.toLocaleDateString("en-US", timeOptions);
+    var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+    const day = event.start.toLocaleDateString("en-US", dayOptions);
+    if (group.name === core.Calendar.CalendarGroupName.Golf) {
+        title = 'Tee Time Confirmation';
+        subtitle = `Your tee time at ${club.name} has been confirmed.`;
+        info = `${reservation.participants.length} golfers on ${day} at ${time}.`;
+        icon = 'fas fa-golf-ball';
+    }
+    else if (group.name === 'Dining Room') {
+        title = 'Dining Confirmation';
+        subtitle = `Your dining reservation at ${club.name} has been confirmed.`;
+        info = `${reservation.participants.length} diners on ${day} at ${time}.`;
+        icon = 'fas fa-utensils';
+    }
+    else if (group.name === 'Service Providers') {
+        title = 'Vehicle Service Confirmation';
+        subtitle = `Your vehicle service reservation with ${club.name} has been confirmed.`;
+        info = `${reservation.participants.length} vehicle on ${day} at ${time}.`;
+        icon = 'fas fa-car';
+    }
     const confirmationInfo = {
-        title: event.name,
-        subtitle: "",
-        info: "",
+        title: title,
+        subtitle: subtitle,
+        icon: icon,
+        info: info,
         url: 'www.tryclubhub.com',
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
