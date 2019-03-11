@@ -378,6 +378,11 @@ img {
   background-color: #f3f3f3;
   vertical-align: middle; }
 
+.logo-col {
+  padding: 18px 0px; }
+  .logo-col img {
+    max-height: 60px; }
+
 .button {
   margin-bottom: 0px !important; }
 
@@ -428,10 +433,9 @@ img {
   justify-content: center;
   flex-direction: column;
   text-align: center; }
-  .container.body.confirmation-body .confirmation-icon-container .feather {
-    stroke: #467FD0;
-    font-size: 24px;
-    width: 62px; }
+  .container.body.confirmation-body .confirmation-icon-container i {
+    color: #467FD0;
+    font-size: 24px; }
 
 .container.body.confirmation-body .button {
   margin-bottom: 0px; }
@@ -444,11 +448,6 @@ img {
 
 .event-body a {
   line-height: 1.75rem; }
-
-.event-body .logo-col {
-  padding: 18px 0px; }
-  .event-body .logo-col img {
-    max-height: 60px; }
 
 .event-body .detail-header {
   font-size: 12px;

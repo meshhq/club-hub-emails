@@ -1,6 +1,7 @@
 {
 	"title": "{{title}}",
 	"subtitle": "{{subtitle}}",
+	"icon": "{{icon}}",
 	"info": "{{info}}",
 	"url": "{{url}}",
     "unsubscribeURL": "{{unsubscribeURL}}"

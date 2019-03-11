@@ -62,10 +62,10 @@ export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model): 
  * @param event The ClubHub event for the email. 
  * @param club The ClubHub club to which the email is associated.
  */
-export const CompileConfirmationEmail = (event: core.Event.Model, club: core.Club.Model): Promise<string> => {
+export const CompileConfirmationEmail = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.CalendarGroup, club: core.Club.Model): Promise<string> => {
     // Transform our event Info
-    const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationContent(event, club)
-
+    const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationContent(reservation, event, group, club)
+    
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/confirmation.html`
     return CompileEmail(path, confirmationInfo)

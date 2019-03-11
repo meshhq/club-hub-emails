@@ -69,17 +69,52 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model): 
  * @param event The event for the email.
  * @param club The club for the email.
  */
-export const BuildConfirmationContent = (event: core.Event.Model, club: core.Club.Model) => {
+export const BuildConfirmationContent = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.CalendarGroup, club: core.Club.Model) => {
+    let title: string 
+    let subtitle: string
+    let info: string
+    let icon: string 
+
+    var timeOptions = { hour: 'numeric', minute: 'numeric' }
+    const time = event.start.toLocaleDateString("en-US", timeOptions)
+
+    var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+    const day = event.start.toLocaleDateString("en-US", dayOptions)
+    
+    if (group.name === core.Calendar.CalendarGroupName.Golf) {
+        title = 'Tee Time Confirmation'
+        subtitle = `Your tee time at ${club.name} has been confirmed.`
+        info = `${reservation.participants.length} golfers on ${day} at ${time}.`
+        icon = 'fas fa-golf-ball'
+    } else if (group.name === 'Dining Room') {
+        title = 'Dining Confirmation'
+        subtitle = `Your dining reservation at ${club.name} has been confirmed.`
+        info = `${reservation.participants.length} diners on ${day} at ${time}.`
+        icon = 'fas fa-utensils'
+    } else if (group.name === 'Service Providers') {
+        title = 'Vehicle Service Confirmation'
+        subtitle = `Your vehicle service reservation with ${club.name} has been confirmed.`
+        info = `${reservation.participants.length} vehicle on ${day} at ${time}.`
+        icon = 'fas fa-car'
+    } else {
+		title = 'Event Confirmation'
+        subtitle = `Your reservation for ${event.name} has been confirmed`
+        info = `${event.name} takes place on ${day} at ${time}.`
+        icon = 'fas fa-ticket'
+	}
+
     const confirmationInfo: ConfirmationInfo = {
-        title: event.name,
-        subtitle: "",
-        info: "",
+        title: title,
+        subtitle: subtitle,
+        icon: icon,
+        info: info,
         url: 'www.tryclubhub.com',
         unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club)
     }
     return confirmationInfo
 }
+
 
 /**
  * Builds a ClubInfo object that can be used to build an email.
