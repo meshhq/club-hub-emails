@@ -12,7 +12,7 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, pa
 
 		<p>Your new Drivers Club account has been created. This gives you access to the Drivers Club web and mobile apps!</p>
 
-		<p>Please follow the url: ${club.domain} to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
+		<p>Please follow the url: https://driversclub.tryclubhub.com/ to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
 			
 		<p>To change your password, please use the "Forgot Password" link on the login screen. An email will then be sent to you with instructions on resetting the password.</p>
 
@@ -115,7 +115,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any, url?: any) => {
 
 		<p>We would like to learn more about your automotive passions.</p>
 
-		<p>Please click <a href="https://app.drivers.club/forms/application">this link</a> to begin the formal application process.</p>
+		<p>Please click <a href="https://driversclub.tryclubhub.com/forms/application">this link</a> to begin the formal application process.</p>
 
 		<p>Sincerely,</p>
 
@@ -370,7 +370,7 @@ const bulletLine = (boldText: string, text: string): string => {
 }
 
 const linkLine = (boldText: string, shortLink: string): string => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="app.drivers.club/events/${shortLink}" style='display:inline;'>Event Link</a>`
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="driversclub.tryclubhub.com/events/${shortLink}" style='display:inline;'>Event Link</a>`
 }
 
 const regularText = (text: string): string => {
