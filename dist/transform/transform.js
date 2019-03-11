@@ -68,6 +68,12 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
         info = `${reservation.participants.length} vehicle on ${day} at ${time}.`;
         icon = 'fas fa-car';
     }
+    else {
+        title = 'Event Confirmation';
+        subtitle = `Your reservation for ${event.name} has been confirmed`;
+        info = `${event.name} takes place on ${day} at ${time}.`;
+        icon = 'fas fa-ticket';
+    }
     const confirmationInfo = {
         title: title,
         subtitle: subtitle,
