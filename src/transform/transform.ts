@@ -27,7 +27,7 @@ export const BuildGenericContent= (content: string, club: core.Club.Model): Rich
 export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model): EventInfo => {
     const date = new Date(event.start)
     var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    var timeOptions = { hour: 'numeric', minute: 'numeric' };
+    var timeOptions = { hour: 'numeric', minute: 'numeric' }
     const richContent: EventInfo = {
         name: event.name,
         subtitle: "New Club Event!",
@@ -39,7 +39,7 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
         location: event.location.name,
         street: event.location.address1,   
         date: date.toLocaleDateString("en-US", dateOptions),
-        time: date.toLocaleDateString("en-US", timeOptions), 
+        time: date.toLocaleTimeString("en-US", timeOptions), 
         club: BuildClubInfo(club)
     }
     return richContent
@@ -76,7 +76,7 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
     let icon: string 
 
     var timeOptions = { hour: 'numeric', minute: 'numeric' }
-    const time = new Date(event.start).toLocaleDateString("en-US", timeOptions)
+    const time = new Date(event.start).toLocaleTimeString("en-US", timeOptions)
 
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions)

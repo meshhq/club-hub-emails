@@ -24,7 +24,7 @@ exports.BuildEventContent = (event, club) => {
         location: event.location.name,
         street: event.location.address1,
         date: date.toLocaleDateString("en-US", dateOptions),
-        time: date.toLocaleDateString("en-US", timeOptions),
+        time: date.toLocaleTimeString("en-US", timeOptions),
         club: exports.BuildClubInfo(club)
     };
     return richContent;
@@ -47,7 +47,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
     let info;
     let icon;
     var timeOptions = { hour: 'numeric', minute: 'numeric' };
-    const time = new Date(event.start).toLocaleDateString("en-US", timeOptions);
+    const time = new Date(event.start).toLocaleTimeString("en-US", timeOptions);
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions);
     if (group.name === core.Calendar.CalendarGroupName.Golf) {
