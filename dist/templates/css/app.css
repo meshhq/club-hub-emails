@@ -424,6 +424,9 @@ img {
 .header-image-container {
   border-bottom: 1px solid #f3f3f3; }
 
+.container.body.confirmation-body .button {
+  margin-bottom: 0px; }
+
 .event-body p {
   font-weight: 300;
   line-height: 1.75rem;
