@@ -431,11 +431,10 @@ img {
   background-color: #E1EDFF;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  text-align: center; }
-  .container.body.confirmation-body .confirmation-icon-container i {
-    color: #467FD0;
-    font-size: 24px; }
+  flex-direction: column; }
+  .container.body.confirmation-body .confirmation-icon-container .icon-img {
+    height: 24px;
+    width: 24px; }
 
 .container.body.confirmation-body .button {
   margin-bottom: 0px; }

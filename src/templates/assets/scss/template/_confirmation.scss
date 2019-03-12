@@ -13,8 +13,12 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        text-align: center;
-    
+        
+        .icon-img {
+            height: 24px;
+            width: 24px;
+        }
+
         .feather {
             stroke: $primary-color;
             font-size: 24px;
