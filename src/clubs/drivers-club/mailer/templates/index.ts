@@ -267,7 +267,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 	
 	// Format the date.
 	const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }
-	const date = event.start.toLocaleDateString('en-US', dateOpts)
+	const date = new Date(event.start).toLocaleDateString('en-US', dateOpts)
 
     const message = `
 		<p> Hi there!</p>

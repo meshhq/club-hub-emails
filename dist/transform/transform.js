@@ -47,9 +47,9 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
     let info;
     let icon;
     var timeOptions = { hour: 'numeric', minute: 'numeric' };
-    const time = event.start.toLocaleDateString("en-US", timeOptions);
+    const time = new Date(event.start).toLocaleDateString("en-US", timeOptions);
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
-    const day = event.start.toLocaleDateString("en-US", dayOptions);
+    const day = new Date(event.start).toLocaleDateString("en-US", dayOptions);
     if (group.name === core.Calendar.CalendarGroupName.Golf) {
         title = 'Tee Time Confirmation';
         subtitle = `Your tee time at ${club.name} has been confirmed.`;
