@@ -4,20 +4,16 @@
 
 .container.body.confirmation-body {
 
-    #confirmation-icon-container {
+    .confirmation-icon-container {
         height: 62px;
         width: 62px;
         border-radius: 31px;
-        background-color: $primary-color-light;
-    
-        display: flex;
-		justify-content: center !important;
-		align-items: center !important;
-        flex-direction: column !important;
-        
+        background-color: $primary-color-light !important;
+
         .icon-img {
             height: 24px;
             width: 24px;
+            padding-top: 18px;
         }
 
         .feather {
