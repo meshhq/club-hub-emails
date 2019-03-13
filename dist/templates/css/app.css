@@ -129,6 +129,7 @@ h1.text-center,
 p.text-center {
   text-align: center; }
 
+img.float-center,
 img.text-center {
   margin: 0 auto;
   Margin: 0 auto;
@@ -423,6 +424,16 @@ img {
 
 .header-image-container {
   border-bottom: 1px solid #f3f3f3; }
+
+.container.body.confirmation-body .confirmation-icon-container {
+  height: 62px;
+  width: 62px;
+  border-radius: 31px;
+  background-color: #E1EDFF !important; }
+  .container.body.confirmation-body .confirmation-icon-container .icon-img {
+    height: 24px;
+    width: 24px;
+    padding-top: 18px; }
 
 .container.body.confirmation-body .button {
   margin-bottom: 0px; }
