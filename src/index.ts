@@ -33,10 +33,11 @@ export const CompileGenericEmail = (content: string, club: core.Club.Model): Pro
  * Compiles a new event email.
  * @param event The ClubHub event for the email. 
  * @param club The ClubHub club to which the email is associated.
+ * @param link The ClubHub club to which the email is associated.
  */
-export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model): Promise<string> => {
+export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model, link: string): Promise<string> => {
     // Transform our event Info
-    const eventInfo: EventInfo = transform.BuildEventContent(event, club)
+    const eventInfo: EventInfo = transform.BuildEventContent(event, club, link)
     
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/event.html`
@@ -48,9 +49,9 @@ export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model
  * @param event The ClubHub post for the email. 
  * @param club The ClubHub club to which the email is associated.
  */
-export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model): Promise<string> => {
+export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model, link: string): Promise<string> => {
     // Transform our post Info
-    const postInfo: RichContent = transform.BuildPostContent(post, club)
+    const postInfo: RichContent = transform.BuildPostContent(post, club, link)
 
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/post.html`

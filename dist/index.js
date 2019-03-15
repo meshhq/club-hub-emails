@@ -10,13 +10,13 @@ exports.CompileGenericEmail = (content, club) => {
     const path = `${__dirname}/templates/generic.html`;
     return CompileEmail(path, eventInfo);
 };
-exports.CompileEventEmail = (event, club) => {
-    const eventInfo = transform.BuildEventContent(event, club);
+exports.CompileEventEmail = (event, club, link) => {
+    const eventInfo = transform.BuildEventContent(event, club, link);
     const path = `${__dirname}/templates/event.html`;
     return CompileEmail(path, eventInfo);
 };
-exports.CompilePostEmail = (post, club) => {
-    const postInfo = transform.BuildPostContent(post, club);
+exports.CompilePostEmail = (post, club, link) => {
+    const postInfo = transform.BuildPostContent(post, club, link);
     const path = `${__dirname}/templates/post.html`;
     return CompileEmail(path, postInfo);
 };
