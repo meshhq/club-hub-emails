@@ -317,6 +317,9 @@ const newProviderTemplate = (providerInfo) => {
 				${bulletLine('Phone', providerInfo.phone)}
 			</li>
 			<li>
+				${bulletLine('Website', providerInfo.website)}
+			</li>
+			<li>
 				${bulletLine('Street', providerInfo.address1)}
 			</li>
 			<li>
