@@ -9,7 +9,7 @@ exports.BuildGenericContent = (content, club) => {
     };
     return richContent;
 };
-exports.BuildEventContent = (event, club) => {
+exports.BuildEventContent = (event, club, link) => {
     const date = new Date(event.start);
     var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     var timeOptions = { hour: 'numeric', minute: 'numeric' };
@@ -18,7 +18,7 @@ exports.BuildEventContent = (event, club) => {
         subtitle: "New Club Event!",
         photoURL: event.photoURL,
         content: event.richContent.html,
-        url: 'www.tryclubhub.com',
+        url: link,
         cta: 'View Event',
         unsubscribeURL: 'www.tryclubhub.com',
         location: event.location.name,
@@ -29,12 +29,12 @@ exports.BuildEventContent = (event, club) => {
     };
     return richContent;
 };
-exports.BuildPostContent = (post, club) => {
+exports.BuildPostContent = (post, club, link) => {
     const postInfo = {
         name: post.title,
         photoURL: post.imageURL,
         content: post.richContent.html,
-        url: 'www.tryclubhub.com',
+        url: link,
         cta: 'View Post',
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club),
@@ -79,7 +79,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
         subtitle: subtitle,
         icon: icon,
         info: info,
-        url: 'www.tryclubhub.com',
+        url: 'admin.tryclubhub.com',
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
     };
