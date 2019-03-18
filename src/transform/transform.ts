@@ -69,7 +69,7 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model, l
  * @param event The event for the email.
  * @param club The club for the email.
  */
-export const BuildConfirmationContent = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.CalendarGroup, club: core.Club.Model) => {
+export const BuildConfirmationContent = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.Group, club: core.Club.Model) => {
     let title: string 
     let subtitle: string
     let info: string
@@ -81,7 +81,7 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions)
     
-    if (group.name === core.Calendar.CalendarGroupName.Golf) {
+    if (group.name === core.Calendar.GroupName.Golf) {
         title = 'Tee Time Confirmation'
         subtitle = `Your tee time at ${club.name} has been confirmed.`
         info = `${reservation.participants.length} golfers on ${day} at ${time}.`
