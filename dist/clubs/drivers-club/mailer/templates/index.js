@@ -1,25 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const core = require("club-hub-core");
 const welcomeEmailTemplate = (member, club, password) => {
+    const webURL = `https://${club.domain}.tryclubhub.com/`;
+    const supportEmail = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'info@drivers.club' : 'info@otto.club';
     const message = `
-		<p>Hi ${member.firstName} and welcome to Drivers Club!
+		<p>Hi ${member.firstName} and welcome to ${club.name}!
 
-		<p>Your new Drivers Club account has been created. This gives you access to the Drivers Club web and mobile apps!</p>
+		<p>Your new ${club.name} account has been created. This gives you access to the ${club.name} web and mobile apps!</p>
 
-		<p>Please follow the url: https://driversclub.tryclubhub.com/ to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
+		<p>Please follow the url: ${webURL} to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
 			
 		<p>To change your password, please use the "Forgot Password" link on the login screen. An email will then be sent to you with instructions on resetting the password.</p>
 
-		<p>Please send an email to info@drivers.club if you have any questions!</p>
+		<p>Please send an email to ${supportEmail} if you have any questions!</p>
 
 		<p>Best,</p> 
 
-		<p>The Drivers Club team.</p>
+		<p>The ${club.name} team.</p>
 	`;
     return message;
 };
 exports.WelcomeEmailTemplate = welcomeEmailTemplate;
-const membershipApplicationTemplate = (memberInfo) => {
+const dcMembershipApplicationTemplate = (memberInfo, club) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -70,12 +73,75 @@ const membershipApplicationTemplate = (memberInfo) => {
 
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
-exports.MembershipApplicationTemplate = membershipApplicationTemplate;
-const membershipInquiryTemplate = (memberInfo) => {
+exports.DcMembershipApplicationTemplate = dcMembershipApplicationTemplate;
+const ottoMembershipApplicationTemplate = (memberInfo, club) => {
+    const fullName = `${memberInfo.firstName} ${memberInfo.middleName} ${memberInfo.lastName}`;
+    const message = `
+		<p> Hi there!</p>
+
+		<p>A prospective member has completed the new member request form. Details below:</p>
+
+		<p style='font-weight:bold; display:inline;'>Member Info</p>
+		<ul>
+			<li>
+				${bulletLine('Name:', fullName)}
+			</li>
+			<li>
+				${bulletLine('Email', memberInfo.email)}
+			</li>
+			<li>
+				${bulletLine('Address', memberInfo.address)}
+			</li>
+			<li>
+				${bulletLine('Address', `${memberInfo.city} ${memberInfo.state.label} ${memberInfo.zip}`)}
+			</li>
+			<li>
+				${bulletLine('Phone', memberInfo.phoneNumber)}
+			</li>
+			<li>
+				${bulletLine('Occupation', memberInfo.occupation)}
+			</li>
+			<li>
+				${bulletLine('Birthday', memberInfo.birthday)}
+			</li>
+			<li>
+				${bulletLine('Gender', memberInfo.gender.label)}
+			</li>
+			<li>
+				${bulletLine('Automotive Passion', memberInfo.automotivePassion)}
+			</li>
+			<li>
+				${bulletLine('Referral', memberInfo.referral)}
+			</li>
+			<li>
+				${bulletLine('Car Showcase', memberInfo.carShowcase)}
+			</li>
+			<li>
+				${bulletLine('Hobbies', memberInfo.freeTime)}
+			</li>
+			<li>
+				${bulletLine('Other Clubs', memberInfo.otherClubs)}
+			</li>
+			<li>
+				${bulletLine('Membership Type', `${memberInfo.membershipType.label}`)}
+			</li>
+			<li>
+				${bulletLine('Additional Information', `${memberInfo.other}`)}
+			</li>
+		</ul>
+
+		<p>Thanks,</p>
+
+		<p>Your friends at ${club.name}</p>
+	`;
+    return message;
+};
+exports.OttoMembershipApplicationTemplate = ottoMembershipApplicationTemplate;
+const membershipInquiryTemplate = (memberInfo, club) => {
     const message = `
 		<p> Hi there!</p>
 
@@ -96,35 +162,37 @@ const membershipInquiryTemplate = (memberInfo) => {
 
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
 exports.MembershipInquiryTemplate = membershipInquiryTemplate;
-const membershipInquiryResponseTemplate = (memberFormInfo, url) => {
+const membershipInquiryResponseTemplate = (memberFormInfo, club, url) => {
+    const applicationURL = `https://${club.domain}.tryclubhub.com/forms/application`;
+    const admin = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'Amanda Friedman' : 'Eli Kogan';
     const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
-		<p>Thank you for contacting Drivers Club regarding ${memberFormInfo.membership.label} membership!</p>
+		<p>Thank you for contacting ${club.name} regarding ${memberFormInfo.membership.label} membership!</p>
 
 		<p>We would like to learn more about your automotive passions.</p>
 
-		<p>Please click <a href="https://driversclub.tryclubhub.com/forms/application">this link</a> to begin the formal application process.</p>
+		<p>Please click <a href="${applicationURL}">this link</a> to begin the formal application process.</p>
 
 		<p>Sincerely,</p>
 
-		<p>Amanda Friedman</p>
+		<p>${admin}</p>
 		<p>General Manager</p>
 	`;
     return message;
 };
 exports.MembershipInquiryResponseTemplate = membershipInquiryResponseTemplate;
-const rsvpTemplate = (member, event) => {
+const rsvpTemplate = (member, event, club) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const message = `
 		<p> Hi there!</p>
 
-		<p>A Drivers Club member has RSVP'd to an event. Details below:</p>
+		<p>A Club member has RSVP'd to an event. Details below:</p>
 
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
@@ -151,18 +219,18 @@ const rsvpTemplate = (member, event) => {
 			
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
 exports.RsvpTemplate = rsvpTemplate;
-const unRsvpTemplate = (member, event) => {
+const unRsvpTemplate = (member, event, club) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const eventPrice = (event.price) ? event.price.toString() : 'Free';
     const message = `
 		<p> Hi there!</p>
 
-		<p>A Drivers Club member has cancelled their RSVP to an event. Details below:</p>
+		<p>A Club member has cancelled their RSVP to an event. Details below:</p>
 
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
@@ -192,12 +260,12 @@ const unRsvpTemplate = (member, event) => {
 			
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
 exports.UnRsvpTemplate = unRsvpTemplate;
-const publicRsvpTemplate = (event, memberInfo) => {
+const publicRsvpTemplate = (event, memberInfo, club) => {
     const fullName = `${memberInfo.firstName} ${memberInfo.lastName}`;
     const plusOneText = memberInfo.plusOne ? 'Yes' : 'No';
     const eventPrice = (event.price) ? event.price.toString() : 'Free';
@@ -228,18 +296,18 @@ const publicRsvpTemplate = (event, memberInfo) => {
 				${bulletLine('Price', eventPrice)}
 			</li>
 			<li>
-				${linkLine('Event', event.shortLink)}
+				${linkLine('Event', event.shortLink, club)}
 			</li>
 		</ul>
 			
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
 exports.PublicRsvpTemplate = publicRsvpTemplate;
-const serviceRequestTemplate = (member, provider, event, reservation) => {
+const serviceRequestTemplate = (member, provider, event, reservation, club) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const reservationMeta = reservation.meta;
     const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString());
@@ -248,7 +316,7 @@ const serviceRequestTemplate = (member, provider, event, reservation) => {
     const message = `
 		<p> Hi there!</p>
 
-		<p>A Drivers Club member has submitted a new service request. Details below:</p>
+		<p>A Club member has submitted a new service request. Details below:</p>
 
 		<p style='font-weight:bold; display:inline;'>Provider Info</p>
 		<ul>
@@ -291,16 +359,16 @@ const serviceRequestTemplate = (member, provider, event, reservation) => {
 			
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
 exports.ServiceRequestTemplate = serviceRequestTemplate;
-const newProviderTemplate = (providerInfo) => {
+const newProviderTemplate = (providerInfo, club) => {
     const message = `
 		<p> Hi there!</p>
 
-		<p>A member has submitted a request to add a new Drivers Club provider. Details below:</p>
+		<p>A member has submitted a request to add a new ${club.name} provider. Details below:</p>
 
 		<p style='font-weight:bold; display:inline;'>Provider Info</p>
 		<ul>
@@ -335,7 +403,7 @@ const newProviderTemplate = (providerInfo) => {
 
 		<p>Thanks,</p>
 
-		<p>Your friends at Drivers Club</p>
+		<p>Your friends at ${club.name}</p>
 	`;
     return message;
 };
@@ -343,8 +411,8 @@ exports.NewProviderTemplate = newProviderTemplate;
 const bulletLine = (boldText, text) => {
     return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`;
 };
-const linkLine = (boldText, shortLink) => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="driversclub.tryclubhub.com/events/${shortLink}" style='display:inline;'>Event Link</a>`;
+const linkLine = (boldText, shortLink, club) => {
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="${club.domain}.tryclubhub.com/events/${shortLink}" style='display:inline;'>Event Link</a>`;
 };
 const regularText = (text) => {
     return `<p>${text}</p>`;

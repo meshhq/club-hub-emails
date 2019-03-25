@@ -10,14 +10,14 @@ import * as templates from './templates'
  * @param user User document.
  * @param event Event document.
  */
-export const buildEventEmails = async (message: core.Message.Model, user: core.User.Model, event: core.Event.Model): Promise<string> => {
+export const buildEventEmails = async (message: core.Message.Model, club: core.Club.Model, user: core.User.Model, event: core.Event.Model): Promise<string> => {
 	const methodName = '[buildEventEmails] -'
 
 	switch(message.content.type) {
 		case core.Message.Type.Rsvp:
-			return await buildRSVPEmail(user, event)
+			return await buildRSVPEmail(user, event, club)
 		case core.Message.Type.UnRsvp:
-			return await sendMemberUnRSVPEmail(user, event)
+			return await sendMemberUnRSVPEmail(user, event, club)
 		default:
 			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
 	}
@@ -49,20 +49,20 @@ export const buildOnboardingEmail = async (message: core.Message.Model, user: co
  * @param club Club document.
  * @param form The form submitted by the user.
  */
-export const buildFormEmail = async (message: core.Message.Model, form: any, event?: core.Event.Model): Promise<string> => {
+export const buildFormEmail = async (message: core.Message.Model, club: core.Club.Model, form: any, event?: core.Event.Model): Promise<string> => {
 	const methodName = '[buildFormEmail] -'
 
 	switch (message.content.type) {
 		case core.Message.Type.Application:
-			return await sendMembershipApplicationEmail(form)
+			return await sendMembershipApplicationEmail(form, club)
 		case core.Message.Type.MembershipInquiry:
-			return await sendMembershipInquiryEmail(form)
+			return await sendMembershipInquiryEmail(form, club)
 		case core.Message.Type.MembershipInquiryRes:
-			return await sendMembershipInquiryResponseEmail(form)
+			return await sendMembershipInquiryResponseEmail(form, club)
 		case core.Message.Type.PublicRsvp:
-			return await sendPublicRSVPEmail(event, form)
+			return await sendPublicRSVPEmail(event, form, club)
 		case core.Message.Type.NewProviderRequest:
-			return await sendProviderRequestEmail(form)
+			return await sendProviderRequestEmail(form, club)
 		default:
 			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
 	}
@@ -75,14 +75,14 @@ export const buildFormEmail = async (message: core.Message.Model, form: any, eve
  * @param provider 
  * @param reservation 
  */
-export const buildServiceEmails = async (message: core.Message.Model, user: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation?: core.Event.Reservation): Promise<string> => {
+export const buildServiceEmails = async (message: core.Message.Model, club: core.Club.Model, user: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation?: core.Event.Reservation): Promise<string> => {
 	const methodName = '[buildServiceEmails] -'
 
 	switch (message.content.type) {
 		case core.Message.Type.ServiceRequest:
-			return buildServiceRequestEmail(user, provider, event, reservation)
+			return buildServiceRequestEmail(user, provider, event, reservation, club)
 		case core.Message.Type.NewProviderRequest:
-			return sendProviderRequestEmail(provider)
+			return sendProviderRequestEmail(provider, club)
 		default:
 			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
 	}
@@ -99,24 +99,26 @@ export const buildWelcomeEmail = async (member: core.User.Model, club: core.Club
  * Sends an email to the drivers club admin with the new member application info.
  * @param memberInfo Form information.
  */
-export const sendMembershipApplicationEmail = async (memberInfo: any): Promise<string> => {
-	return templates.MembershipApplicationTemplate(memberInfo)
+export const sendMembershipApplicationEmail = async (memberInfo: any, club: core.Club.Model): Promise<string> => {
+	return (club.name === core.Constants.Clubs.DRIVERS_CLUB) ?
+		templates.DcMembershipApplicationTemplate(memberInfo, club) :
+		templates.OttoMembershipApplicationTemplate(memberInfo, club)
 }
 
 /**
  * Sends an email to the Drivers Club admin with membership inquiry information.
  * @param memberInfo Form information.
  */
-export const sendMembershipInquiryEmail = async (memberInfo: any): Promise<string> => {
-	return templates.MembershipInquiryTemplate(memberInfo)
+export const sendMembershipInquiryEmail = async (memberInfo: any, club: core.Club.Model): Promise<string> => {
+	return templates.MembershipInquiryTemplate(memberInfo, club)
 }
 
 /**
  * Sends a response email to perspective member letting them know their application is being reviewed.
  * @param memberInfo Form information.
  */
-export const sendMembershipInquiryResponseEmail = async (memberInfo: any): Promise<string> => {
-	return templates.MembershipInquiryResponseTemplate(memberInfo)
+export const sendMembershipInquiryResponseEmail = async (memberInfo: any, club: core.Club.Model): Promise<string> => {
+	return templates.MembershipInquiryResponseTemplate(memberInfo, club)
 }
 
 //--------------------------------------------------
@@ -130,16 +132,16 @@ export const sendMembershipInquiryResponseEmail = async (memberInfo: any): Promi
  * @param reservation Reservation model (sub document of the event model).
  * 
  */
-export const buildServiceRequestEmail = async (member: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation: core.Event.Reservation): Promise<string> => {
-	return templates.ServiceRequestTemplate(member, provider, event, reservation)
+export const buildServiceRequestEmail = async (member: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation: core.Event.Reservation, club: core.Club.Model): Promise<string> => {
+	return templates.ServiceRequestTemplate(member, provider, event, reservation, club)
 }
 
 /**
  * Sends an email to an admin letting them know a member wants a service provider added.
  * @param provider Calendar model.
  */
-export const sendProviderRequestEmail = async (form: any): Promise<string> => {
-	return templates.NewProviderTemplate(form)
+export const sendProviderRequestEmail = async (form: any, club: core.Club.Model): Promise<string> => {
+	return templates.NewProviderTemplate(form, club)
 }
 
 //--------------------------------------------------
@@ -151,8 +153,8 @@ export const sendProviderRequestEmail = async (form: any): Promise<string> => {
  * @param member User model.
  * @param event Event model.
  */
-export const buildRSVPEmail = async (member: core.User.Model, event: core.Event.Model): Promise<string> => {
-	return templates.RsvpTemplate(member, event)
+export const buildRSVPEmail = async (member: core.User.Model, event: core.Event.Model, club: core.Club.Model): Promise<string> => {
+	return templates.RsvpTemplate(member, event, club)
 }
 
 /**
@@ -160,9 +162,9 @@ export const buildRSVPEmail = async (member: core.User.Model, event: core.Event.
  * @param member User model.
  * @param event Event model.
  */
-export const sendMemberUnRSVPEmail = async (member: core.User.Model, event: core.Event.Model): Promise<string> => {
+export const sendMemberUnRSVPEmail = async (member: core.User.Model, event: core.Event.Model, club: core.Club.Model): Promise<string> => {
 	const methodName = '[sendMemberUnRSVPEmail] -'
-	return templates.UnRsvpTemplate(member, event)
+	return templates.UnRsvpTemplate(member, event, club)
 }
 
 /**
@@ -173,6 +175,6 @@ export const sendMemberUnRSVPEmail = async (member: core.User.Model, event: core
  * @param plusOne Boolean.
  * @param event Event model.
  */
-export const sendPublicRSVPEmail = async (event: core.Event.Model, form: any): Promise<string> => {
-	return templates.PublicRsvpTemplate(event, form)
+export const sendPublicRSVPEmail = async (event: core.Event.Model, form: any, club: core.Club.Model): Promise<string> => {
+	return templates.PublicRsvpTemplate(event, form, club)
 }
