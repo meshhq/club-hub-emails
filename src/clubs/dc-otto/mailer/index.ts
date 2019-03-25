@@ -96,7 +96,7 @@ export const buildWelcomeEmail = async (member: core.User.Model, club: core.Club
 }
 
 /**
- * Sends an email to the drivers club admin with the new member application info.
+ * Sends an email to the club admin with the new member application info.
  * @param memberInfo Form information.
  */
 export const sendMembershipApplicationEmail = async (memberInfo: any, club: core.Club.Model): Promise<string> => {
@@ -106,7 +106,7 @@ export const sendMembershipApplicationEmail = async (memberInfo: any, club: core
 }
 
 /**
- * Sends an email to the Drivers Club admin with membership inquiry information.
+ * Sends an email to the club admin with membership inquiry information.
  * @param memberInfo Form information.
  */
 export const sendMembershipInquiryEmail = async (memberInfo: any, club: core.Club.Model): Promise<string> => {

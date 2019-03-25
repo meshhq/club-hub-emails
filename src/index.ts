@@ -4,7 +4,7 @@ import * as Handlebars from 'handlebars'
 import * as core from 'club-hub-core'
 
 // Drivers Club Specific Emails.
-import * as DCEmails from './clubs/drivers-club/mailer/index'
+import * as DCEmails from './clubs/dc-otto/mailer/index'
 export { DCEmails }
 
 // Transform 
