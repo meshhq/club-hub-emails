@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const Handlebars = require("handlebars");
-const DCEmails = require("./clubs/dc-otto/mailer/index");
-exports.DCEmails = DCEmails;
+const CarClub = require("./clubs/dc-otto/mailer/index");
+exports.CarClub = CarClub;
 const transform = require("./transform/transform");
 exports.CompileGenericEmail = (content, club) => {
     const eventInfo = transform.BuildGenericContent(content, club);
