@@ -32,7 +32,9 @@ const CompileEmail = (path, info) => {
                 return reject(err);
             }
             try {
+                console.log("Data", data);
                 const template = Handlebars.compile(data);
+                console.log("Template", template);
                 resolve(template(info));
             }
             catch (e) {

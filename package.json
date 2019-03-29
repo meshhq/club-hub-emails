@@ -22,10 +22,10 @@
     "index.js"
   ],
   "dependencies": {
-    "club-hub-core": "https://git@github.com/meshhq/club-hub-core.git#0.0.35",
     "feather-icons": "^4.17.0",
     "handlebars": "^4.1.0",
-    "uninstall": "0.0.0"
+    "uninstall": "0.0.0",
+    "club-hub-core": "https://git@github.com/meshhq/club-hub-core.git#0.0.42"
   },
   "devDependencies": {
     "typescript": "^3.3.3",

@@ -1,9 +1,11 @@
 {
 	"title": "Tee Time Confirmation",
 	"subtitle": "Your Tee Time at Wing Point Country Club has been confirmed.",
-	"icon": "fas fa-golf-ball",
+	"iconURL": "https://s3-us-west-2.amazonaws.com/clubhubs3/assets/font-awesome/calendar-alt.png",
 	"info": "4 Golfers on Saturday, March 21st 2019 at 10:00AM",
 	"url": "www.tryclubhub.com",
-    "unsubscribeURL": "www.tryclubhub.com"
+	"unsubscribeURL": "www.tryclubhub.com",
+	"primaryColor": "#386855",
+	"secondaryColor": "#c7d5cf"
 }
 

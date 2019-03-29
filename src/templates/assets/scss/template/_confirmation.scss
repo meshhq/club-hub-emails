@@ -5,25 +5,28 @@
 .container.body.confirmation-body {
 
     .confirmation-icon-container {
-        height: 62px;
-        width: 62px;
-        border-radius: 31px;
-        background-color: $primary-color-light !important;
-
+        height: 72px;
+        width: 72px;
+        border-radius: 36px;
+        background-color: var(--primary-color-light) !important;
+        text-align: center;
+        
         .icon-img {
             height: 24px;
             width: 24px;
             padding-top: 18px;
         }
-
+        p {
+            padding-top: 28px;
+            padding-left: 16px;
+            font-size: 42px;
+        }
         .feather {
-            stroke: $primary-color;
             font-size: 24px;
             width: 62px;
         }
 
         i {
-            color: $primary-color;
             font-size: 24px;
         }
     }
@@ -34,5 +37,14 @@
 
     .no-border {
         border-bottom: none;
+    }
+}
+
+table.button {
+    table {
+        td {
+            background: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
     }
 }

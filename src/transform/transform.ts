@@ -102,7 +102,7 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
         info = `${event.name} takes place on ${day} at ${time}.`
         icon = 'fas fa-ticket'
 	}
-
+    icon = 'https://s3-us-west-2.amazonaws.com/clubhubs3/assets/font-awesome/calendar-alt.png'
     const confirmationInfo: ConfirmationInfo = {
         title: title,
         subtitle: subtitle,

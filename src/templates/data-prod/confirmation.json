@@ -1,9 +1,11 @@
 {
 	"title": "{{title}}",
 	"subtitle": "{{subtitle}}",
-	"icon": "{{icon}}",
+	"iconURL": "{{iconURL}}",
 	"info": "{{info}}",
 	"url": "{{url}}",
-    "unsubscribeURL": "{{unsubscribeURL}}"
+	"unsubscribeURL": "{{unsubscribeURL}}",
+	"primaryColor": "{{primaryColor}}",
+	"secondaryColor": "{{secondaryColor}}"
 }
 

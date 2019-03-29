@@ -74,6 +74,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
         info = `${event.name} takes place on ${day} at ${time}.`;
         icon = 'fas fa-ticket';
     }
+    icon = 'https://s3-us-west-2.amazonaws.com/clubhubs3/assets/font-awesome/calendar-alt.png';
     const confirmationInfo = {
         title: title,
         subtitle: subtitle,

@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #1d362c;
+  --primary-color-light: #d7e1dd;
+}
+
 //  Foundation for Emails Settings
 //  ------------------------------
 //
@@ -16,8 +21,8 @@
 // 1. Global
 // ---------
 
-$primary-color: #467FD0;
-$primary-color-light: #E1EDFF;
+$primary-color: #1d362c;
+$primary-color-light: #d7e1dd;
 $secondary-color: #777777;
 $success-color: #3adb76;
 $warning-color: #ffae00;

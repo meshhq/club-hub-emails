@@ -18,10 +18,7 @@ const EventFactory = Factory.makeFactory<core.Event.Model>({
 	name: Factory.each((i) => Faker.lorem.word()),
 	photoURL: Factory.each((i) => Faker.internet.url()),
 	remoteID: Factory.each((i) => Faker.random.uuid()),
-	price: Factory.each((i) => Faker.random.number({
-		min: 50.00,
-		max: 150.00
-	})),
+	price: '20',
 	shortLink: undefined,
 	richContent: {html: '<p>Howdy</p>'},
     reservations: [reservation]
