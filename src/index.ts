@@ -2,6 +2,7 @@
 import * as fs from 'fs'
 import * as Handlebars from 'handlebars'
 import * as core from 'club-hub-core'
+import * as JSDOM from 'jsdom'
 
 // Drivers Club Specific Emails.
 import * as CarClub from './clubs/dc-otto/mailer/index'
@@ -26,7 +27,7 @@ export const CompileGenericEmail = (content: string, club: core.Club.Model): Pro
 
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/generic.html`
-    return CompileEmail(path, eventInfo)
+    return CompileEmail(path, eventInfo, club)
 }
 
 /**
@@ -41,7 +42,7 @@ export const CompileEventEmail = (event: core.Event.Model, club: core.Club.Model
     
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/event.html`
-    return CompileEmail(path, eventInfo)
+    return CompileEmail(path, eventInfo, club)
 }
 
 /**
@@ -55,7 +56,7 @@ export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model, l
 
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/post.html`
-    return CompileEmail(path, postInfo)
+    return CompileEmail(path, postInfo, club)
 }
 
 /**
@@ -69,7 +70,7 @@ export const CompileConfirmationEmail = (reservation: core.Event.Reservation, ev
     
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/confirmation.html`
-    return CompileEmail(path, confirmationInfo)
+    return CompileEmail(path, confirmationInfo, club)
 }
 
 /**
@@ -77,14 +78,17 @@ export const CompileConfirmationEmail = (reservation: core.Event.Reservation, ev
  * @param path The path of the email template. 
  * @param data The data to compile.
  */
-const CompileEmail = (path: string, info: any): Promise<string> => {
+const CompileEmail = (path: string, info: any, club: core.Club.Model): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         fs.readFile(path, {encoding: 'utf8'}, (err: NodeJS.ErrnoException, data: string) => {
             if (err) {
                 return reject(err)
 			}
 			try {
-				const template = Handlebars.compile(data);
+                // Replace color values. 
+                const primaryUpdated = data.replace("var(--primary-color)", club.clubSettings.primaryColor);
+                const secondaryUpdated = primaryUpdated.replace("var(--secondary-color)", club.clubSettings.secondaryColor);
+                const template = Handlebars.compile(secondaryUpdated);
 				resolve(template(info))
 			} catch (e) {
 				reject(e)
