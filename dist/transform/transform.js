@@ -11,7 +11,7 @@ exports.BuildGenericContent = (content, club) => {
 };
 exports.BuildEventContent = (event, club, link) => {
     const date = new Date(event.start);
-    var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
     var timeOptions = { hour: 'numeric', minute: 'numeric' };
     const richContent = {
         name: event.name,

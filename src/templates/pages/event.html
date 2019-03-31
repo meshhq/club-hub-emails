@@ -32,37 +32,33 @@ subject: New Event
     </columns>
   </row>
 
-  
-
   <row class="event-row details-row">
     <columns small="12">
-      <container class="body event-body">
-        <row>
-          <columns small="12" large="6">
-            <div class="details-container padded-container bottom-border">
-              <p class="detail-header">LOCATION</p>
-              <p class="detail-content">{{event.location}}</p>
-              <p class="detail-content">{{event.street}}</p>
-              <a class="detail-link">View On Map</a>
-            </div>
-          </columns>
-          <columns small="12" large="6">
-            <div class="details-container padded-container bottom-border align-text-right">
-              <p class="detail-header text-right">DATE & TIME</p>
-              <p class="detail-content text-right">{{event.date}}</p>
-              <p class="detail-content text-right">{{event.time}}</p>
-              <a class="detail-link">Add To Calendar</a>
-            </div>
-          </columns>
-        </row>
-      </container>
+      <row>
+        <columns small="6" large="6">
+          <div class="details-container padded-container bottom-border">
+            <h6>LOCATION</h6>
+            <p class="detail-content">{{event.location}}</p>
+            <p class="detail-content">{{event.street}}</p>
+            <a class="detail-link">View On Map</a>
+          </div>
+        </columns>
+        <columns small="6" large="6">
+          <div class="details-container padded-container bottom-border align-text-right">
+            <h6 class="text-right">DATE & TIME</h6>
+            <p class="detail-content text-right">{{event.date}}</p>
+            <p class="detail-content text-right">{{event.time}}</p>
+            <a class="detail-link">Add To Calendar</a>
+          </div>
+        </columns>
+      </row>
     </columns>
   </row>
 
   <row class="event-row button-row">
     <columns small="12">
       <div class="button-container padded-container bottom-border">
-        <button class="expanded" href="{{event.url}}">{{event.cta}}</button>
+        <button class="large expanded" href="{{event.url}}">{{event.cta}}</button>
       </div>
     </columns>
   </row>
@@ -71,7 +67,7 @@ subject: New Event
     <columns small="12">
       <div class="description-container padded-container bottom-border">
         <div class="details-container">
-          <p class="detail-header">DESCRIPTON</p>
+          <h6>DESCRIPTION</h6>
           <p class="detail-content">{{{event.content}}}</p>
         </div>
     </columns>

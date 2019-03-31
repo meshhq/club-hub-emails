@@ -25,7 +25,7 @@ img {
 
 center {
   width: 100%;
-  min-width: 580px; }
+  min-width: 540px; }
 
 a img {
   border: none; }
@@ -62,7 +62,7 @@ table.body {
 
 table.container {
   background: #fefefe;
-  width: 580px;
+  width: 540px;
   margin: 0 auto;
   Margin: 0 auto;
   text-align: inherit; }
@@ -96,7 +96,7 @@ th.columns table:not(.button) {
   width: 100%; }
 
 th.large-6 {
-  width: 274px;
+  width: 254px;
   padding-left: 8px;
   padding-right: 8px; }
 
@@ -110,7 +110,7 @@ th.large-6.last {
   width: 50%; }
 
 th.large-12 {
-  width: 564px;
+  width: 524px;
   padding-left: 8px;
   padding-right: 8px; }
 
@@ -121,7 +121,7 @@ th.large-12.last {
   padding-right: 16px; }
 
 th.large-12 center {
-  min-width: 532px; }
+  min-width: 492px; }
 
 td.expander,
 th.expander {
@@ -133,6 +133,7 @@ h1.text-center,
 p.text-center {
   text-align: center; }
 
+h6.text-right,
 p.text-right {
   text-align: right; }
 
@@ -152,6 +153,7 @@ th.float-center {
 body,
 table.body,
 h1,
+h6,
 p,
 td,
 th,
@@ -165,7 +167,8 @@ a {
   text-align: left;
   line-height: 1.75; }
 
-h1 {
+h1,
+h6 {
   color: inherit;
   word-wrap: normal;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -175,6 +178,9 @@ h1 {
 
 h1 {
   font-size: 34px; }
+
+h6 {
+  font-size: 18px; }
 
 body,
 table.body,
@@ -250,6 +256,10 @@ table.button.small table a {
   padding: 5px 10px 5px 10px;
   font-size: 14px; }
 
+table.button.large table a {
+  padding: 10px 20px 10px 20px;
+  font-size: 20px; }
+
 table.button.expanded {
   width: 100% !important; }
   table.button.expanded table {
@@ -274,7 +284,7 @@ table.button:active table a {
   border: 0 solid #0b1511; }
 
 table.menu {
-  width: 580px; }
+  width: 540px; }
   table.menu th.menu-item {
     padding: 10px;
     padding-right: 10px; }
@@ -291,7 +301,7 @@ table.menu.vertical th.menu-item {
 .menu[align="center"] {
   width: auto !important; }
 
-@media only screen and (max-width: 596px) {
+@media only screen and (max-width: 556px) {
   table.body img {
     width: auto;
     height: auto; }
@@ -309,11 +319,11 @@ table.menu.vertical th.menu-item {
     table.body .columns .columns {
       padding-left: 0 !important;
       padding-right: 0 !important; }
+  th.small-6 {
+    display: inline-block !important;
+    width: 50% !important; }
   th.small-12 {
     display: inline-block !important;
-    width: 100% !important; }
-  .columns th.small-12 {
-    display: block !important;
     width: 100% !important; }
   table.menu {
     width: 100% !important; }
@@ -332,11 +342,8 @@ html,
 .body {
   background: white !important; }
 
-@media screen and (max-width: 800px) {
-  .clubhub-email-body {
-    width: 100vw !important; } }
-
 h1,
+h6,
 p,
 a,
 ul {
@@ -346,11 +353,25 @@ ul {
 
 h1 {
   font-weight: 700;
-  font-size: 32px; }
+  font-size: 24px; }
+  @media screen and (min-width: 596px) {
+    h1 {
+      font-size: 32px !important; } }
+
+h6 {
+  font-weight: 500;
+  color: #cacaca;
+  font-size: 14px; }
+  @media screen and (min-width: 800px) {
+    h6 {
+      font-size: 18px !important; } }
 
 p {
-  font-size: 18px;
-  word-break: normal; }
+  word-break: normal;
+  font-size: 16px; }
+  @media screen and (min-width: 596px) {
+    p {
+      font-size: 18px !important; } }
 
 .light-text {
   font-weight: 300; }
@@ -370,11 +391,14 @@ img {
   min-width: 100%; }
 
 .image-container {
-  height: 300px;
+  height: 240px;
   min-width: 100%;
   overflow: hidden;
   background-color: #f3f3f3;
   vertical-align: middle; }
+  @media only screen and (min-width: 596px) {
+    .image-container {
+      height: 320px !important; } }
 
 .logo-col {
   padding: 18px 0px; }
@@ -409,7 +433,7 @@ img {
   .container.footer p,
   .container.footer a {
     color: #AEBDC4;
-    font-size: 12px;
+    font-size: 12px !important;
     font-weight: 500; }
   .container.footer ul {
     padding-left: 0px; }
@@ -444,19 +468,11 @@ table.button table td {
   margin-bottom: 0px !important; }
 
 .event-body a {
-  line-height: 1.75rem; }
+  line-height: 1.75rem;
+  text-decoration: underline; }
 
 .event-body .align-text-right {
   text-align: right; }
-
-.event-body .detail-header {
-  font-size: 16px;
-  font-weight: 500;
-  color: #cacaca; }
-
-.event-body .detail-content {
-  font-size: 22px;
-  line-height: 2.5rem; }
 
 .event-body .detail-link {
   font-weight: 500;
