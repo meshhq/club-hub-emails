@@ -3,9 +3,10 @@ subject: My Basic Email Template Subject
 ---
 
 <container class="body content-body">
+
   <row class="logo-row">
     <columns class="logo-col" small="12">
-      <div class="logo-container padded-container">
+      <div class="logo-container bottom-border">
         <a href="{{club.domain}}">
           <img src="{{club.logoURL}}" alt="{{club.name}}">
         </a>
@@ -16,7 +17,7 @@ subject: My Basic Email Template Subject
   <row>
     <columns class="content-column" small="12">
       <div class="content-container padded-container bottom-border">
-        {{{content.content}}}
+        {{{generic.content}}}
       <div>
     </columns>
   </row>

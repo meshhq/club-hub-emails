@@ -5,19 +5,9 @@ subject: New Event
 <container class="body event-body">
   <row class="logo-row">
     <columns class="logo-col" small="12">
-      <div class="logo-container padded-container">
+      <div class="logo-container bottom-border">
         <a href="{{club.domain}}">
           <img src="{{club.logoURL}}" alt="{{club.name}}">
-        </a>
-      </div>
-    </columns>
-  </row>
-
-  <row class="image-row">
-    <columns small="12">
-      <div class="image-container">
-        <a href="{{event.url}}">
-          <img class="text-center hero-image" src="{{event.photoURL}}" alt="">
         </a>
       </div>
     </columns>
@@ -31,6 +21,18 @@ subject: New Event
       </div>
     </columns>
   </row>
+  
+  <row class="image-row">
+    <columns small="12">
+      <div class="image-container">
+        <a href="{{event.url}}">
+          <img class="text-center hero-image" src="{{event.photoURL}}" alt="">
+        </a>
+      </div>
+    </columns>
+  </row>
+
+  
 
   <row class="event-row details-row">
     <columns small="12">
@@ -45,10 +47,10 @@ subject: New Event
             </div>
           </columns>
           <columns small="12" large="6">
-            <div class="details-container padded-container bottom-border">
-              <p class="detail-header">DATE & TIME</p>
-              <p class="detail-content">{{event.date}}</p>
-              <p class="detail-content">{{event.time}}</p>
+            <div class="details-container padded-container bottom-border align-text-right">
+              <p class="detail-header text-right">DATE & TIME</p>
+              <p class="detail-content text-right">{{event.date}}</p>
+              <p class="detail-content text-right">{{event.time}}</p>
               <a class="detail-link">Add To Calendar</a>
             </div>
           </columns>
