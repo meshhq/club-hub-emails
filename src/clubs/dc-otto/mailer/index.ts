@@ -10,16 +10,16 @@ import * as templates from './templates'
  * @param user User document.
  * @param event Event document.
  */
-export const buildEventEmails = async (message: core.Message.Model, club: core.Club.Model, user: core.User.Model, event: core.Event.Model): Promise<string> => {
+export const buildEventEmails = async (action: core.Action.Model, club: core.Club.Model, user: core.User.Model, event: core.Event.Model): Promise<string> => {
 	const methodName = '[buildEventEmails] -'
 
-	switch(message.content.type) {
-		case core.Message.Type.Rsvp:
+	switch(action.type) {
+		case core.Action.Type.Rsvp:
 			return await buildRSVPEmail(user, event, club)
-		case core.Message.Type.UnRsvp:
+		case core.Action.Type.UnRsvp:
 			return await sendMemberUnRSVPEmail(user, event, club)
 		default:
-			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
+			throw new Error(`${methodName} received an unsupported message type: ${action.type}`)
 	}
 }
 
@@ -31,14 +31,14 @@ export const buildEventEmails = async (message: core.Message.Model, club: core.C
  * @param password Temporary login password.
  * 
  */
-export const buildOnboardingEmail = async (message: core.Message.Model, user: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
+export const buildOnboardingEmail = async (action: core.Action.Model, user: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
 	const methodName = '[buildOnboardingEmail] -'
 
-	switch(message.content.type) {
-		case core.Message.Type.Welcome:
+	switch(action.type) {
+		case core.Action.Type.Welcome:
 			return await buildWelcomeEmail(user, club, password)
 		default:
-			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
+			throw new Error(`${methodName} received an unsupported message type: ${action.type}`)
 	}
 }
 
@@ -49,22 +49,22 @@ export const buildOnboardingEmail = async (message: core.Message.Model, user: co
  * @param club Club document.
  * @param form The form submitted by the user.
  */
-export const buildFormEmail = async (message: core.Message.Model, club: core.Club.Model, form: any, event?: core.Event.Model): Promise<string> => {
+export const buildFormEmail = async (action: core.Action.Model, club: core.Club.Model, form: any, event?: core.Event.Model): Promise<string> => {
 	const methodName = '[buildFormEmail] -'
 
-	switch (message.content.type) {
-		case core.Message.Type.Application:
+	switch (action.type) {
+		case core.Action.Type.Application:
 			return await sendMembershipApplicationEmail(form, club)
-		case core.Message.Type.MembershipInquiry:
+		case core.Action.Type.MembershipInquiry:
 			return await sendMembershipInquiryEmail(form, club)
-		case core.Message.Type.MembershipInquiryRes:
+		case core.Action.Type.MembershipInquiryRes:
 			return await sendMembershipInquiryResponseEmail(form, club)
-		case core.Message.Type.PublicRsvp:
+		case core.Action.Type.PublicRsvp:
 			return await sendPublicRSVPEmail(event, form, club)
-		case core.Message.Type.NewProviderRequest:
+		case core.Action.Type.NewProviderRequest:
 			return await sendProviderRequestEmail(form, club)
 		default:
-			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
+			throw new Error(`${methodName} received an unsupported message type: ${action.type}`)
 	}
 }
 
@@ -75,16 +75,16 @@ export const buildFormEmail = async (message: core.Message.Model, club: core.Clu
  * @param provider 
  * @param reservation 
  */
-export const buildServiceEmails = async (message: core.Message.Model, club: core.Club.Model, user: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation?: core.Event.Reservation): Promise<string> => {
+export const buildServiceEmails = async (action: core.Action.Model, club: core.Club.Model, user: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation?: core.Event.Reservation): Promise<string> => {
 	const methodName = '[buildServiceEmails] -'
 
-	switch (message.content.type) {
-		case core.Message.Type.ServiceRequest:
+	switch (action.type) {
+		case core.Action.Type.ServiceRequest:
 			return buildServiceRequestEmail(user, provider, event, reservation, club)
-		case core.Message.Type.NewProviderRequest:
+		case core.Action.Type.NewProviderRequest:
 			return sendProviderRequestEmail(provider, club)
 		default:
-			throw new Error(`${methodName} received an unsupported message type: ${message.content.type}`)
+			throw new Error(`${methodName} received an unsupported message type: ${action.type}`)
 	}
 }
 
