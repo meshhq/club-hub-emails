@@ -248,7 +248,10 @@ table.button:active table tr td a,
 table.button table tr td a:visited,
 table.button.small:hover table tr td a,
 table.button.small:active table tr td a,
-table.button.small table tr td a:visited {
+table.button.small table tr td a:visited,
+table.button.large:hover table tr td a,
+table.button.large:active table tr td a,
+table.button.large table tr td a:visited {
   color: #fefefe; }
 
 table.button.small table td,
