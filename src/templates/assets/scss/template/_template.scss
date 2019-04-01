@@ -8,9 +8,9 @@ html,
   background: white !important;
 }
 
-.clubhub-email-body {
-  @media screen and (max-width: 800px) {
-     width: 100vw !important;
+@media screen and (max-width: 596px) {
+  u ~ div {
+    min-width: 100vw !important;
   }
 }
 
@@ -35,12 +35,30 @@ ul {
 
 h1 {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 24px;
+
+  @media screen and (min-width:596px) {
+    font-size: 32px !important;
+  }
+}
+
+h6 {
+  font-weight: 500;
+  color: $medium-gray;   
+  font-size: 14px;
+  
+  @media screen and (min-width:800px) {
+      font-size: 18px !important;
+  }
 }
 
 p {
-  font-size: 18px;
   word-break: normal;
+  font-size: 16px;
+
+  @media screen and (min-width:596px) {
+    font-size: 18px !important;
+  }
 }
 
 .light-text{
@@ -80,11 +98,15 @@ img {
 }
 
 .image-container {
-  height: 300px;
+  height: 240px;
   min-width: 100%;
   overflow: hidden;
   background-color:  $light-gray;
   vertical-align: middle;
+
+  @media only screen and (min-width:596px) {
+    height: 320px !important;
+  }
 }
 
 

@@ -7,22 +7,12 @@
     }
 
     a {
-        line-height: 1.75rem; 
+        line-height: 1.75rem;
+        text-decoration: underline; 
     }
     
     .align-text-right {
         text-align: right;
-    }
-
-    .detail-header {
-        font-size: 16px;
-        font-weight: 500;
-        color: $medium-gray;
-    }
-    
-    .detail-content {
-        font-size: 22px;
-        line-height: 2.5rem;
     }
 
     .detail-link {
