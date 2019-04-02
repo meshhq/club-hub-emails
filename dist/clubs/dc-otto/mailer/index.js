@@ -21,11 +21,11 @@ exports.buildEventEmails = (action, club, user, event) => __awaiter(this, void 0
             throw new Error(`${methodName} received an unsupported message type: ${action.type}`);
     }
 });
-exports.buildOnboardingEmail = (action, user, club, password) => __awaiter(this, void 0, void 0, function* () {
+exports.buildOnboardingEmail = (action, user, club, invitation) => __awaiter(this, void 0, void 0, function* () {
     const methodName = '[buildOnboardingEmail] -';
     switch (action.type) {
         case core.Action.Type.Welcome:
-            return yield exports.buildWelcomeEmail(user, club, password);
+            return yield exports.buildWelcomeEmail(user, club, invitation);
         default:
             throw new Error(`${methodName} received an unsupported message type: ${action.type}`);
     }
@@ -58,8 +58,8 @@ exports.buildServiceEmails = (action, club, user, provider, event, reservation) 
             throw new Error(`${methodName} received an unsupported message type: ${action.type}`);
     }
 });
-exports.buildWelcomeEmail = (member, club, password) => __awaiter(this, void 0, void 0, function* () {
-    return templates.WelcomeEmailTemplate(member, club, password);
+exports.buildWelcomeEmail = (member, club, invitation) => __awaiter(this, void 0, void 0, function* () {
+    return templates.WelcomeEmailTemplate(member, club, invitation);
 });
 exports.sendMembershipApplicationEmail = (memberInfo, club) => __awaiter(this, void 0, void 0, function* () {
     return (club.name === core.Constants.Clubs.DRIVERS_CLUB) ?

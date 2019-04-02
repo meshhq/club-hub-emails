@@ -1,5 +1,5 @@
 import * as core from 'club-hub-core';
-declare const welcomeEmailTemplate: (member: core.User.Model, club: core.Club.Model, password: string) => string;
+declare const welcomeEmailTemplate: (member: core.User.Model, club: core.Club.Model, invitation: core.Invitation.Model) => string;
 declare const dcMembershipApplicationTemplate: (memberInfo: any, club: core.Club.Model) => string;
 declare const ottoMembershipApplicationTemplate: (memberInfo: any, club: core.Club.Model) => string;
 declare const membershipInquiryTemplate: (memberInfo: any, club: core.Club.Model) => string;
