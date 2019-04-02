@@ -1,9 +1,9 @@
 import * as core from 'club-hub-core';
 export declare const buildEventEmails: (action: core.Action.Model, club: core.Club.Model, user: core.User.Model, event: core.Event.Model) => Promise<string>;
-export declare const buildOnboardingEmail: (action: core.Action.Model, user: core.User.Model, club: core.Club.Model, password: string) => Promise<string>;
+export declare const buildOnboardingEmail: (action: core.Action.Model, user: core.User.Model, club: core.Club.Model, invitation: core.Invitation.Model) => Promise<string>;
 export declare const buildFormEmail: (action: core.Action.Model, club: core.Club.Model, form: any, event?: core.Event.Model) => Promise<string>;
 export declare const buildServiceEmails: (action: core.Action.Model, club: core.Club.Model, user: core.User.Model, provider: core.Calendar.Model, event: core.Event.Model, reservation?: core.Event.Reservation) => Promise<string>;
-export declare const buildWelcomeEmail: (member: core.User.Model, club: core.Club.Model, password: string) => Promise<string>;
+export declare const buildWelcomeEmail: (member: core.User.Model, club: core.Club.Model, invitation: core.Invitation.Model) => Promise<string>;
 export declare const sendMembershipApplicationEmail: (memberInfo: any, club: core.Club.Model) => Promise<string>;
 export declare const sendMembershipInquiryEmail: (memberInfo: any, club: core.Club.Model) => Promise<string>;
 export declare const sendMembershipInquiryResponseEmail: (memberInfo: any, club: core.Club.Model) => Promise<string>;

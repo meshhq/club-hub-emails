@@ -31,12 +31,12 @@ export const buildEventEmails = async (action: core.Action.Model, club: core.Clu
  * @param password Temporary login password.
  * 
  */
-export const buildOnboardingEmail = async (action: core.Action.Model, user: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
+export const buildOnboardingEmail = async (action: core.Action.Model, user: core.User.Model, club: core.Club.Model, invitation: core.Invitation.Model): Promise<string> => {
 	const methodName = '[buildOnboardingEmail] -'
 
 	switch(action.type) {
 		case core.Action.Type.Welcome:
-			return await buildWelcomeEmail(user, club, password)
+			return await buildWelcomeEmail(user, club, invitation)
 		default:
 			throw new Error(`${methodName} received an unsupported message type: ${action.type}`)
 	}
@@ -91,8 +91,8 @@ export const buildServiceEmails = async (action: core.Action.Model, club: core.C
 /**
  * Sends a welcome email to a new member with temp password and login details.
  */
-export const buildWelcomeEmail = async (member: core.User.Model, club: core.Club.Model, password: string): Promise<string> => {
-	return templates.WelcomeEmailTemplate(member, club, password)
+export const buildWelcomeEmail = async (member: core.User.Model, club: core.Club.Model, invitation: core.Invitation.Model): Promise<string> => {
+	return templates.WelcomeEmailTemplate(member, club, invitation)
 }
 
 /**

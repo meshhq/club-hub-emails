@@ -1,18 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = require("club-hub-core");
-const welcomeEmailTemplate = (member, club, password) => {
-    const webURL = `https://${club.domain}.tryclubhub.com/`;
+const welcomeEmailTemplate = (member, club, invitation) => {
     const supportEmail = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'info@drivers.club' : 'info@otto.club';
     const message = `
 		<p>Hi ${member.firstName} and welcome to ${club.name}!
 
 		<p>Your new ${club.name} account has been created. This gives you access to the ${club.name} web and mobile apps!</p>
 
-		<p>Please follow the url: ${webURL} to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
+		<p>Please follow the url: ${invitation.inviteURL} to create your password using your email: ${member.email}.</p>
 			
-		<p>To change your password, please use the "Forgot Password" link on the login screen. An email will then be sent to you with instructions on resetting the password.</p>
-
 		<p>Please send an email to ${supportEmail} if you have any questions!</p>
 
 		<p>Best,</p> 

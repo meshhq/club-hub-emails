@@ -6,9 +6,8 @@ import { Model } from 'mongoose';
 // ONBOARDING TEMPLATES
 //------------------------------------------------------
 
-const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, password: string) => {
+const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, invitation: core.Invitation.Model) => {
 
-	const webURL = `https://${club.domain}.tryclubhub.com/`
 	const supportEmail = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'info@drivers.club' : 'info@otto.club'
 
     const message = `
@@ -16,10 +15,8 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, pa
 
 		<p>Your new ${club.name} account has been created. This gives you access to the ${club.name} web and mobile apps!</p>
 
-		<p>Please follow the url: ${webURL} to login. Your username is: ${member.email}, your temporary password is: ${password}.</p>
+		<p>Please follow the url: ${invitation.inviteURL} to create your password using your email: ${member.email}.</p>
 			
-		<p>To change your password, please use the "Forgot Password" link on the login screen. An email will then be sent to you with instructions on resetting the password.</p>
-
 		<p>Please send an email to ${supportEmail} if you have any questions!</p>
 
 		<p>Best,</p> 
