@@ -80,28 +80,37 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
 
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions)
-    
-    if (group.name === core.Calendar.GroupName.Golf) {
-        title = 'Tee Time Confirmation'
-        subtitle = `Your tee time at ${club.name} has been confirmed.`
-        info = `${reservation.participants.length} golfers on ${day} at ${time}.`
-        icon = 'fas fa-golf-ball'
-    } else if (group.name === 'Dining Room') {
-        title = 'Dining Confirmation'
-        subtitle = `Your dining reservation at ${club.name} has been confirmed.`
-        info = `${reservation.participants.length} diners on ${day} at ${time}.`
-        icon = 'fas fa-utensils'
-    } else if (group.name === 'Service Providers') {
-        title = 'Vehicle Service Confirmation'
-        subtitle = `Your vehicle service reservation with ${club.name} has been confirmed.`
-        info = `${reservation.participants.length} vehicle on ${day} at ${time}.`
-        icon = 'fas fa-car'
-    } else {
-		title = 'Event Confirmation'
-        subtitle = `Your reservation for ${event.name} has been confirmed`
-        info = `${event.name} takes place on ${day} at ${time}.`
-        icon = 'fas fa-ticket'
-	}
+    const participants = reservation.participants.length
+    switch(group.name) {
+        case core.Calendar.GroupName.TeeTimes:
+            const golfers = participants > 1 ? 'golfers': 'golfer'
+            title = 'Tee Time Confirmation'
+            subtitle = `Your Tee Time at ${club.name} has been confirmed.`
+            info = `${reservation.participants.length} ${golfers} on ${day} at ${time}.`
+            icon = 'fas fa-golf-ball'
+            break
+        case core.Calendar.GroupName.Dining:
+            const diners = participants > 1 ? 'diners': 'diner'
+            title = 'Dining Confirmation'
+            subtitle = `Your dining reservation at ${club.name} has been confirmed.`
+            info = `${reservation.participants.length} ${diners} on ${day} at ${time}.`
+            icon = 'fas fa-utensils'
+            break
+        case core.Calendar.GroupName.Service:
+            title = 'Vehicle Service Confirmation'
+            subtitle = `Your vehicle service reservation at ${club.name} has been confirmed.`
+            info = `${reservation.participants.length} vehicle on ${day} at ${time}.`
+            icon = 'fas fa-car'
+            break
+        default:
+            title = 'Event Confirmation'
+            subtitle = `Your RSVP for ${event.name} has been confirmed`
+            info = `${event.name} takes place on ${day} at ${time}.`
+            icon = 'fas fa-ticket'
+            break
+
+    }
+
     icon = 'https://s3-us-west-2.amazonaws.com/clubhubs3/assets/font-awesome/calendar-alt.png'
     const confirmationInfo: ConfirmationInfo = {
         title: title,
