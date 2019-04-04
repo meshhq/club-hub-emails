@@ -87,26 +87,26 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
             title = 'Tee Time Confirmation'
             subtitle = `Your Tee Time at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} ${golfers} on ${day} at ${time}.`
-            icon = 'fas fa-golf-ball'
+            icon = '🏌'
             break
         case core.Calendar.GroupName.Dining:
             const diners = participants > 1 ? 'diners': 'diner'
             title = 'Dining Confirmation'
             subtitle = `Your dining reservation at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} ${diners} on ${day} at ${time}.`
-            icon = 'fas fa-utensils'
+            icon = '🍽'
             break
         case core.Calendar.GroupName.Service:
             title = 'Vehicle Service Confirmation'
             subtitle = `Your vehicle service reservation at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} vehicle on ${day} at ${time}.`
-            icon = 'fas fa-car'
+            icon = '🏎'
             break
         default:
             title = 'Event Confirmation'
             subtitle = `Your RSVP for ${event.name} has been confirmed`
             info = `${event.name} takes place on ${day} at ${time}.`
-            icon = 'fas fa-ticket'
+            icon = '🎉'
             break
 
     }
