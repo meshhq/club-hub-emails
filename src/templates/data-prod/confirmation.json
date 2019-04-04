@@ -1,7 +1,7 @@
 {
 	"title": "{{title}}",
 	"subtitle": "{{subtitle}}",
-	"iconURL": "{{iconURL}}",
+	"icon": "{{icon}}",
 	"info": "{{info}}",
 	"url": "{{url}}",
 	"unsubscribeURL": "{{unsubscribeURL}}",

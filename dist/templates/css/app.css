@@ -1,6 +1,6 @@
 :root {
   --primary-color: #1d362c;
-  --primary-color-light: #d7e1dd; }
+  --secondary-color: #d7e1dd; }
 
 body {
   width: 100% !important;
@@ -449,13 +449,17 @@ img {
 .container.body.confirmation-body .confirmation-icon-container {
   height: 72px;
   width: 72px;
+  text-align: center;
   border-radius: 36px;
   background-color: var(--secondary-color) !important;
-  text-align: center; }
+  display: table; }
   .container.body.confirmation-body .confirmation-icon-container p {
-    padding-top: 28px;
-    padding-left: 16px;
-    font-size: 42px; }
+    margin: 0 auto;
+    font-size: 32px !important;
+    display: inline;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell; }
 
 .container.body.confirmation-body .button {
   margin-bottom: 0px; }
