@@ -120,7 +120,6 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
         unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club)
     }
-    console.log("Info", confirmationInfo)
     return confirmationInfo
 }
 
