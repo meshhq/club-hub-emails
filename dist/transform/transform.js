@@ -88,7 +88,6 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
     };
-    console.log("Info", confirmationInfo);
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
