@@ -79,7 +79,6 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
             icon = '🎉';
             break;
     }
-    icon = 'https://s3-us-west-2.amazonaws.com/clubhubs3/assets/font-awesome/calendar-alt.png';
     const confirmationInfo = {
         title: title,
         subtitle: subtitle,
@@ -89,6 +88,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
     };
+    console.log("Info", confirmationInfo);
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
