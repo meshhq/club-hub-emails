@@ -13,9 +13,9 @@ const templates = require("./templates");
 exports.buildEventEmails = (action, club, user, event) => __awaiter(this, void 0, void 0, function* () {
     const methodName = '[buildEventEmails] -';
     switch (action.type) {
-        case core.Action.Type.Rsvp:
+        case core.Action.Type.Reservation:
             return yield exports.buildRSVPEmail(user, event, club);
-        case core.Action.Type.UnRsvp:
+        case core.Action.Type.CancelReservation:
             return yield exports.sendMemberUnRSVPEmail(user, event, club);
         default:
             throw new Error(`${methodName} received an unsupported message type: ${action.type}`);
@@ -50,7 +50,7 @@ exports.buildFormEmail = (action, club, form, event) => __awaiter(this, void 0, 
 exports.buildServiceEmails = (action, club, user, provider, event, reservation) => __awaiter(this, void 0, void 0, function* () {
     const methodName = '[buildServiceEmails] -';
     switch (action.type) {
-        case core.Action.Type.ServiceRequest:
+        case core.Action.Type.Reservation:
             return exports.buildServiceRequestEmail(user, provider, event, reservation, club);
         case core.Action.Type.NewProviderRequest:
             return exports.sendProviderRequestEmail(provider, club);
