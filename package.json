@@ -22,7 +22,7 @@
     "index.js"
   ],
   "dependencies": {
-    "club-hub-core": "https://git@github.com/meshhq/club-hub-core.git#0.0.52",
+    "club-hub-core": "https://git@github.com/meshhq/club-hub-core.git#0.0.54",
     "feather-icons": "^4.17.0",
     "handlebars": "^4.1.0",
     "jsdom": "^14.0.0",

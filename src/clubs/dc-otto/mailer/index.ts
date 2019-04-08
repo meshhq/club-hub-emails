@@ -14,9 +14,9 @@ export const buildEventEmails = async (action: core.Action.Model, club: core.Clu
 	const methodName = '[buildEventEmails] -'
 
 	switch(action.type) {
-		case core.Action.Type.Rsvp:
+		case core.Action.Type.Reservation:
 			return await buildRSVPEmail(user, event, club)
-		case core.Action.Type.UnRsvp:
+		case core.Action.Type.CancelReservation:
 			return await sendMemberUnRSVPEmail(user, event, club)
 		default:
 			throw new Error(`${methodName} received an unsupported message type: ${action.type}`)
@@ -79,7 +79,7 @@ export const buildServiceEmails = async (action: core.Action.Model, club: core.C
 	const methodName = '[buildServiceEmails] -'
 
 	switch (action.type) {
-		case core.Action.Type.ServiceRequest:
+		case core.Action.Type.Reservation:
 			return buildServiceRequestEmail(user, provider, event, reservation, club)
 		case core.Action.Type.NewProviderRequest:
 			return sendProviderRequestEmail(provider, club)
