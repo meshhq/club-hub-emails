@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = require("club-hub-core");
+const constants = require("./constants");
 exports.BuildGenericContent = (content, club) => {
     const richContent = {
         content: content,
@@ -41,14 +42,14 @@ exports.BuildPostContent = (post, club, link) => {
     };
     return postInfo;
 };
-exports.BuildConfirmationContent = (reservation, event, group, club) => {
+exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     let title;
     let subtitle;
     let info;
     let icon;
-    var timeOptions = { hour: 'numeric', minute: 'numeric' };
+    var timeOptions = { hour: 'numeric', minute: 'numeric', timeZone: club.tzid };
     const time = new Date(event.start).toLocaleTimeString("en-US", timeOptions);
-    var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+    var dayOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: club.tzid };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions);
     const participants = reservation.participants.length;
     switch (group.name) {
@@ -57,26 +58,26 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
             title = 'Tee Time Confirmation';
             subtitle = `Your Tee Time at ${club.name} has been confirmed.`;
             info = `${reservation.participants.length} ${golfers} on ${day} at ${time}.`;
-            icon = '🏌';
+            icon = constants.GolferEmoji;
             break;
         case core.Calendar.GroupName.Dining:
             const diners = participants > 1 ? 'diners' : 'diner';
             title = 'Dining Confirmation';
             subtitle = `Your dining reservation at ${club.name} has been confirmed.`;
             info = `${reservation.participants.length} ${diners} on ${day} at ${time}.`;
-            icon = '🍽';
+            icon = constants.DinnerEmoji;
             break;
         case core.Calendar.GroupName.Service:
             title = 'Vehicle Service Confirmation';
             subtitle = `Your vehicle service reservation at ${club.name} has been confirmed.`;
             info = `${reservation.participants.length} vehicle on ${day} at ${time}.`;
-            icon = '🏎';
+            icon = constants.RaceCarEmojiURL;
             break;
         default:
             title = 'Event Confirmation';
             subtitle = `Your RSVP for ${event.name} has been confirmed`;
             info = `${event.name} takes place on ${day} at ${time}.`;
-            icon = '🎉';
+            icon = constants.PartyEmoji;
             break;
     }
     const confirmationInfo = {
@@ -84,7 +85,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club) => {
         subtitle: subtitle,
         icon: icon,
         info: info,
-        url: 'admin.tryclubhub.com',
+        url: url,
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
     };

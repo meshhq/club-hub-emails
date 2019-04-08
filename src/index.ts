@@ -8,13 +8,20 @@ import * as JSDOM from 'jsdom'
 import * as CarClub from './clubs/dc-otto/mailer/index'
 export { CarClub }
 
+// Models
+import { EventInfo } from './models/event';
+import { RichContent } from './models/rich'
+
+import { ConfirmationInfo } from './models/confirmation'
+export { ConfirmationInfo }
+
 // Transform 
 import * as transform from './transform/transform'
+export { transform }
 
-// Models
-import { RichContent } from './models/rich'
-import { ConfirmationInfo } from './models/confirmation'
-import { EventInfo } from './models/event';
+import * as constants from './transform/constants'
+export { constants } 
+
 
 /**
  * Compiles a new event email.
@@ -64,13 +71,20 @@ export const CompilePostEmail = (post: core.Post.Model, club: core.Club.Model, l
  * @param event The ClubHub event for the email. 
  * @param club The ClubHub club to which the email is associated.
  */
-export const CompileConfirmationEmail = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.Group, club: core.Club.Model): Promise<string> => {
+export const CompileConfirmationEmail = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.Group, club: core.Club.Model, url: string): Promise<string> => {
     // Transform our event Info
-    const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationContent(reservation, event, group, club)
+    const confirmationInfo: ConfirmationInfo = transform.BuildConfirmationContent(reservation, event, group, club, url)
     
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/confirmation.html`
     return CompileEmail(path, confirmationInfo, club)
+}
+
+
+export const CompileServiceEmail = (info: ConfirmationInfo, club: core.Club.Model) => {
+    // Compile the template and return the promise.
+    const path: string = `${__dirname}/templates/confirmation.html`
+    return CompileEmail(path, info, club)
 }
 
 /**

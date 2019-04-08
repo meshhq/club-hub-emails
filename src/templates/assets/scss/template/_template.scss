@@ -46,10 +46,6 @@ h6 {
   font-weight: 500;
   color: $medium-gray;   
   font-size: 14px;
-  
-  @media screen and (min-width:800px) {
-      font-size: 18px !important;
-  }
 }
 
 p {
