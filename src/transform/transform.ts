@@ -4,6 +4,7 @@ import { EventInfo } from '../models/event'
 import { RichContent } from '../models/rich'
 import { ConfirmationInfo } from '../models/confirmation'
 import { ClubInfo } from '../models/club'
+import * as constants from './constants'
 
 /**
  * Builds a RichContent object for an email.
@@ -69,16 +70,16 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model, l
  * @param event The event for the email.
  * @param club The club for the email.
  */
-export const BuildConfirmationContent = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.Group, club: core.Club.Model) => {
+export const BuildConfirmationContent = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.Group, club: core.Club.Model, url: string) => {
     let title: string 
     let subtitle: string
     let info: string
     let icon: string 
 
-    var timeOptions = { hour: 'numeric', minute: 'numeric' }
+    var timeOptions = { hour: 'numeric', minute: 'numeric', timeZone: club.tzid }
     const time = new Date(event.start).toLocaleTimeString("en-US", timeOptions)
 
-    var dayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+    var dayOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: club.tzid };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions)
     const participants = reservation.participants.length
     switch(group.name) {
@@ -87,26 +88,26 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
             title = 'Tee Time Confirmation'
             subtitle = `Your Tee Time at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} ${golfers} on ${day} at ${time}.`
-            icon = '🏌'
+            icon = constants.GolferEmoji
             break
         case core.Calendar.GroupName.Dining:
             const diners = participants > 1 ? 'diners': 'diner'
             title = 'Dining Confirmation'
             subtitle = `Your dining reservation at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} ${diners} on ${day} at ${time}.`
-            icon = '🍽'
+            icon = constants.DinnerEmoji
             break
         case core.Calendar.GroupName.Service:
             title = 'Vehicle Service Confirmation'
             subtitle = `Your vehicle service reservation at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} vehicle on ${day} at ${time}.`
-            icon = '🏎'
+            icon = constants.RaceCarEmojiURL
             break
         default:
             title = 'Event Confirmation'
             subtitle = `Your RSVP for ${event.name} has been confirmed`
             info = `${event.name} takes place on ${day} at ${time}.`
-            icon = '🎉'
+            icon = constants.PartyEmoji
             break
 
     }
@@ -116,7 +117,7 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
         subtitle: subtitle,
         icon: icon,
         info: info,
-        url: 'admin.tryclubhub.com',
+        url: url,
         unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club)
     }

@@ -12,16 +12,21 @@
         background-color: var(--secondary-color) !important;
         display:table; 
 
+        .emoji-container {
+            vertical-align: middle;
+            text-align: center;
+            display:table-cell;
+        }
+        
         .icon-img {
-            height: 24px;
-            width: 24px;
-            padding-top: 18px;
+            margin: 0 auto;
+            height: 32px;
+            width: 32px;
         }
         
         p {
             margin: 0 auto;
             font-size: 32px !important; 
-            display: inline;
             vertical-align: middle;
             text-align: center;
             display:table-cell;

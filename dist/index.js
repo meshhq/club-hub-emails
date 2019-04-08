@@ -5,6 +5,9 @@ const Handlebars = require("handlebars");
 const CarClub = require("./clubs/dc-otto/mailer/index");
 exports.CarClub = CarClub;
 const transform = require("./transform/transform");
+exports.transform = transform;
+const constants = require("./transform/constants");
+exports.constants = constants;
 exports.CompileGenericEmail = (content, club) => {
     const eventInfo = transform.BuildGenericContent(content, club);
     const path = `${__dirname}/templates/generic.html`;
@@ -20,10 +23,14 @@ exports.CompilePostEmail = (post, club, link) => {
     const path = `${__dirname}/templates/post.html`;
     return CompileEmail(path, postInfo, club);
 };
-exports.CompileConfirmationEmail = (reservation, event, group, club) => {
-    const confirmationInfo = transform.BuildConfirmationContent(reservation, event, group, club);
+exports.CompileConfirmationEmail = (reservation, event, group, club, url) => {
+    const confirmationInfo = transform.BuildConfirmationContent(reservation, event, group, club, url);
     const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, confirmationInfo, club);
+};
+exports.CompileServiceEmail = (info, club) => {
+    const path = `${__dirname}/templates/confirmation.html`;
+    return CompileEmail(path, info, club);
 };
 const CompileEmail = (path, info, club) => {
     return new Promise((resolve, reject) => {

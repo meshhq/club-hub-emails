@@ -248,20 +248,13 @@ table.button:active table tr td a,
 table.button table tr td a:visited,
 table.button.small:hover table tr td a,
 table.button.small:active table tr td a,
-table.button.small table tr td a:visited,
-table.button.large:hover table tr td a,
-table.button.large:active table tr td a,
-table.button.large table tr td a:visited {
+table.button.small table tr td a:visited {
   color: #fefefe; }
 
 table.button.small table td,
 table.button.small table a {
   padding: 5px 10px 5px 10px;
   font-size: 14px; }
-
-table.button.large table a {
-  padding: 10px 20px 10px 20px;
-  font-size: 20px; }
 
 table.button.expanded {
   width: 100% !important; }
@@ -365,9 +358,6 @@ h6 {
   font-weight: 500;
   color: #cacaca;
   font-size: 14px; }
-  @media screen and (min-width: 800px) {
-    h6 {
-      font-size: 18px !important; } }
 
 p {
   word-break: normal;
@@ -453,13 +443,14 @@ img {
   border-radius: 36px;
   background-color: var(--secondary-color) !important;
   display: table; }
-  .container.body.confirmation-body .confirmation-icon-container p {
-    margin: 0 auto;
-    font-size: 32px !important;
-    display: inline;
+  .container.body.confirmation-body .confirmation-icon-container .emoji-container {
     vertical-align: middle;
     text-align: center;
     display: table-cell; }
+  .container.body.confirmation-body .confirmation-icon-container .icon-img {
+    margin: 0 auto;
+    height: 32px;
+    width: 32px; }
 
 .container.body.confirmation-body .button {
   margin-bottom: 0px; }
