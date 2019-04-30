@@ -1,0 +1,53 @@
+---
+subject: My Basic Email Template Subject
+---
+
+<container class="body content-body welcome-content-body">
+
+  <row class="logo-row">
+    <columns class="logo-col" small="12">
+      <div class="logo-container bottom-border">
+        <a href="{{club.domain}}">
+          <img src="{{club.logoURL}}" alt="{{club.name}}">
+        </a>
+      </div>
+    </columns>
+  </row>
+  
+  <row>
+    <columns class="content-column" small="12">
+      <div class="content-container padded-container">
+        <p>Dear {{welcome.firstName}},</p>
+        </br>
+        <p>You have been invited to create an account with ClubHub! {{club.name}} uses ClubHub to power our website and mobile applications.</p>
+        </br>
+        <p>To create your account, please visit <a href="{{welcome.inviteLink}}">this link</a> and create your password. Once you've created your account, you'll be able to continue logging in to the {{club.name}} website at the following website:</p>
+        </br>
+        <a href="{{club.website}}">{{club.website}}</a>
+        </br>
+        </br>
+        <p>Aditionally, you can download the ClubHub mobile application using one of the following links.</p>
+        </br>
+      <div>
+    </columns>
+  </row>
+
+  <row class="badge-row">
+    <columns class="badge-column" small="12">
+      <a href="{{welcome.iosAppURL}}"><img class="float-center" src="{{welcome.iosBadgeURL}}"/></a>
+    </columns>
+    <columns class="badge-column" small="12">
+      <a href="{{welcome.androidAppURL}}"><img class="float-center" src="{{welcome.androidBadgeURL}}"/></a>
+    </columns> 
+  </row>
+
+  <row class="border-row bottom-border">
+    <columns class="content-column" small="12">
+      <div class="content-container padded-container"/>
+    </columns>
+  <row>
+  
+</container>
+
+
+{{> footer}}

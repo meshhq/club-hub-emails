@@ -1,0 +1,11 @@
+{
+    "firstName": "{{firstName}}",
+    "inviteLink": "{{inviteLink}}",
+    "iosAppURL": "{{iosAppURL}}",
+    "androidAppURL": "{{androidAppURL}}",
+    "iosBadgeURL": "{{iosBadgeURL}}",
+    "androidBadgeURL": "{{androidBadgeURL}}",
+    "clubhubSupportURL": "{{clubhubSupportURL}}",
+    "unsubscribeURL": "{{unsubscribeURL}}"
+}
+
