@@ -17,7 +17,7 @@ exports.BuildEventContent = (event, club, link) => {
     const richContent = {
         name: event.name,
         subtitle: "New Club Event!",
-        photoURL: event.photoURL,
+        photoURL: event.image.md,
         content: event.richContent.html,
         url: link,
         cta: 'View Event',
@@ -33,7 +33,7 @@ exports.BuildEventContent = (event, club, link) => {
 exports.BuildPostContent = (post, club, link) => {
     const postInfo = {
         name: post.title,
-        photoURL: post.imageURL,
+        photoURL: post.image.md,
         content: post.richContent.html,
         url: link,
         cta: 'View Post',
@@ -95,7 +95,7 @@ exports.BuildClubInfo = (club) => {
     const clubInfo = {
         name: club.name,
         domain: club.domain,
-        logoURL: club.photoURL,
+        logoURL: club.image.md,
         street: club.locations[0].address1,
         city: club.locations[0].city,
         state: club.locations[0].state,
