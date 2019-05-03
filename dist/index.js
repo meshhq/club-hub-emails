@@ -28,6 +28,11 @@ exports.CompileConfirmationEmail = (reservation, event, group, club, url) => {
     const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, confirmationInfo, club);
 };
+exports.CompileWelcomeEmail = (user, club, inviteLink) => {
+    const welcomeInfo = transform.BuildWelcomeContent(user, club, inviteLink);
+    const path = `${__dirname}/templates/welcome.html`;
+    return CompileEmail(path, welcomeInfo, club);
+};
 exports.CompileServiceEmail = (info, club) => {
     const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, info, club);

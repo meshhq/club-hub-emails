@@ -1,0 +1,19 @@
+.welcome-content-body {
+
+    .badge-row {
+        padding-bottom: 24px;
+    }
+    
+    .badge-column {
+        text-align: center;
+
+        img {
+            max-height: 52px;
+        }
+    }
+
+    a {
+        color: blue;
+        text-decoration: underline;
+    }
+}

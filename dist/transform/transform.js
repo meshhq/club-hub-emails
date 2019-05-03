@@ -30,6 +30,21 @@ exports.BuildEventContent = (event, club, link) => {
     };
     return richContent;
 };
+exports.BuildWelcomeContent = (user, club, inviteLink) => {
+    const welcomeContent = {
+        firstName: user.firstName,
+        inviteLink: inviteLink,
+        iosAppURL: constants.iOSAppURL,
+        androidAppURL: constants.AndroidAppURL,
+        iosBadgeURL: constants.iOSBadgeURL,
+        androidBadgeURL: constants.AndroidBadgeURL,
+        clubhubSupportURL: constants.ClubHubSupportURL,
+        unsubscribeURL: 'www.tryclubhub.com',
+        club: exports.BuildClubInfo(club),
+    };
+    console.log("Welcome", welcomeContent);
+    return welcomeContent;
+};
 exports.BuildPostContent = (post, club, link) => {
     const postInfo = {
         name: post.title,
@@ -94,6 +109,8 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
 exports.BuildClubInfo = (club) => {
     const clubInfo = {
         name: club.name,
+        website: `https://${club.domain}.tryclubhub.com`,
+        shortName: club.shortName,
         domain: club.domain,
         logoURL: club.image.md,
         street: club.locations[0].address1,

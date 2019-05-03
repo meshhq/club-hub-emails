@@ -137,6 +137,7 @@ h6.text-right,
 p.text-right {
   text-align: right; }
 
+img.float-center,
 img.text-center {
   margin: 0 auto;
   Margin: 0 auto;
@@ -342,6 +343,7 @@ h1,
 h6,
 p,
 a,
+br,
 ul {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
@@ -474,3 +476,15 @@ table.button table td {
 
 .event-body .button-row .button {
   margin-bottom: 0px; }
+
+.welcome-content-body .badge-row {
+  padding-bottom: 24px; }
+
+.welcome-content-body .badge-column {
+  text-align: center; }
+  .welcome-content-body .badge-column img {
+    max-height: 52px; }
+
+.welcome-content-body a {
+  color: blue;
+  text-decoration: underline; }

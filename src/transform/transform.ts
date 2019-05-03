@@ -2,8 +2,10 @@ import * as core from 'club-hub-core'
 
 import { EventInfo } from '../models/event'
 import { RichContent } from '../models/rich'
+import { WelcomeContent } from '../models/welcome'
 import { ConfirmationInfo } from '../models/confirmation'
 import { ClubInfo } from '../models/club'
+
 import * as constants from './constants'
 
 /**
@@ -47,7 +49,29 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
 }
 
 /**
- * Builds a RichContent object for a post.
+ * Builds a welcomeContent object for a welcome email.
+ * @param event The user for the email.
+ * @param club The club for the email.
+ */
+export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model, inviteLink: string): WelcomeContent => {
+    const welcomeContent: WelcomeContent = {
+        firstName: user.firstName,
+        inviteLink: inviteLink,
+        iosAppURL: constants.iOSAppURL,
+        androidAppURL: constants.AndroidAppURL, 
+        iosBadgeURL: constants.iOSBadgeURL,
+        androidBadgeURL: constants.AndroidBadgeURL,
+        clubhubSupportURL: constants.ClubHubSupportURL,
+        unsubscribeURL: 'www.tryclubhub.com',
+        club: BuildClubInfo(club),
+
+    }
+    console.log("Welcome", welcomeContent)
+    return welcomeContent
+}
+
+/**
+ * Builds a Riobject for a post.
  * @param event The post for the email.
  * @param club The club for the email.
  */
@@ -132,6 +156,8 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
 export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
     const clubInfo: ClubInfo = {
         name: club.name,
+        website: `https://${club.domain}.tryclubhub.com`,
+        shortName: club.shortName,
         domain: club.domain,
         logoURL: club.image.md,
         street: club.locations[0].address1,

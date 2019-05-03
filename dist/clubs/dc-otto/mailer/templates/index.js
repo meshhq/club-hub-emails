@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = require("club-hub-core");
+const ts_optchain_1 = require("ts-optchain");
 const welcomeEmailTemplate = (member, club, invitation) => {
     const supportEmail = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'info@drivers.club' : 'info@otto.club';
     const message = `
@@ -200,7 +201,7 @@ const rsvpTemplate = (member, event, club) => {
 				${bulletLine('Email:', member.email)}
 			</li>
 			<li>
-				${bulletLine('Phone:', member.phone)}
+				${bulletLine('Phone:', ts_optchain_1.oc(member).phoneNumbers([{}])[0].number)}
 			</li>
 		</ul>
 
@@ -238,7 +239,7 @@ const unRsvpTemplate = (member, event, club) => {
 				${bulletLine('Email:', member.email)}
 			</li>
 			<li>
-				${bulletLine('Phone:', member.phone)}
+				${bulletLine('Phone:', ts_optchain_1.oc(member).phoneNumbers([{}])[0].number)}
 			</li>
 		</ul>
 
@@ -337,7 +338,7 @@ const serviceRequestTemplate = (member, provider, event, reservation, club) => {
 				${bulletLine('Email', member.email)}
 			</li>
 			<li>
-				${bulletLine('Phone', member.phone)}
+				${bulletLine('Phone', ts_optchain_1.oc(member).phoneNumbers([{}])[0].number)}
 			</li>
 		</ul>
 

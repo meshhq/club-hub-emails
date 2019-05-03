@@ -1,5 +1,7 @@
 {
     "name": "{{club.name}}",
+    "domain": "{{club.domain}}",
+    "website": "{{club.website}}",
     "logoURL": "{{club.logoURL}}",
     "street": "{{club.street}}",
     "city": "{{club.city}}",

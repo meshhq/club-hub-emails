@@ -1,5 +1,8 @@
 {
     "name": "Wing Point Golf & Country Club",
+    "domain": "wingpoint",
+    "shortname": "shortname",
+    "website": "https://wingpoint.tryclubhub.com",
     "logoURL": "https://s3-us-west-2.amazonaws.com/clubhubs3/club/logos/wingpoint-logo.png",
     "twitterURL": "www.twitter.com",
     "facebookURL": "www.facebook.com",

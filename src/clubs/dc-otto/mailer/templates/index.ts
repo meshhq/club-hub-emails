@@ -1,5 +1,6 @@
 import * as core from 'club-hub-core'
 import { Model } from 'mongoose';
+import {oc} from 'ts-optchain'
 
 
 //------------------------------------------------------
@@ -215,7 +216,7 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: co
 				${bulletLine('Email:', member.email)}
 			</li>
 			<li>
-				${bulletLine('Phone:', member.phone)}
+				${bulletLine('Phone:', oc(member).phoneNumbers([{} as any])[0].number)}
 			</li>
 		</ul>
 
@@ -255,7 +256,7 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: 
 				${bulletLine('Email:', member.email)}
 			</li>
 			<li>
-				${bulletLine('Phone:', member.phone)}
+				${bulletLine('Phone:', oc(member).phoneNumbers([{} as any])[0].number)}
 			</li>
 		</ul>
 
@@ -366,7 +367,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 				${bulletLine('Email', member.email)}
 			</li>
 			<li>
-				${bulletLine('Phone', member.phone)}
+				${bulletLine('Phone', oc(member).phoneNumbers([{} as any])[0].number)}
 			</li>
 		</ul>
 

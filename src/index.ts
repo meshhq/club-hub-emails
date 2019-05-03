@@ -20,6 +20,7 @@ import * as transform from './transform/transform'
 export { transform }
 
 import * as constants from './transform/constants'
+import { WelcomeContent } from './models/welcome';
 export { constants } 
 
 
@@ -78,6 +79,20 @@ export const CompileConfirmationEmail = (reservation: core.Event.Reservation, ev
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/confirmation.html`
     return CompileEmail(path, confirmationInfo, club)
+}
+
+/**
+ * Compiles a new welcome email.
+ * @param event The ClubHub user for the email. 
+ * @param club The ClubHub club to which the email is associated.
+ */
+export const CompileWelcomeEmail = (user: core.User.Model, club: core.Club.Model, inviteLink: string): Promise<string> => {
+    // Transform our event Info
+    const welcomeInfo: WelcomeContent = transform.BuildWelcomeContent(user, club, inviteLink)
+    
+    // Compile the template and return the promise.
+    const path: string = `${__dirname}/templates/welcome.html`
+    return CompileEmail(path, welcomeInfo, club)
 }
 
 
