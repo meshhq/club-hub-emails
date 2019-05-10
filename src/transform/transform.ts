@@ -66,7 +66,6 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
         club: BuildClubInfo(club),
 
     }
-    console.log("Welcome", welcomeContent)
     return welcomeContent
 }
 

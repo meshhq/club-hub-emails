@@ -42,7 +42,6 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
         unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club),
     };
-    console.log("Welcome", welcomeContent);
     return welcomeContent;
 };
 exports.BuildPostContent = (post, club, link) => {
