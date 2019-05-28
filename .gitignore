@@ -5,3 +5,5 @@ bower_components
 .sass-cache
 .awspublish*
 config.json
+
+.env

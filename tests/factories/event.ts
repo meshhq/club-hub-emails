@@ -6,17 +6,17 @@ import { Types } from 'mongoose'
 import { NewLocationObj } from './submodels/location'
 
 const reservation: core.Event.Reservation = {
-    creator: "" as unknown as Types.ObjectId,
+	creator: "" as unknown as Types.ObjectId,
+	owner: "" as unknown as Types.ObjectId,
     participants: []
 }
 
 const EventFactory = Factory.makeFactory<core.Event.Model>({
 	calendarID: "" as unknown as Types.ObjectId,
 	clubID: "" as unknown as Types.ObjectId,
-	description: Factory.each((i) => Faker.lorem.words(10)),
+	image: {},
 	location: NewLocationObj(),
 	name: Factory.each((i) => Faker.lorem.word()),
-	photoURL: Factory.each((i) => Faker.internet.url()),
 	remoteID: Factory.each((i) => Faker.random.uuid()),
 	price: '20',
 	shortLink: undefined,

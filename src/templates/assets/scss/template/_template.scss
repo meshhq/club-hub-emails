@@ -6,13 +6,13 @@ body,
 html,
 .body {
   background: white !important;
-}
 
-@media screen and (max-width: 596px) {
-  u ~ div {
-    min-width: 100vw !important;
+  @media screen and (max-width: 596px) {
+    max-width: 100vw !important;
   }
 }
+
+
 
 //-----------------------------------
 // TYPOGRAPHY

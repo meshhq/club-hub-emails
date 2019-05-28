@@ -6,13 +6,16 @@ import { NewLocationObj } from './submodels/location'
 
 const clubFactory = Factory.makeFactory<core.Club.Model>({
 	name: Factory.each((i) => Faker.name.title()),
-	photoURL: 'https://s3-us-west-2.amazonaws.com/clubhubs3/assets/clubhub_logo.png',
 	locations: [NewLocationObj()],
 	userGroups: [],
 	type: core.Club.Type.Golf,
 	tzid: '',
 	lat: '',
-	lon: ''
+	lon: '',
+	image: {},
+	clubSettings: {
+		primaryColor: '#fead0d'
+	}
 })
 
 const newClubObj = (): core.Club.Model => {
