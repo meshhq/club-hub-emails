@@ -48,6 +48,10 @@ function clean(done) {
   rimraf('dist', done);
 }
 
+const TEST = !!(yargs.argv.test);
+const distDir = TEST ? 'dist/src' : 'dist'
+
+
 // Compile layouts, pages, and partials into flat HTML files
 // Then parse using Inky templates
 function pages() {
@@ -61,7 +65,7 @@ function pages() {
       data: `src/templates/${dataDir}`
     }))
     .pipe(inky())
-    .pipe(gulp.dest('dist/templates/'));
+    .pipe(gulp.dest(`${distDir}/templates/`));
 }
 
 // Reset Panini's cache of layouts and partials
@@ -77,26 +81,25 @@ function sass() {
     .pipe($.sass({
       includePaths: ['node_modules/foundation-emails/scss']
     }).on('error', $.sass.logError))
-    .pipe($.if(PRODUCTION, $.uncss(
-      {
-        html: ['dist/**/*.html']
-      })))
+    .pipe($.if(PRODUCTION, $.uncss({
+        html: [`${distDir}/templates/*.html`]
+    })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest('dist/templates/css'));
+    .pipe(gulp.dest(`${distDir}/templates/css`));
 }
 
 // Copy and compress images
 function images() {
   return gulp.src(['src/templates/assets/img/**/*', '!src/templates/assets/img/archive/**/*'])
     .pipe($.imagemin())
-    .pipe(gulp.dest('./dist/templates/assets/img'));
+    .pipe(gulp.dest(`${distDir}/templates/assets/img`));
 }
 
 // Inline CSS and minify HTML
 function inline() {
-  return gulp.src('dist/templates/*.html')
-    .pipe($.if(PRODUCTION, inliner('dist/templates/css/app.css')))
-    .pipe(gulp.dest('dist/templates/'));
+  return gulp.src(`${distDir}/templates/*.html`)
+    .pipe($.if(PRODUCTION, inliner(`${distDir}/templates/css/app.css`)))
+    .pipe(gulp.dest(`${distDir}/templates/`));
 }
 
 // Start a server with LiveReload to preview the site in
