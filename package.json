@@ -24,7 +24,7 @@
   "dependencies": {
     "await-to-js": "^2.1.1",
     "aws-sdk": "^2.463.0",
-    "club-hub-core": "https://git@github.com/meshhq/club-hub-core.git#v0.0.80",
+    "club-hub-core": "https://git@github.com/meshhq/club-hub-core.git#v0.0.122",
     "feather-icons": "^4.17.0",
     "handlebars": "^4.1.0",
     "jsdom": "^14.0.0",

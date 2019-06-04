@@ -1,4 +1,5 @@
 import * as core from 'club-hub-core'
+import {oc} from 'ts-optchain'
 
 import { EventInfo } from '../models/event'
 import { RichContent } from '../models/rich'
@@ -31,10 +32,11 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
     const date = new Date(event.start)
     var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
     var timeOptions = { hour: 'numeric', minute: 'numeric' }
+    const images = oc(event).images([{}])
     const richContent: EventInfo = {
         name: event.name,
         subtitle: "New Club Event!",
-        photoURL: event.image.md,
+        photoURL: images[0].md,
         content: event.richContent.html, 
         url: link,
         cta: 'View Event',
