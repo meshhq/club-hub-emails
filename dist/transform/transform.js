@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = require("club-hub-core");
+const ts_optchain_1 = require("ts-optchain");
 const constants = require("./constants");
 exports.BuildGenericContent = (content, club) => {
     const richContent = {
@@ -14,10 +15,11 @@ exports.BuildEventContent = (event, club, link) => {
     const date = new Date(event.start);
     var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
     var timeOptions = { hour: 'numeric', minute: 'numeric' };
+    const images = ts_optchain_1.oc(event).images([{}]);
     const richContent = {
         name: event.name,
         subtitle: "New Club Event!",
-        photoURL: event.image.md,
+        photoURL: images[0].md,
         content: event.richContent.html,
         url: link,
         cta: 'View Event',
