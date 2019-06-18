@@ -56,15 +56,18 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
  * @param club The club for the email.
  */
 export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model, inviteLink: string): WelcomeContent => {
+    const iosAppURL = oc(club).clubSettings.iosAppURL(constants.iOSAppURL)
+    const androidAppURL = oc(club).clubSettings.androidAppURL(constants.iOSAppURL)
+    const unsubscribeURL = `${club.domain}/tryclubhub.com/user/me`
     const welcomeContent: WelcomeContent = {
         firstName: user.firstName,
         inviteLink: inviteLink,
-        iosAppURL: constants.iOSAppURL,
-        androidAppURL: constants.AndroidAppURL, 
+        iosAppURL: iosAppURL,
+        androidAppURL: androidAppURL, 
         iosBadgeURL: constants.iOSBadgeURL,
         androidBadgeURL: constants.AndroidBadgeURL,
         clubhubSupportURL: constants.ClubHubSupportURL,
-        unsubscribeURL: 'www.tryclubhub.com',
+        unsubscribeURL: unsubscribeURL,
         club: BuildClubInfo(club),
 
     }
