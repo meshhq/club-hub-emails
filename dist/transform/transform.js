@@ -34,13 +34,13 @@ exports.BuildEventContent = (event, club, link) => {
 };
 exports.BuildWelcomeContent = (user, club, inviteLink) => {
     const iosAppURL = ts_optchain_1.oc(club).clubSettings.iosAppURL(constants.iOSAppURL);
-    const androidAppUDL = ts_optchain_1.oc(club).clubSettings.androidAppURL(constants.iOSAppURL);
+    const androidAppURL = ts_optchain_1.oc(club).clubSettings.androidAppURL(constants.AndroidAppURL);
     const unsubscribeURL = `${club.domain}/tryclubhub.com/user/me`;
     const welcomeContent = {
         firstName: user.firstName,
         inviteLink: inviteLink,
         iosAppURL: iosAppURL,
-        androidAppURL: androidAppUDL,
+        androidAppURL: androidAppURL,
         iosBadgeURL: constants.iOSBadgeURL,
         androidBadgeURL: constants.AndroidBadgeURL,
         clubhubSupportURL: constants.ClubHubSupportURL,
