@@ -7,3 +7,4 @@ export declare const AndroidAppURL = "https://play.google.com/store/apps/details
 export declare const iOSBadgeURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1280px-Download_on_the_App_Store_Badge.svg.png";
 export declare const AndroidBadgeURL = "https://www.designpieces.com/wp-content/uploads/2016/02/google-play-badge.png";
 export declare const ClubHubSupportURL = "support.tryclubhub.com";
+export declare const ClubHubDomain = "member.tryclubhub.com";

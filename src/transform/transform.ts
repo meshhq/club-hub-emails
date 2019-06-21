@@ -56,6 +56,7 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
  * @param club The club for the email.
  */
 export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model, inviteLink: string): WelcomeContent => {
+    const loginURL = oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`)
     const iosAppURL = oc(club).clubSettings.iosAppURL(constants.iOSAppURL)
     const androidAppURL = oc(club).clubSettings.androidAppURL(constants.AndroidAppURL)
     const unsubscribeURL = `${club.domain}/tryclubhub.com/user/me`
@@ -69,6 +70,7 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
         clubhubSupportURL: constants.ClubHubSupportURL,
         unsubscribeURL: unsubscribeURL,
         club: BuildClubInfo(club),
+        loginURL: loginURL
 
     }
     return welcomeContent

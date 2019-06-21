@@ -9,3 +9,4 @@ exports.AndroidAppURL = "https://play.google.com/store/apps/details?id=com.clubh
 exports.iOSBadgeURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1280px-Download_on_the_App_Store_Badge.svg.png";
 exports.AndroidBadgeURL = "https://www.designpieces.com/wp-content/uploads/2016/02/google-play-badge.png";
 exports.ClubHubSupportURL = "support.tryclubhub.com";
+exports.ClubHubDomain = "member.tryclubhub.com";

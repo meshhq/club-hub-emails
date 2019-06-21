@@ -33,6 +33,7 @@ exports.BuildEventContent = (event, club, link) => {
     return richContent;
 };
 exports.BuildWelcomeContent = (user, club, inviteLink) => {
+    const loginURL = ts_optchain_1.oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`);
     const iosAppURL = ts_optchain_1.oc(club).clubSettings.iosAppURL(constants.iOSAppURL);
     const androidAppURL = ts_optchain_1.oc(club).clubSettings.androidAppURL(constants.AndroidAppURL);
     const unsubscribeURL = `${club.domain}/tryclubhub.com/user/me`;
@@ -46,6 +47,7 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
         clubhubSupportURL: constants.ClubHubSupportURL,
         unsubscribeURL: unsubscribeURL,
         club: exports.BuildClubInfo(club),
+        loginURL: loginURL
     };
     return welcomeContent;
 };
