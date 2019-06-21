@@ -9,4 +9,5 @@ export interface WelcomeContent {
     clubhubSupportURL: string;
     unsubscribeURL: string;
     club: ClubInfo;
+    loginURL: string;
 }
