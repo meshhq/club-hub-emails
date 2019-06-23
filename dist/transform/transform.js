@@ -40,6 +40,7 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
     const welcomeContent = {
         firstName: user.firstName,
         inviteLink: inviteLink,
+        loginURL: loginURL,
         iosAppURL: iosAppURL,
         androidAppURL: androidAppURL,
         iosBadgeURL: constants.iOSBadgeURL,
@@ -47,7 +48,6 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
         clubhubSupportURL: constants.ClubHubSupportURL,
         unsubscribeURL: unsubscribeURL,
         club: exports.BuildClubInfo(club),
-        loginURL: loginURL
     };
     return welcomeContent;
 };

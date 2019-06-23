@@ -6,6 +6,7 @@
     "iosBadgeURL": "{{iosBadgeURL}}",
     "androidBadgeURL": "{{androidBadgeURL}}",
     "clubhubSupportURL": "{{clubhubSupportURL}}",
-    "unsubscribeURL": "{{unsubscribeURL}}"
+    "unsubscribeURL": "{{unsubscribeURL}}",
+    "loginURL": "{{loginURL}}"
 }
 

@@ -63,6 +63,7 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
     const welcomeContent: WelcomeContent = {
         firstName: user.firstName,
         inviteLink: inviteLink,
+        loginURL: loginURL,
         iosAppURL: iosAppURL,
         androidAppURL: androidAppURL, 
         iosBadgeURL: constants.iOSBadgeURL,
@@ -70,8 +71,6 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
         clubhubSupportURL: constants.ClubHubSupportURL,
         unsubscribeURL: unsubscribeURL,
         club: BuildClubInfo(club),
-        loginURL: loginURL
-
     }
     return welcomeContent
 }
