@@ -113,9 +113,10 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
+    const loginURL = ts_optchain_1.oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`);
     const clubInfo = {
         name: club.name,
-        website: `https://${club.domain}.tryclubhub.com`,
+        website: loginURL,
         shortName: club.shortName,
         domain: club.domain,
         logoURL: club.image.md,
@@ -123,6 +124,7 @@ exports.BuildClubInfo = (club) => {
         city: club.locations[0].city,
         state: club.locations[0].state,
         zip: club.locations[0].zip,
+        unsubscribeURL: `${loginURL}/user/me`
     };
     return clubInfo;
 };

@@ -456,6 +456,9 @@ table.button table td {
   background: var(--primary-color);
   border: 1px solid var(--primary-color); }
 
+li {
+  margin-left: 0px; }
+
 .event-body p {
   font-weight: 300;
   line-height: 1.75rem;
