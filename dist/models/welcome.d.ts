@@ -7,7 +7,6 @@ export interface WelcomeContent {
     iosBadgeURL: string;
     androidBadgeURL: string;
     clubhubSupportURL: string;
-    unsubscribeURL: string;
     club: ClubInfo;
     loginURL: string;
 }

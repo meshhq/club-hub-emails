@@ -11,4 +11,5 @@ export interface ClubInfo {
     city: string;
     state: string;
     zip: string;
+    unsubscribeURL: string;
 }

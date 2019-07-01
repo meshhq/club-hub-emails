@@ -6,7 +6,6 @@ const constants = require("./constants");
 exports.BuildGenericContent = (content, club) => {
     const richContent = {
         content: content,
-        unsubscribeURL: "www.tryclubhub.com",
         club: exports.BuildClubInfo(club)
     };
     return richContent;
@@ -23,7 +22,6 @@ exports.BuildEventContent = (event, club, link) => {
         content: event.richContent.html,
         url: link,
         cta: 'View Event',
-        unsubscribeURL: 'www.tryclubhub.com',
         location: event.location.name,
         street: event.location.address1,
         date: date.toLocaleDateString("en-US", dateOptions),
@@ -46,7 +44,6 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
         iosBadgeURL: constants.iOSBadgeURL,
         androidBadgeURL: constants.AndroidBadgeURL,
         clubhubSupportURL: constants.ClubHubSupportURL,
-        unsubscribeURL: unsubscribeURL,
         club: exports.BuildClubInfo(club),
     };
     return welcomeContent;
@@ -58,7 +55,6 @@ exports.BuildPostContent = (post, club, link) => {
         content: post.richContent.html,
         url: link,
         cta: 'View Post',
-        unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club),
     };
     return postInfo;
@@ -107,15 +103,15 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
         icon: icon,
         info: info,
         url: url,
-        unsubscribeURL: 'www.tryclubhub.com',
         club: exports.BuildClubInfo(club)
     };
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
+    const loginURL = ts_optchain_1.oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`);
     const clubInfo = {
         name: club.name,
-        website: `https://${club.domain}.tryclubhub.com`,
+        website: loginURL,
         shortName: club.shortName,
         domain: club.domain,
         logoURL: club.image.md,
@@ -123,6 +119,7 @@ exports.BuildClubInfo = (club) => {
         city: club.locations[0].city,
         state: club.locations[0].state,
         zip: club.locations[0].zip,
+        unsubscribeURL: `${loginURL}/user/me`
     };
     return clubInfo;
 };

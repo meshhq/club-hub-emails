@@ -9,6 +9,6 @@
     "zip": "{{club.zip}}",
     "twitterURL": "{{club.twitterURL}}",
     "facebookURL": "{{club.facebookURL}}",
-    "instagramURL": "{{club.instagramURL}}"
+    "instagramURL": "{{club.instagramURL}}",
+    "unsubscribeURL": "{{club.unsubscribeURL}}"
 }
-

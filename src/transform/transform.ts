@@ -1,5 +1,5 @@
 import * as core from 'club-hub-core'
-import {oc} from 'ts-optchain'
+import { oc } from 'ts-optchain'
 
 import { EventInfo } from '../models/event'
 import { RichContent } from '../models/rich'
@@ -14,10 +14,9 @@ import * as constants from './constants'
  * @param content The HTML content for the email.
  * @param club The club for the email.
  */
-export const BuildGenericContent= (content: string, club: core.Club.Model): RichContent => {
+export const BuildGenericContent = (content: string, club: core.Club.Model): RichContent => {
     const richContent: RichContent = {
-        content: content, 
-        unsubscribeURL: "www.tryclubhub.com",
+        content: content,
         club: BuildClubInfo(club)
     }
     return richContent
@@ -37,14 +36,13 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
         name: event.name,
         subtitle: "New Club Event!",
         photoURL: images[0].md,
-        content: event.richContent.html, 
+        content: event.richContent.html,
         url: link,
         cta: 'View Event',
-        unsubscribeURL: 'www.tryclubhub.com',
         location: event.location.name,
-        street: event.location.address1,   
+        street: event.location.address1,
         date: date.toLocaleDateString("en-US", dateOptions),
-        time: date.toLocaleTimeString("en-US", timeOptions), 
+        time: date.toLocaleTimeString("en-US", timeOptions),
         club: BuildClubInfo(club)
     }
     return richContent
@@ -65,11 +63,10 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
         inviteLink: inviteLink,
         loginURL: loginURL,
         iosAppURL: iosAppURL,
-        androidAppURL: androidAppURL, 
+        androidAppURL: androidAppURL,
         iosBadgeURL: constants.iOSBadgeURL,
         androidBadgeURL: constants.AndroidBadgeURL,
         clubhubSupportURL: constants.ClubHubSupportURL,
-        unsubscribeURL: unsubscribeURL,
         club: BuildClubInfo(club),
     }
     return welcomeContent
@@ -87,7 +84,6 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model, l
         content: post.richContent.html,
         url: link,
         cta: 'View Post',
-        unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club),
 
     }
@@ -100,10 +96,10 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model, l
  * @param club The club for the email.
  */
 export const BuildConfirmationContent = (reservation: core.Event.Reservation, event: core.Event.Model, group: core.Calendar.Group, club: core.Club.Model, url: string) => {
-    let title: string 
+    let title: string
     let subtitle: string
     let info: string
-    let icon: string 
+    let icon: string
 
     var timeOptions = { hour: 'numeric', minute: 'numeric', timeZone: club.tzid }
     const time = new Date(event.start).toLocaleTimeString("en-US", timeOptions)
@@ -111,16 +107,16 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: club.tzid };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions)
     const participants = reservation.participants.length
-    switch(group.name) {
+    switch (group.name) {
         case core.Calendar.GroupName.TeeTimes:
-            const golfers = participants > 1 ? 'golfers': 'golfer'
+            const golfers = participants > 1 ? 'golfers' : 'golfer'
             title = 'Tee Time Confirmation'
             subtitle = `Your Tee Time at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} ${golfers} on ${day} at ${time}.`
             icon = constants.GolferEmoji
             break
         case core.Calendar.GroupName.Dining:
-            const diners = participants > 1 ? 'diners': 'diner'
+            const diners = participants > 1 ? 'diners' : 'diner'
             title = 'Dining Confirmation'
             subtitle = `Your dining reservation at ${club.name} has been confirmed.`
             info = `${reservation.participants.length} ${diners} on ${day} at ${time}.`
@@ -147,7 +143,6 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
         icon: icon,
         info: info,
         url: url,
-        unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club)
     }
     return confirmationInfo
@@ -159,9 +154,10 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
  * @param club The club for the email.
  */
 export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
+    const loginURL = oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`)
     const clubInfo: ClubInfo = {
         name: club.name,
-        website: `https://${club.domain}.tryclubhub.com`,
+        website: loginURL,
         shortName: club.shortName,
         domain: club.domain,
         logoURL: club.image.md,
@@ -169,6 +165,7 @@ export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
         city: club.locations[0].city,
         state: club.locations[0].state,
         zip: club.locations[0].zip,
+        unsubscribeURL: `${loginURL}/user/me`
     }
     return clubInfo
 }

@@ -6,7 +6,6 @@ export interface EventInfo {
     url: string;
     cta: string;
     location: string;
-    unsubscribeURL: string;
     content: string;
     street: string;
     date: string;

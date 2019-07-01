@@ -1,5 +1,5 @@
 export interface ClubInfo {
-    name: string 
+    name: string
     shortName: string
     domain: string
     website: string
@@ -10,5 +10,6 @@ export interface ClubInfo {
     street: string,
     city: string,
     state: string,
-    zip: string
+    zip: string,
+    unsubscribeURL: string
 }

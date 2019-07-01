@@ -10,26 +10,26 @@
         text-align: center;
         border-radius: 36px;
         background-color: var(--secondary-color) !important;
-        display:table; 
+        display: table;
 
         .emoji-container {
             vertical-align: middle;
             text-align: center;
-            display:table-cell;
+            display: table-cell;
         }
-        
+
         .icon-img {
             margin: 0 auto;
             height: 32px;
             width: 32px;
         }
-        
+
         p {
             margin: 0 auto;
-            font-size: 32px !important; 
+            font-size: 32px !important;
             vertical-align: middle;
             text-align: center;
-            display:table-cell;
+            display: table-cell;
         }
 
         .feather {
@@ -58,4 +58,8 @@ table.button {
             border: 1px solid var(--primary-color);
         }
     }
+}
+
+li {
+    margin-left: 0px;
 }

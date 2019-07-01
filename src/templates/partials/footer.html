@@ -5,16 +5,16 @@
       <spacer size="24"></spacer>
       <center>
       <ul>
-          <li><a class="underline" href="{{content.club.domain}}">{{ club.name }}</a></li>
-          <li><a class="underline" href="{{content.club.domain}}">{{ club.street}}</a></li>
-          <li><a class="underline" href="{{content.club.domain}}">{{ club.city}} {{ club.address.state }} {{ club.address.zip }}</a></li>
+          <li><a class="underline" href="{{club.website}}">{{ club.name }}</a></li>
+          <li><a class="underline" href="{{club.website}}">{{ club.street}}</a></li>
+          <li><a class="underline" href="{{club.website}}">{{ club.city}} {{ club.address.state }} {{ club.address.zip }}</a></li>
       </ul>  
       </center>
      
       <spacer size="24"></spacer>
       <p class="text-center">We send emails and announcements to members who have opted into our mailing list.</p>
       <center>
-        <a class="text-center underline" href="{{content.unsubscribeURL}}">Unsubscribe</a>
+        <a class="text-center underline" href="{{club.unsubscribeURL}}">Unsubscribe</a>
       </center>
     </columns>
   </row>
