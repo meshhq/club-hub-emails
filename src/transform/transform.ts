@@ -17,7 +17,6 @@ import * as constants from './constants'
 export const BuildGenericContent = (content: string, club: core.Club.Model): RichContent => {
     const richContent: RichContent = {
         content: content,
-        unsubscribeURL: "www.tryclubhub.com",
         club: BuildClubInfo(club)
     }
     return richContent
@@ -40,7 +39,6 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
         content: event.richContent.html,
         url: link,
         cta: 'View Event',
-        unsubscribeURL: 'www.tryclubhub.com',
         location: event.location.name,
         street: event.location.address1,
         date: date.toLocaleDateString("en-US", dateOptions),
@@ -69,7 +67,6 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
         iosBadgeURL: constants.iOSBadgeURL,
         androidBadgeURL: constants.AndroidBadgeURL,
         clubhubSupportURL: constants.ClubHubSupportURL,
-        unsubscribeURL: unsubscribeURL,
         club: BuildClubInfo(club),
     }
     return welcomeContent
@@ -87,7 +84,6 @@ export const BuildPostContent = (post: core.Post.Model, club: core.Club.Model, l
         content: post.richContent.html,
         url: link,
         cta: 'View Post',
-        unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club),
 
     }
@@ -147,7 +143,6 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
         icon: icon,
         info: info,
         url: url,
-        unsubscribeURL: 'www.tryclubhub.com',
         club: BuildClubInfo(club)
     }
     return confirmationInfo

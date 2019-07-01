@@ -4,8 +4,6 @@
 	"icon": "{{icon}}",
 	"info": "{{info}}",
 	"url": "{{url}}",
-	"unsubscribeURL": "{{unsubscribeURL}}",
 	"primaryColor": "{{primaryColor}}",
 	"secondaryColor": "{{secondaryColor}}"
 }
-

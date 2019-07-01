@@ -10,5 +10,5 @@
     "twitterURL": "{{club.twitterURL}}",
     "facebookURL": "{{club.facebookURL}}",
     "instagramURL": "{{club.instagramURL}}",
-    "unsubscribeURL": "{{unsubscribeURL}}"
+    "unsubscribeURL": "{{club.unsubscribeURL}}"
 }

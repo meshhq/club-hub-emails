@@ -5,7 +5,6 @@
     "content": "{{{content}}}",
     "url": "{{url}}",
     "cta": "{{cta}}",
-    "unsubscribeURL": "{{unsubscribeURL}}",
     "location": "{{location}}",
     "street": "{{street}}",
     "city": "{{city}}",

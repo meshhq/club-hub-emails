@@ -5,10 +5,9 @@ export interface WelcomeContent {
     inviteLink: string
     iosAppURL: string
     androidAppURL: string
-    iosBadgeURL: string 
+    iosBadgeURL: string
     androidBadgeURL: string
     clubhubSupportURL: string
-    unsubscribeURL: string
     club: ClubInfo
     loginURL: string
 }

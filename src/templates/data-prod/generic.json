@@ -3,7 +3,5 @@
     "imageURL": "{{imageURL}}",
     "content": "{{{content}}}",
     "url": "{{url}}",
-    "cta": "{{cta}}",
-    "unsubscribeURL": "{{unsubscribeURL}}"
+    "cta": "{{cta}}"
 }
-
