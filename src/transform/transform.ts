@@ -31,11 +31,12 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
     const date = new Date(event.start)
     var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
     var timeOptions = { hour: 'numeric', minute: 'numeric' }
-    const images = oc(event).images([{}])
+
+    const imageURL = oc(event).images[0]({}).md
     const richContent: EventInfo = {
         name: event.name,
         subtitle: "New Club Event!",
-        photoURL: images[0].md,
+        photoURL: imageURL,
         content: event.richContent.html,
         url: link,
         cta: 'View Event',

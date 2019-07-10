@@ -14,11 +14,11 @@ exports.BuildEventContent = (event, club, link) => {
     const date = new Date(event.start);
     var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
     var timeOptions = { hour: 'numeric', minute: 'numeric' };
-    const images = ts_optchain_1.oc(event).images([{}]);
+    const imageURL = ts_optchain_1.oc(event).images[0]({}).md;
     const richContent = {
         name: event.name,
         subtitle: "New Club Event!",
-        photoURL: images[0].md,
+        photoURL: imageURL,
         content: event.richContent.html,
         url: link,
         cta: 'View Event',
