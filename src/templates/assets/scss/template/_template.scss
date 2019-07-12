@@ -18,7 +18,7 @@ html,
 // TYPOGRAPHY
 //-----------------------------------
 
-h1, 
+h1,
 h2,
 h3,
 h4,
@@ -44,7 +44,7 @@ h1 {
 
 h6 {
   font-weight: 500;
-  color: $medium-gray;   
+  color: $medium-gray;
   font-size: 14px;
 }
 
@@ -57,11 +57,11 @@ p {
   }
 }
 
-.light-text{
+.light-text {
   font-weight: 300;
 }
 
-.heavy-text{
+.heavy-text {
   font-weight: 700;
 }
 
@@ -97,7 +97,7 @@ img {
   height: 240px;
   min-width: 100%;
   overflow: hidden;
-  background-color:  $light-gray;
+  background-color: $light-gray;
   vertical-align: middle;
 
   @media only screen and (min-width:596px) {
@@ -108,9 +108,9 @@ img {
 
 .logo-col {
   padding: 18px 0px;
-  
+
   img {
-      max-height: 60px;
+    max-height: 60px;
   }
 }
 
