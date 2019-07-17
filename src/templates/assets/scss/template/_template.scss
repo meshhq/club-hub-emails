@@ -52,6 +52,10 @@ p {
   word-break: normal;
   font-size: 16px;
 
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  hyphens: manual;
+
   @media screen and (min-width:596px) {
     font-size: 18px !important;
   }
