@@ -177,7 +177,7 @@ const membershipInquiryTemplate = (memberInfo: any, club: core.Club.Model) => {
 const membershipInquiryResponseTemplate = (memberFormInfo: any, club: core.Club.Model, url?: any) => {
 	const defaultDomain = `${club.domain}.tryclubhub.com`
 	const domain = oc(club).clubSettings.customDomain(defaultDomain)
-	const applicationURL = `https://${domain}.tryclubhub.com/forms/application`
+	const applicationURL = `https://${domain}/forms/application`
 
 	const admin = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'Amanda Friedman' : 'Eli Kogan'
 
