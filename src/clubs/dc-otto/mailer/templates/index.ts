@@ -1,6 +1,6 @@
 import * as core from 'club-hub-core'
 import { Model } from 'mongoose';
-import {oc} from 'ts-optchain'
+import { oc } from 'ts-optchain'
 
 
 //------------------------------------------------------
@@ -11,7 +11,7 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, in
 
 	const supportEmail = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'info@drivers.club' : 'info@otto.club'
 
-    const message = `
+	const message = `
 		<p>Hi ${member.firstName} and welcome to ${club.name}!
 
 		<p>Your new ${club.name} account has been created. This gives you access to the ${club.name} web and mobile apps!</p>
@@ -24,11 +24,11 @@ const welcomeEmailTemplate = (member: core.User.Model, club: core.Club.Model, in
 
 		<p>The ${club.name} team.</p>
 	`
-    return message
+	return message
 }
 
 const dcMembershipApplicationTemplate = (memberInfo: any, club: core.Club.Model) => {
-    const message = `
+	const message = `
 		<p> Hi there!</p>
 
 		<p>A prospective member has completed the new member request form. Details below:</p>
@@ -42,7 +42,7 @@ const dcMembershipApplicationTemplate = (memberInfo: any, club: core.Club.Model)
 				${bulletLine('Company', memberInfo.company)}
 			</li>
 			<li>
-				${bulletLine('Address',memberInfo.address)}
+				${bulletLine('Address', memberInfo.address)}
 			</li>
 			<li>
 				${bulletLine('Address', memberInfo.addressTwo)}
@@ -80,14 +80,14 @@ const dcMembershipApplicationTemplate = (memberInfo: any, club: core.Club.Model)
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 const ottoMembershipApplicationTemplate = (memberInfo: any, club: core.Club.Model) => {
 
 	const fullName = `${memberInfo.firstName} ${memberInfo.middleName} ${memberInfo.lastName}`
 
-    const message = `
+	const message = `
 		<p> Hi there!</p>
 
 		<p>A prospective member has completed the new member request form. Details below:</p>
@@ -145,11 +145,11 @@ const ottoMembershipApplicationTemplate = (memberInfo: any, club: core.Club.Mode
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 const membershipInquiryTemplate = (memberInfo: any, club: core.Club.Model) => {
-    const message = `
+	const message = `
 		<p> Hi there!</p>
 
 		<p>A prospective member has completed the membership inquiry form. Details below:</p>
@@ -171,15 +171,17 @@ const membershipInquiryTemplate = (memberInfo: any, club: core.Club.Model) => {
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 const membershipInquiryResponseTemplate = (memberFormInfo: any, club: core.Club.Model, url?: any) => {
+	const defaultDomain = `${club.domain}.tryclubhub.com`
+	const domain = oc(club).clubSettings.customDomain(defaultDomain)
+	const applicationURL = `https://${domain}.tryclubhub.com/forms/application`
 
-	const applicationURL = `https://${club.domain}.tryclubhub.com/forms/application`
 	const admin = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'Amanda Friedman' : 'Eli Kogan'
 
-    const message = `
+	const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
 		<p>Thank you for contacting ${club.name} regarding ${memberFormInfo.membership.label} membership!</p>
@@ -193,7 +195,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any, club: core.Club.
 		<p>${admin}</p>
 		<p>General Manager</p>
 	`
-    return message
+	return message
 }
 
 //------------------------------------------------------
@@ -234,14 +236,14 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: co
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: core.Club.Model) => {
 	// Format the members name.
 	const fullName = `${member.firstName} ${member.lastName}`
 	const eventPrice = (event.price) ? event.price.toString() : 'Free'
-	
+
 	const message = `
 		<p> Hi there!</p>
 
@@ -277,7 +279,7 @@ const unRsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: 
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any, club: core.Club.Model) => {
@@ -285,7 +287,7 @@ const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any, club: core
 	const fullName = `${memberInfo.firstName} ${memberInfo.lastName}`
 	const plusOneText = memberInfo.plusOne ? 'Yes' : 'No'
 	const eventPrice = (event.price) ? event.price.toString() : 'Free'
-	
+
 	const message = `
 		<p> Hi there!</p>
 
@@ -321,7 +323,7 @@ const publicRsvpTemplate = (event: core.Event.Model, memberInfo: any, club: core
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 //------------------------------------------------------
@@ -335,12 +337,12 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 	// Grab the vehicle information.
 	const reservationMeta = reservation.meta as core.Event.CarReservationMeta
 	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString())
-	
+
 	// Format the date.
 	const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }
 	const date = new Date(event.start).toLocaleDateString('en-US', dateOpts)
 
-    const message = `
+	const message = `
 		<p> Hi there!</p>
 
 		<p>A Club member has submitted a new service request. Details below:</p>
@@ -380,7 +382,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 				${bulletLine('Date', date.toString())}
 			</li>
 			<li>
-				${bulletLine('Notes',  reservation.meta.notes)}
+				${bulletLine('Notes', reservation.meta.notes)}
 			</li>
 		</ul>
 			
@@ -388,11 +390,11 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 const newProviderTemplate = (providerInfo: any, club: core.Club.Model) => {
-    const message = `
+	const message = `
 		<p> Hi there!</p>
 
 		<p>A member has submitted a request to add a new ${club.name} provider. Details below:</p>
@@ -432,7 +434,7 @@ const newProviderTemplate = (providerInfo: any, club: core.Club.Model) => {
 
 		<p>Your friends at ${club.name}</p>
 	`
-    return message
+	return message
 }
 
 //------------------------------------------------------
@@ -440,24 +442,24 @@ const newProviderTemplate = (providerInfo: any, club: core.Club.Model) => {
 //------------------------------------------------------
 
 const bulletLine = (boldText: string, text: string): string => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`
+	return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`
 }
 
 const linkLine = (boldText: string, shortLink: string, club: core.Club.Model): string => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="${club.domain}.tryclubhub.com/events/${shortLink}" style='display:inline;'>Event Link</a>`
+	return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="${club.domain}.tryclubhub.com/events/${shortLink}" style='display:inline;'>Event Link</a>`
 }
 
 const regularText = (text: string): string => {
-    return `<p>${text}</p>`
+	return `<p>${text}</p>`
 }
 
-export {rsvpTemplate as RsvpTemplate}
-export {publicRsvpTemplate as PublicRsvpTemplate}
-export {unRsvpTemplate as UnRsvpTemplate}
-export {serviceRequestTemplate as ServiceRequestTemplate}
-export {dcMembershipApplicationTemplate as DcMembershipApplicationTemplate}
-export {ottoMembershipApplicationTemplate as OttoMembershipApplicationTemplate}
-export {newProviderTemplate as NewProviderTemplate}
-export {welcomeEmailTemplate as WelcomeEmailTemplate}
-export {membershipInquiryTemplate as MembershipInquiryTemplate}
-export {membershipInquiryResponseTemplate as MembershipInquiryResponseTemplate}
+export { rsvpTemplate as RsvpTemplate }
+export { publicRsvpTemplate as PublicRsvpTemplate }
+export { unRsvpTemplate as UnRsvpTemplate }
+export { serviceRequestTemplate as ServiceRequestTemplate }
+export { dcMembershipApplicationTemplate as DcMembershipApplicationTemplate }
+export { ottoMembershipApplicationTemplate as OttoMembershipApplicationTemplate }
+export { newProviderTemplate as NewProviderTemplate }
+export { welcomeEmailTemplate as WelcomeEmailTemplate }
+export { membershipInquiryTemplate as MembershipInquiryTemplate }
+export { membershipInquiryResponseTemplate as MembershipInquiryResponseTemplate }
