@@ -1,6 +1,6 @@
 {
     "name": "{{club.name}}",
-    "domain": "{{club.domain}}",
+    "baseURL": "{{club.baseURL}}",
     "website": "{{club.website}}",
     "logoURL": "{{club.logoURL}}",
     "street": "{{club.street}}",

@@ -166,7 +166,7 @@ const membershipInquiryTemplate = (memberInfo, club) => {
 };
 exports.MembershipInquiryTemplate = membershipInquiryTemplate;
 const membershipInquiryResponseTemplate = (memberFormInfo, club, url) => {
-    const defaultDomain = `${club.domain}.tryclubhub.com`;
+    const defaultDomain = `${club.baseURL}`;
     const domain = ts_optchain_1.oc(club).clubSettings.customDomain(defaultDomain);
     const applicationURL = `https://${domain}/forms/application`;
     const admin = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'Amanda Friedman' : 'Eli Kogan';
@@ -412,7 +412,7 @@ const bulletLine = (boldText, text) => {
     return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <p style='display:inline;'>${text}</p>`;
 };
 const linkLine = (boldText, shortLink, club) => {
-    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="${club.domain}.tryclubhub.com/events/${shortLink}" style='display:inline;'>Event Link</a>`;
+    return `<p style='font-weight:bold; display:inline;'>${boldText}</p> <a href="${club.baseURL}/events/${shortLink}" style='display:inline;'>Event Link</a>`;
 };
 const regularText = (text) => {
     return `<p>${text}</p>`;

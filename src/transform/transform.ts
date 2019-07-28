@@ -55,14 +55,13 @@ export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model
  * @param club The club for the email.
  */
 export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model, inviteLink: string): WelcomeContent => {
-    const loginURL = oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`)
     const iosAppURL = oc(club).clubSettings.iosAppURL(constants.iOSAppURL)
     const androidAppURL = oc(club).clubSettings.androidAppURL(constants.AndroidAppURL)
-    const unsubscribeURL = `${club.domain}/tryclubhub.com/user/me`
+    const unsubscribeURL = `${club.baseURL}/user/me`
     const welcomeContent: WelcomeContent = {
         firstName: user.firstName,
         inviteLink: inviteLink,
-        loginURL: loginURL,
+        loginURL: club.baseURL,
         iosAppURL: iosAppURL,
         androidAppURL: androidAppURL,
         iosBadgeURL: constants.iOSBadgeURL,
@@ -155,18 +154,17 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
  * @param club The club for the email.
  */
 export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
-    const loginURL = oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`)
     const clubInfo: ClubInfo = {
         name: club.name,
-        website: loginURL,
+        website: club.baseURL,
         shortName: club.shortName,
-        domain: club.domain,
+        baseURL: club.baseURL,
         logoURL: club.image.md,
         street: club.locations[0].address1,
         city: club.locations[0].city,
         state: club.locations[0].state,
         zip: club.locations[0].zip,
-        unsubscribeURL: `${loginURL}/user/me`
+        unsubscribeURL: `${club.baseURL}/user/me`
     }
     return clubInfo
 }
