@@ -31,14 +31,13 @@ exports.BuildEventContent = (event, club, link) => {
     return richContent;
 };
 exports.BuildWelcomeContent = (user, club, inviteLink) => {
-    const loginURL = ts_optchain_1.oc(club).clubSettings.customDomain(`https://${club.domain}.tryclubhub.com`);
     const iosAppURL = ts_optchain_1.oc(club).clubSettings.iosAppURL(constants.iOSAppURL);
     const androidAppURL = ts_optchain_1.oc(club).clubSettings.androidAppURL(constants.AndroidAppURL);
-    const unsubscribeURL = `${club.domain}/tryclubhub.com/user/me`;
+    const unsubscribeURL = `${club.baseURL}/user/me`;
     const welcomeContent = {
         firstName: user.firstName,
         inviteLink: inviteLink,
-        loginURL: loginURL,
+        loginURL: club.baseURL,
         iosAppURL: iosAppURL,
         androidAppURL: androidAppURL,
         iosBadgeURL: constants.iOSBadgeURL,
@@ -108,10 +107,9 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
-    const loginURL = ts_optchain_1.oc(club).clubSettings.customDomain(`${club.baseURL}`);
     const clubInfo = {
         name: club.name,
-        website: loginURL,
+        website: club.baseURL,
         shortName: club.shortName,
         baseURL: club.baseURL,
         logoURL: club.image.md,
@@ -119,7 +117,7 @@ exports.BuildClubInfo = (club) => {
         city: club.locations[0].city,
         state: club.locations[0].state,
         zip: club.locations[0].zip,
-        unsubscribeURL: `${loginURL}/user/me`
+        unsubscribeURL: `${club.baseURL}/user/me`
     };
     return clubInfo;
 };

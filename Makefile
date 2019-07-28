@@ -11,17 +11,17 @@ export NODE_ENV = test
 # Shell command to find all .ts files.
 src_files = $(shell find . -name '*.ts' ! -path '*/node_modules/*')
 
-deps: 
+build: $(src_files) deps
+	@eval $(GULP) build --production
+	@echo "Re-Transpiling Project..."
+	@eval $(TSC)
+
+deps: package.json
 	npm install --global foundation-cli
 	npm install 
 
 start: 
 	@eval $(GULP)
-
-build: $(src_files)
-	@eval $(GULP) build --production
-	@echo "Re-Transpiling Project..."
-	@eval $(TSC)
 
 build-test: $(src_files)
 	@eval $(GULP) build --production --test
