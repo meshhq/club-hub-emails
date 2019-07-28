@@ -1,7 +1,7 @@
 export interface ClubInfo {
     name: string
     shortName: string
-    domain: string
+    baseURL: string
     website: string
     logoURL: string,
     twitterURL?: string,
