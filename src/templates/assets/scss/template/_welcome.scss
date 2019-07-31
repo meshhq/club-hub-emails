@@ -1,15 +1,13 @@
 .welcome-content-body {
 
     .badge-row {
-        padding-bottom: 24px;
+        padding-bottom: 12px;
     }
-    
-    .badge-column {
-        text-align: center;
 
-        img {
-            max-height: 52px;
-        }
+    .badge-image {
+        text-align: center;
+        padding-bottom: 12px;
+        max-height: 72px;
     }
 
     a {
