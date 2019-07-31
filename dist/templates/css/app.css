@@ -479,12 +479,12 @@ li {
   margin-bottom: 0px; }
 
 .welcome-content-body .badge-row {
-  padding-bottom: 24px; }
+  padding-bottom: 12px; }
 
-.welcome-content-body .badge-column {
-  text-align: center; }
-  .welcome-content-body .badge-column img {
-    max-height: 52px; }
+.welcome-content-body .badge-image {
+  text-align: center;
+  padding-bottom: 12px;
+  max-height: 72px; }
 
 .welcome-content-body a {
   color: blue;
