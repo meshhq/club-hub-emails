@@ -41,7 +41,7 @@ describe('Emails', function () {
 	})
 
 
-	describe('Send Email', function () {
+	describe.skip('Send Email', function () {
 		it('should build an event email', async function () {
 			const response = await SESService.sendHTMLEmail(sender, [recipient], ['tayhalla@gmail.com', sender], [], `Test Send`, emailToSend)
 			console.log("Response", response)
