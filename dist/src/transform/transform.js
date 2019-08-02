@@ -67,7 +67,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     const time = new Date(event.start).toLocaleTimeString("en-US", timeOptions);
     var dayOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: club.tzid };
     const day = new Date(event.start).toLocaleDateString("en-US", dayOptions);
-    const participants = reservation.participants.length;
+    const participants = ts_optchain_1.oc(reservation).participants.length(0);
     switch (group.name) {
         case core.Calendar.GroupName.TeeTimes:
             const golfers = participants > 1 ? 'golfers' : 'golfer';

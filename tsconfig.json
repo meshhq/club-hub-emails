@@ -29,7 +29,6 @@
 		".git",
 		"**/*.spec.ts",
 		"dist",
-		"tests",
 		"src/clubs"
 	],
 	"include": [

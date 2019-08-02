@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv'
 
 // Factories
 import { NewEventObj } from './factories/event'
+import { NewPostObj } from './factories/post'
 import { NewClubObj } from './factories/club'
 
 // Emails 
@@ -17,6 +18,7 @@ dotenv.config()
 
 const sender = 'kevin@meshstudio.io'
 const recipient = 'meshkevin@outlook.com'
+let emailToSend: string
 
 describe('Emails', function () {
 	describe('Events', function () {
@@ -28,12 +30,20 @@ describe('Emails', function () {
 		})
 	})
 
-	describe('Send Email', function () {
-		it('should build an event email', async function () {
-			const event: core.Event.Model = NewEventObj()
+	describe('Posts', function () {
+		it('should build an post email', async function () {
+			const post: core.Post.Model = NewPostObj()
 			const club: core.Club.Model = NewClubObj()
-			const email: string = await emails.CompileEventEmail(event, club, '')
-			const response = await SESService.sendHTMLEmail(sender, [recipient], ['kcoleman731@gmail.com', sender], [], `New Event: ${event.name}`, email)
+			const email: string = await emails.CompilePostEmail(post, club, '')
+			assert(email)
+			emailToSend = email
+		})
+	})
+
+
+	describe.skip('Send Email', function () {
+		it('should build an event email', async function () {
+			const response = await SESService.sendHTMLEmail(sender, [recipient], ['tayhalla@gmail.com', sender], [], `Test Send`, emailToSend)
 			console.log("Response", response)
 		});
 	});
