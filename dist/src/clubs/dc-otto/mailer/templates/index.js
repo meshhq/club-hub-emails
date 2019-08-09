@@ -351,13 +351,13 @@ const serviceRequestTemplate = (member, provider, event, reservation, club) => {
 				${bulletLine('Date', date.toString())}
 			</li>
 			<li>
-				${bulletLine('Notes', reservation.meta.notes)}
+				${bulletLine('Notes', ts_optchain_1.oc(reservation).meta.notes())}
 			</li>
 			<li>
-				${bulletLine('Key Spot', vehicle.keySpots)}
+				${bulletLine('Key Spot', ts_optchain_1.oc(vehicle).keySpots())}
 			</li>
 			<li>
-				${bulletLine('Stall Numbers', member.meta.car.stallNumbers)}
+				${bulletLine('Stall Numbers', ts_optchain_1.oc(member).meta.car.stallNumbers())}
 			</li>
 		</ul>
 			

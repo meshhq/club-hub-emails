@@ -380,13 +380,13 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 				${bulletLine('Date', date.toString())}
 			</li>
 			<li>
-				${bulletLine('Notes', reservation.meta.notes)}
+				${bulletLine('Notes', oc(reservation).meta.notes())}
 			</li>
 			<li>
-				${bulletLine('Key Spot', vehicle.keySpots)}
+				${bulletLine('Key Spot', oc(vehicle).keySpots())}
 			</li>
 			<li>
-				${bulletLine('Stall Numbers', member.meta.car.stallNumbers)}
+				${bulletLine('Stall Numbers', oc(member).meta.car.stallNumbers())}
 			</li>
 		</ul>
 			
