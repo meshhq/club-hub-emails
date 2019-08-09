@@ -29,8 +29,8 @@ export const BuildGenericContent = (content: string, club: core.Club.Model): Ric
  */
 export const BuildEventContent = (event: core.Event.Model, club: core.Club.Model, link: string): EventInfo => {
     const date = new Date(event.start)
-    var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
-    var timeOptions = { hour: 'numeric', minute: 'numeric' }
+    var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: club.tzid };
+    var timeOptions = { hour: 'numeric', minute: 'numeric', timeZone: club.tzid }
 
     const imageURL = oc(event).images[0]({}).md
     const richContent: EventInfo = {

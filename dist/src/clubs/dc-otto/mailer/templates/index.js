@@ -309,7 +309,7 @@ const serviceRequestTemplate = (member, provider, event, reservation, club) => {
     const fullName = `${member.firstName} ${member.lastName}`;
     const reservationMeta = reservation.meta;
     const vehicle = member.meta.car.vehicles.find((vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString());
-    const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: club.tzid };
     const date = new Date(event.start).toLocaleDateString('en-US', dateOpts);
     const message = `
 		<p> Hi there!</p>
@@ -352,6 +352,12 @@ const serviceRequestTemplate = (member, provider, event, reservation, club) => {
 			</li>
 			<li>
 				${bulletLine('Notes', reservation.meta.notes)}
+			</li>
+			<li>
+				${bulletLine('Key Spot', vehicle.keySpots)}
+			</li>
+			<li>
+				${bulletLine('Stall Numbers', member.meta.car.stallNumbers)}
 			</li>
 		</ul>
 			

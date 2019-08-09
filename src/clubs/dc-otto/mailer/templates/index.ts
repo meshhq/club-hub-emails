@@ -337,7 +337,7 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 	const vehicle = member.meta.car.vehicles.find((vehicle: core.SubModels.CarMeta.Vehicle) => vehicle._id.toString() === reservationMeta.vehicleID.toString())
 
 	// Format the date.
-	const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }
+	const dateOpts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: club.tzid }
 	const date = new Date(event.start).toLocaleDateString('en-US', dateOpts)
 
 	const message = `
@@ -381,6 +381,12 @@ const serviceRequestTemplate = (member: core.User.Model, provider: core.Calendar
 			</li>
 			<li>
 				${bulletLine('Notes', reservation.meta.notes)}
+			</li>
+			<li>
+				${bulletLine('Key Spot', vehicle.keySpots)}
+			</li>
+			<li>
+				${bulletLine('Stall Numbers', member.meta.car.stallNumbers)}
 			</li>
 		</ul>
 			
