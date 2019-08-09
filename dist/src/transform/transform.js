@@ -12,8 +12,8 @@ exports.BuildGenericContent = (content, club) => {
 };
 exports.BuildEventContent = (event, club, link) => {
     const date = new Date(event.start);
-    var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
-    var timeOptions = { hour: 'numeric', minute: 'numeric' };
+    var dateOptions = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: club.tzid };
+    var timeOptions = { hour: 'numeric', minute: 'numeric', timeZone: club.tzid };
     const imageURL = ts_optchain_1.oc(event).images[0]({}).md;
     const richContent = {
         name: event.name,
