@@ -11,6 +11,10 @@ export NODE_ENV = test
 # Shell command to find all .ts files.
 src_files = $(shell find . -name '*.ts' ! -path '*/node_modules/*')
 
+node_modules: package.json
+	@echo "Rebuilding the node modules..."
+	@npm install && touch node_modules
+	
 build: $(src_files) deps
 	@eval $(GULP) build --production
 	@echo "Re-Transpiling Project..."
