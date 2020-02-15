@@ -33,6 +33,11 @@ exports.CompileWelcomeEmail = (user, club, inviteLink) => {
     const path = `${__dirname}/templates/welcome.html`;
     return CompileEmail(path, welcomeInfo, club);
 };
+exports.CompileInvalidEmailAdminNotification = (adminName, invalidEmail, club) => {
+    const invalidEmailInfo = transform.BuildInvalidEmailAdminNotificationContent(adminName, invalidEmail, club);
+    const path = `${__dirname}/templates/invalidEmail.html`;
+    return CompileEmail(path, invalidEmailInfo, club);
+};
 exports.CompileServiceEmail = (info, club) => {
     const path = `${__dirname}/templates/confirmation.html`;
     return CompileEmail(path, info, club);

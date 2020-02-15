@@ -47,6 +47,25 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
     };
     return welcomeContent;
 };
+exports.BuildInvalidEmailAdminNotificationContent = (adminName, invalidEmail, club) => {
+    const invalidEmailContent = {
+        firstName: adminName,
+        invalidEmail,
+        club: exports.BuildClubInfo(club),
+    };
+    return invalidEmailContent;
+};
+exports.CompileResetPasswordInvalidEmail = (post, club, link) => {
+    const postInfo = {
+        name: post.title,
+        photoURL: post.image.md,
+        content: post.richContent.html,
+        url: link,
+        cta: 'View Post',
+        club: exports.BuildClubInfo(club),
+    };
+    return postInfo;
+};
 exports.BuildPostContent = (post, club, link) => {
     const postInfo = {
         name: post.title,
