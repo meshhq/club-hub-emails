@@ -51,7 +51,7 @@ describe('Emails', function () {
             });
         });
     });
-    describe('Send Email', function () {
+    describe.skip('Send Email', function () {
         it('should build an event email', function () {
             return __awaiter(this, void 0, void 0, function* () {
                 const response = yield ses_1.default.sendHTMLEmail(sender, [recipient], ['tayhalla@gmail.com'], [], `Test Send`, emailToSend);
