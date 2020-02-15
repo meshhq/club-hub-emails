@@ -21,6 +21,7 @@ export { transform }
 
 import * as constants from './transform/constants'
 import { WelcomeContent } from './models/welcome';
+import { InvalidEmail } from './models/invalidEmail'
 export { constants } 
 
 
@@ -95,6 +96,19 @@ export const CompileWelcomeEmail = (user: core.User.Model, club: core.Club.Model
     return CompileEmail(path, welcomeInfo, club)
 }
 
+/**
+ * Compiles a new welcome email.
+ * @param event The ClubHub user for the email. 
+ * @param club The ClubHub club to which the email is associated.
+ */
+ export const CompileInvalidEmailAdminNotification = (adminName: string, invalidEmail: string, club: core.Club.Model): Promise<string> => {
+    // Transform our event Info
+    const invalidEmailInfo: InvalidEmail = transform.BuildInvalidEmailAdminNotificationContent(adminName, invalidEmail, club)
+    
+    // Compile the template and return the promise.
+    const path: string = `${__dirname}/templates/invalidEmail.html`
+    return CompileEmail(path, invalidEmailInfo, club)
+}
 
 export const CompileServiceEmail = (info: ConfirmationInfo, club: core.Club.Model) => {
     // Compile the template and return the promise.

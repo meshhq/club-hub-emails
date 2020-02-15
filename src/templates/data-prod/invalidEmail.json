@@ -1,0 +1,4 @@
+{
+    "firstName": "{{firstName}}",
+    "invalidEmail": "{{invalidEmail}}"
+}

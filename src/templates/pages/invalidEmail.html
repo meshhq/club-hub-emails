@@ -1,0 +1,38 @@
+---
+subject: My Basic Email Template Subject
+---
+
+<container class="body content-body">
+
+  <row class="logo-row">
+    <columns class="logo-col" small="12">
+      <div class="logo-container bottom-border">
+        <a href="{{club.baseURL}}">
+          <img src="{{club.logoURL}}" alt="{{club.name}}">
+        </a>
+      </div>
+    </columns>
+  </row>
+  
+  <row>
+    <columns class="content-column" small="12">
+      <div class="content-container padded-container bottom-border">
+        <p class="detail-content">
+          Hi {{invalidEmail.firstName}},
+        </p>
+        </br>
+        <p class="detail-content">
+          We noticed the unknown email: <a style="{color:blue}" href="mailto:{{invalidEmail.invalidEmail}}">{{invalidEmail.invalidEmail}}</a> is attempting to login, or reset their password.
+        </p>
+        </br>
+        <p class="detail-content">
+          This typically means a member has forgot the email they use to login
+          to the platform. If you recognize this email, or know who the member could be,
+          please reach out to them to help them login.
+        </p>
+      <div>
+    </columns>
+  </row>
+</container>
+
+{{> footer}}

@@ -4,6 +4,7 @@ import { oc } from 'ts-optchain'
 import { EventInfo } from '../models/event'
 import { RichContent } from '../models/rich'
 import { WelcomeContent } from '../models/welcome'
+import { InvalidEmail } from '../models/invalidEmail'
 import { ConfirmationInfo } from '../models/confirmation'
 import { ClubInfo } from '../models/club'
 
@@ -70,6 +71,38 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
         club: BuildClubInfo(club),
     }
     return welcomeContent
+}
+
+/**
+ * Builds a welcomeContent object for a welcome email.
+ * @param event The user for the email.
+ * @param club The club for the email.
+ */
+ export const BuildInvalidEmailAdminNotificationContent = (adminName: string, invalidEmail: string, club: core.Club.Model): InvalidEmail => {
+    const invalidEmailContent: InvalidEmail = {
+        firstName: adminName,
+        invalidEmail,
+        club: BuildClubInfo(club),
+    }
+    return invalidEmailContent
+}
+
+/**
+ * Builds a Riobject for a post.
+ * @param event The post for the email.
+ * @param club The club for the email.
+ */
+ export const CompileResetPasswordInvalidEmail = (post: core.Post.Model, club: core.Club.Model, link: string): RichContent => {
+    const postInfo: RichContent = {
+        name: post.title,
+        photoURL: post.image.md,
+        content: post.richContent.html,
+        url: link,
+        cta: 'View Post',
+        club: BuildClubInfo(club),
+
+    }
+    return postInfo
 }
 
 /**

@@ -30,7 +30,6 @@
 		"**/*.spec.ts",
 		"dist",
 		"src/clubs",
-		"tests"
 	],
 	"include": [
 		"./"
