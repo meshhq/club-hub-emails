@@ -32,6 +32,6 @@
 		"src/clubs",
 	],
 	"include": [
-		"./"
+		"./src"
 	]
 }
