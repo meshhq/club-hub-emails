@@ -47,9 +47,9 @@ exports.BuildWelcomeContent = (user, club, inviteLink) => {
     };
     return welcomeContent;
 };
-exports.BuildInvalidEmailAdminNotificationContent = (adminName, invalidEmail, club) => {
+exports.BuildInvalidEmailAdminNotificationContent = (clubName, invalidEmail, club) => {
     const invalidEmailContent = {
-        firstName: adminName,
+        clubName,
         invalidEmail,
         club: exports.BuildClubInfo(club),
     };

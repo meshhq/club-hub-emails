@@ -1,6 +1,6 @@
 import { ClubInfo } from './club';
 export interface InvalidEmail {
-    firstName: string;
+    clubName: string;
     invalidEmail: string;
     club: ClubInfo;
 }

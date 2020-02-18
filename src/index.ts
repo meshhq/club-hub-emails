@@ -101,9 +101,9 @@ export const CompileWelcomeEmail = (user: core.User.Model, club: core.Club.Model
  * @param event The ClubHub user for the email. 
  * @param club The ClubHub club to which the email is associated.
  */
- export const CompileInvalidEmailAdminNotification = (adminName: string, invalidEmail: string, club: core.Club.Model): Promise<string> => {
+ export const CompileInvalidEmailAdminNotification = (invalidEmail: string, club: core.Club.Model): Promise<string> => {
     // Transform our event Info
-    const invalidEmailInfo: InvalidEmail = transform.BuildInvalidEmailAdminNotificationContent(adminName, invalidEmail, club)
+    const invalidEmailInfo: InvalidEmail = transform.BuildInvalidEmailAdminNotificationContent(club.name, invalidEmail, club)
     
     // Compile the template and return the promise.
     const path: string = `${__dirname}/templates/invalidEmail.html`

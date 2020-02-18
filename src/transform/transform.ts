@@ -78,9 +78,9 @@ export const BuildWelcomeContent = (user: core.User.Model, club: core.Club.Model
  * @param event The user for the email.
  * @param club The club for the email.
  */
- export const BuildInvalidEmailAdminNotificationContent = (adminName: string, invalidEmail: string, club: core.Club.Model): InvalidEmail => {
+ export const BuildInvalidEmailAdminNotificationContent = (clubName: string, invalidEmail: string, club: core.Club.Model): InvalidEmail => {
     const invalidEmailContent: InvalidEmail = {
-        firstName: adminName,
+        clubName,
         invalidEmail,
         club: BuildClubInfo(club),
     }
