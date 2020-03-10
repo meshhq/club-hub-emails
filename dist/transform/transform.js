@@ -126,12 +126,13 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
+    const clubImage = club.image || club.original;
     const clubInfo = {
         name: club.name,
         website: club.baseURL,
         shortName: club.shortName,
         baseURL: club.baseURL,
-        logoURL: club.image.md,
+        logoURL: clubImage,
         street: club.locations[0].address1,
         city: club.locations[0].city,
         state: club.locations[0].state,

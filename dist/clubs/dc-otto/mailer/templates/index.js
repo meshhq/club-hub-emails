@@ -187,6 +187,15 @@ const membershipInquiryResponseTemplate = (memberFormInfo, club, url) => {
 exports.MembershipInquiryResponseTemplate = membershipInquiryResponseTemplate;
 const rsvpTemplate = (member, event, club) => {
     const fullName = `${member.firstName} ${member.lastName}`;
+    let numberContactLine = '';
+    if (member.phoneNumbers && member.phoneNumbers.length) {
+        numberContactLine =
+            `
+		<li>
+			${bulletLine('Phone:', ts_optchain_1.oc(member).phoneNumbers([{}])[0].number)}
+		</li>
+	`;
+    }
     const message = `
 		<p> Hi there!</p>
 
@@ -200,9 +209,7 @@ const rsvpTemplate = (member, event, club) => {
 			<li>
 				${bulletLine('Email:', member.email)}
 			</li>
-			<li>
-				${bulletLine('Phone:', ts_optchain_1.oc(member).phoneNumbers([{}])[0].number)}
-			</li>
+			${numberContactLine}
 		</ul>
 
 		<p style='font-weight:bold; display:inline;'>Event Info</p>
