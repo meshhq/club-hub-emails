@@ -202,6 +202,17 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any, club: core.Club.
 
 const rsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: core.Club.Model) => {
 	const fullName = `${member.firstName} ${member.lastName}`
+
+	let numberContactLine = ''
+	if (member.phoneNumbers && member.phoneNumbers.length) {
+		numberContactLine = 
+	`
+		<li>
+			${bulletLine('Phone:', oc(member).phoneNumbers([{} as any])[0].number)}
+		</li>
+	`
+	}
+
 	const message = `
 		<p> Hi there!</p>
 
@@ -215,9 +226,7 @@ const rsvpTemplate = (member: core.User.Model, event: core.Event.Model, club: co
 			<li>
 				${bulletLine('Email:', member.email)}
 			</li>
-			<li>
-				${bulletLine('Phone:', oc(member).phoneNumbers([{} as any])[0].number)}
-			</li>
+			${numberContactLine}
 		</ul>
 
 		<p style='font-weight:bold; display:inline;'>Event Info</p>

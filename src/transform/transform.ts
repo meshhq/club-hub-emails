@@ -187,12 +187,13 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
  * @param club The club for the email.
  */
 export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
+    const clubImage = club.image || (club as any).original
     const clubInfo: ClubInfo = {
         name: club.name,
         website: club.baseURL,
         shortName: club.shortName,
         baseURL: club.baseURL,
-        logoURL: club.image.md,
+        logoURL: clubImage,
         street: club.locations[0].address1,
         city: club.locations[0].city,
         state: club.locations[0].state,
