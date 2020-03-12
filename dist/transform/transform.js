@@ -126,7 +126,7 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
-    const clubImage = club.image || club.original;
+    const clubImage = ts_optchain_1.oc(club).image.md(undefined) || club.original;
     const clubInfo = {
         name: club.name,
         website: club.baseURL,

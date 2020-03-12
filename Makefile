@@ -33,7 +33,7 @@ build-test: $(src_files)
 	@eval $(TSC)
 
 test: build-test
-	NODE_ENV=test LOGGER_DISABLED=true ./node_modules/.bin/mocha --exit --bail --recursive --sort --full-trace ./dist/tests
+	NODE_ENV=test LOGGER_DISABLED=true ./node_modules/.bin/ts-mocha -p ./tsconfig.json --reporter dot --slow 100 --inline-diffs --exit --bail --recursive --sort ./src/tests/*.ts ./src/tests/**/*.ts ./src/tests/**/**/*.ts ./src/tests/**/**/**/*.ts ./src/tests/**/**/**/**/*.ts
 
 
 
