@@ -187,7 +187,7 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
  * @param club The club for the email.
  */
 export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
-    const clubImage = club.image || (club as any).original
+    const clubImage = oc(club).image.md(undefined) || (club as any).original
     const clubInfo: ClubInfo = {
         name: club.name,
         website: club.baseURL,

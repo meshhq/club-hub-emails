@@ -8,10 +8,10 @@ import { NewPostObj } from './factories/post'
 import { NewClubObj } from './factories/club'
 
 // Emails 
-import * as emails from '../src/index'
+import * as emails from '../index'
 
 // Service
-import SESService from '../src/services/ses'
+import SESService from '../services/ses'
 
 // Set Environment Variables
 dotenv.config()
@@ -42,7 +42,7 @@ describe('Emails', function () {
 	describe('InvalidEmail', function () {
 		it('should build an invalid email notification', async function () {
 			const club: core.Club.Model = NewClubObj()
-			const email: string = await emails.CompileInvalidEmailAdminNotification('Taylor', 'taylor@whodis.com', club)
+			const email: string = await emails.CompileInvalidEmailAdminNotification('taylor@whodis.com', club)
 			console.log(email)
 			assert(email)
 			emailToSend = email

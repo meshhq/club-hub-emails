@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -31,7 +32,8 @@ class SESService {
         return this._sharedInstance.sns;
     }
 }
-SESService.sendEmail = (source, recipients, ccAddresses, subject, body) => __awaiter(this, void 0, void 0, function* () {
+exports.default = SESService;
+SESService.sendEmail = (source, recipients, ccAddresses, subject, body) => __awaiter(void 0, void 0, void 0, function* () {
     const methodName = '[sendEmail] -';
     if (source === '' || !recipients.length || subject === '' || body === '') {
         const errMsg = 'failed to send email because of missing params';
@@ -45,7 +47,7 @@ SESService.sendEmail = (source, recipients, ccAddresses, subject, body) => __awa
     }
     return res;
 });
-SESService.sendHTMLEmail = (source, recipients, ccAddresses, bccAddresses, subject, html) => __awaiter(this, void 0, void 0, function* () {
+SESService.sendHTMLEmail = (source, recipients, ccAddresses, bccAddresses, subject, html) => __awaiter(void 0, void 0, void 0, function* () {
     const methodName = '[sendEmail] -';
     if (source === '' || !recipients.length || subject === '' || html === '') {
         const errMsg = 'failed to send email because of missing params';
@@ -102,4 +104,3 @@ SESService.createHTMLEmailParams = (source, recipients, ccAddresses, bccAddresse
         Source: source
     };
 };
-exports.default = SESService;
