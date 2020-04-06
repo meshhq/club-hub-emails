@@ -9,6 +9,7 @@ import { ConfirmationInfo } from '../models/confirmation'
 import { ClubInfo } from '../models/club'
 
 import * as constants from './constants'
+import { logger } from 'handlebars'
 
 /**
  * Builds a RichContent object for an email.
@@ -187,7 +188,15 @@ export const BuildConfirmationContent = (reservation: core.Event.Reservation, ev
  * @param club The club for the email.
  */
 export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
-    const clubImage = oc(club).image.md(undefined) || (club as any).original
+    const methodName = `[BuildClubInfo] -`
+    logger.log(logger.INFO, `${methodName} Building club info with club: ${JSON.stringify(club)}`)
+    let clubImage = ''
+    if (club.image && club.image.md && club.image.md.length > 0) {
+        clubImage = club.image.md
+    } else if (club.image.original && club.image.original.length > 0) {
+        clubImage = club.image.original
+    }
+    logger.log(logger.INFO, `${methodName} Building club image: ${clubImage}`)
     const clubInfo: ClubInfo = {
         name: club.name,
         website: club.baseURL,
@@ -200,5 +209,6 @@ export const BuildClubInfo = (club: core.Club.Model): ClubInfo => {
         zip: club.locations[0].zip,
         unsubscribeURL: `${club.baseURL}/user/me`
     }
+    logger.log(logger.INFO, `${methodName} Club Info Built: ${clubInfo}`)
     return clubInfo
 }

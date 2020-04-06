@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = require("club-hub-core");
 const ts_optchain_1 = require("ts-optchain");
 const constants = require("./constants");
+const handlebars_1 = require("handlebars");
 exports.BuildGenericContent = (content, club) => {
     const richContent = {
         content: content,
@@ -126,7 +127,16 @@ exports.BuildConfirmationContent = (reservation, event, group, club, url) => {
     return confirmationInfo;
 };
 exports.BuildClubInfo = (club) => {
-    const clubImage = ts_optchain_1.oc(club).image.md(undefined) || club.original;
+    const methodName = `[BuildClubInfo] -`;
+    handlebars_1.logger.log(handlebars_1.logger.INFO, `${methodName} Building club info with club: ${JSON.stringify(club)}`);
+    let clubImage = '';
+    if (club.image && club.image.md && club.image.md.length > 0) {
+        clubImage = club.image.md;
+    }
+    else if (club.image.original && club.image.original.length > 0) {
+        clubImage = club.image.original;
+    }
+    handlebars_1.logger.log(handlebars_1.logger.INFO, `${methodName} Building club image: ${clubImage}`);
     const clubInfo = {
         name: club.name,
         website: club.baseURL,
@@ -139,5 +149,6 @@ exports.BuildClubInfo = (club) => {
         zip: club.locations[0].zip,
         unsubscribeURL: `${club.baseURL}/user/me`
     };
+    handlebars_1.logger.log(handlebars_1.logger.INFO, `${methodName} Club Info Built: ${clubInfo}`);
     return clubInfo;
 };
