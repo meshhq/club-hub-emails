@@ -140,6 +140,12 @@ const ottoMembershipApplicationTemplate = (memberInfo, club) => {
 };
 exports.OttoMembershipApplicationTemplate = ottoMembershipApplicationTemplate;
 const membershipInquiryTemplate = (memberInfo, club) => {
+    const phoneSection = memberInfo.phone ?
+        `
+		<li>
+			${bulletLine('Phone: ', memberInfo.phone)}
+		</li>
+		` : ``;
     const message = `
 		<p> Hi there!</p>
 
@@ -148,11 +154,12 @@ const membershipInquiryTemplate = (memberInfo, club) => {
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', `${memberInfo.firstName} ${memberInfo.lastName}`)}
+				${bulletLine('Name: ', `${memberInfo.firstName} ${memberInfo.lastName}`)}
 			</li>
 			<li>
-				${bulletLine('Email', memberInfo.email)}
+				${bulletLine('Email: ', memberInfo.email)}
 			</li>
+			${phoneSection}
 			<li>
 				${bulletLine('Desired Membership', memberInfo.membership.label)}
 			</li>

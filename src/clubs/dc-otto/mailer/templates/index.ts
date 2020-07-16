@@ -149,6 +149,12 @@ const ottoMembershipApplicationTemplate = (memberInfo: any, club: core.Club.Mode
 }
 
 const membershipInquiryTemplate = (memberInfo: any, club: core.Club.Model) => {
+	const phoneSection = memberInfo.phone ? 
+		`
+		<li>
+			${bulletLine('Phone: ', memberInfo.phone)}
+		</li>
+		` : ``
 	const message = `
 		<p> Hi there!</p>
 
@@ -157,11 +163,12 @@ const membershipInquiryTemplate = (memberInfo: any, club: core.Club.Model) => {
 		<p style='font-weight:bold; display:inline;'>Member Info</p>
 		<ul>
 			<li>
-				${bulletLine('Name:', `${memberInfo.firstName} ${memberInfo.lastName}`)}
+				${bulletLine('Name: ', `${memberInfo.firstName} ${memberInfo.lastName}`)}
 			</li>
 			<li>
-				${bulletLine('Email', memberInfo.email)}
+				${bulletLine('Email: ', memberInfo.email)}
 			</li>
+			${phoneSection}
 			<li>
 				${bulletLine('Desired Membership', memberInfo.membership.label)}
 			</li>
