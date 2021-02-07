@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MembershipInquiryResponseTemplate = exports.MembershipInquiryTemplate = exports.WelcomeEmailTemplate = exports.NewProviderTemplate = exports.OttoMembershipApplicationTemplate = exports.DcMembershipApplicationTemplate = exports.ServiceRequestTemplate = exports.UnRsvpTemplate = exports.PublicRsvpTemplate = exports.RsvpTemplate = void 0;
 const core = require("club-hub-core");
 const ts_optchain_1 = require("ts-optchain");
 const welcomeEmailTemplate = (member, club, invitation) => {
@@ -167,7 +168,12 @@ const membershipInquiryTemplate = (memberInfo, club) => {
 exports.MembershipInquiryTemplate = membershipInquiryTemplate;
 const membershipInquiryResponseTemplate = (memberFormInfo, club, url) => {
     const applicationURL = `${club.baseURL}/forms/application`;
-    const admin = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'Amanda Friedman' : 'Eli Kogan';
+    const final = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? '' : `
+	<p>Sincerely,</p>
+
+	<p>Eli Kogan</p>
+	<p>General Manager</p>
+	`;
     const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
 
@@ -177,10 +183,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo, club, url) => {
 
 		<p>Please click <a href="${applicationURL}">this link</a> to begin the formal application process.</p>
 
-		<p>Sincerely,</p>
-
-		<p>${admin}</p>
-		<p>General Manager</p>
+		${final}
 	`;
     return message;
 };

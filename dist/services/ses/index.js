@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MESSAGE_REJECTED = void 0;
 const aws_sdk_1 = require("aws-sdk");
 const await_to_js_1 = require("await-to-js");
 const CHARSET_UTF_8 = 'UTF-8';

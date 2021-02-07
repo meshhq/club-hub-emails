@@ -30,23 +30,22 @@ center {
 a img {
   border: none; }
 
-p {
-  margin: 0 0 0 0px;
-  Margin: 0 0 0 0px; }
-
 table {
   border-spacing: 0;
   border-collapse: collapse; }
 
-td {
+td, th {
   word-wrap: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
   border-collapse: collapse !important; }
 
-table, tr, td {
-  padding: 0;
+table, tr, td, th {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
   vertical-align: top;
   text-align: left; }
 
@@ -85,15 +84,20 @@ th.columns {
   Margin: 0 auto;
   padding-left: 16px;
   padding-bottom: 16px; }
-  th.columns .columns {
-    padding-left: 0 !important;
+  th.columns .columns.first {
+    padding-left: 0 !important; }
+  th.columns .columns.last {
     padding-right: 0 !important; }
 
 th.columns.last {
   padding-right: 16px; }
 
-th.columns table:not(.button) {
+th.columns table {
   width: 100%; }
+  th.columns table.button {
+    width: auto; }
+    th.columns table.button.expanded {
+      width: 100%; }
 
 th.large-6 {
   width: 254px;
@@ -163,12 +167,14 @@ h1,
 h6,
 p,
 td,
-th,
-a {
+th {
   color: #495057;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-weight: normal;
-  padding: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
   margin: 0;
   Margin: 0;
   text-align: left;
@@ -204,13 +210,14 @@ p {
     font-size: 20px;
     line-height: 1.6; }
 
-small {
-  font-size: 80%;
-  color: #cacaca; }
-
 a {
   color: #1d362c;
-  text-decoration: none; }
+  text-decoration: none;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  padding: 0;
+  text-align: left;
+  line-height: 1.75; }
   a:hover {
     color: #0b1511; }
   a:active {
@@ -245,6 +252,7 @@ table.button {
       font-weight: 500;
       color: #fefefe;
       text-decoration: none;
+      text-align: left;
       display: inline-block;
       padding: 8px 16px 8px 16px;
       border: 0 solid #1d362c;
@@ -264,7 +272,7 @@ table.button.small table a {
   font-size: 14px; }
 
 table.button.expanded {
-  width: 100% !important; }
+  width: 100%; }
   table.button.expanded table {
     width: 100%; }
     table.button.expanded table a {
@@ -302,7 +310,11 @@ table.menu.vertical th.menu-item {
     width: 100%; }
 
 .menu[align="center"] {
-  width: auto !important; }
+  width: auto; }
+
+.menu.vertical .menu-item {
+  padding-left: 0 !important;
+  padding-right: 0 !important; }
 
 @media only screen and (max-width: 556px) {
   table.body img {

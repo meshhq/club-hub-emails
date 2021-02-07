@@ -177,7 +177,12 @@ const membershipInquiryTemplate = (memberInfo: any, club: core.Club.Model) => {
 const membershipInquiryResponseTemplate = (memberFormInfo: any, club: core.Club.Model, url?: any) => {
 	const applicationURL = `${club.baseURL}/forms/application`
 
-	const admin = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? 'Amanda Friedman' : 'Eli Kogan'
+	const final = (club.name === core.Constants.Clubs.DRIVERS_CLUB) ? '' : `
+	<p>Sincerely,</p>
+
+	<p>Eli Kogan</p>
+	<p>General Manager</p>
+	`
 
 	const message = `
 		<p>Dear ${memberFormInfo.firstName},</p>
@@ -188,10 +193,7 @@ const membershipInquiryResponseTemplate = (memberFormInfo: any, club: core.Club.
 
 		<p>Please click <a href="${applicationURL}">this link</a> to begin the formal application process.</p>
 
-		<p>Sincerely,</p>
-
-		<p>${admin}</p>
-		<p>General Manager</p>
+		${final}
 	`
 	return message
 }
